@@ -1,0 +1,7 @@
+@use 'sass:list';
+
+@mixin flex($display, $justify-content: none, $align-items: none) {
+  display: $display;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
