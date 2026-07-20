@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import s from './testMixins.module.scss'
 
-const TestMixins = () => {
+export const TestMixins = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
@@ -53,6 +53,33 @@ const TestMixins = () => {
               </div>
             </div>
           </section>
+
+          {/* Test flex, width-height, top-left, top-right, typography, prefix, transition-basic */}
+          <section className={s.testSection}>
+            <h2>Utility Mixins</h2>
+
+            <div className={s.utilityGrid}>
+              <div className={s.flexBox}>
+                <div>Flexbox</div>
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+              </div>
+
+              <div className={s.square}>width-height</div>
+
+              <div className={s.positionWrapper}>
+                <div className={s.topLeft}>Top Left</div>
+                <div className={s.topRight}>Top Right</div>
+              </div>
+
+              <p className={s.typographyExample}>Typography mixin example</p>
+
+              <div className={s.transitionBox}>Hover me (transition-basic mixin)</div>
+
+              <div className={s.prefixBox}>Prefix mixin</div>
+            </div>
+          </section>
         </div>
       </main>
 
@@ -78,5 +105,3 @@ const TestMixins = () => {
     </div>
   )
 }
-
-export default TestMixins

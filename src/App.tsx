@@ -1,4 +1,4 @@
-import TestMixins from '@/components/testMixins/testMixins'
+import { TestMixins } from '@/components/testMixins'
 
 export function App() {
   // return <TestComponent/>

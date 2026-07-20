@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import TestMixins from '@/components/testMixins/testMixins'
+import { TestMixins } from '@/components/testMixins'
 
 const meta = {
   title: 'Styles/TestMixins',

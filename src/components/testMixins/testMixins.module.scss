@@ -364,3 +364,93 @@
     flex-direction: column;
   }
 }
+
+// Flex
+.utilityGrid {
+  display: grid;
+  gap: 2rem;
+}
+
+.flexBox {
+  @include flex(flex, center, center);
+
+  gap: 1rem;
+  padding: 1rem;
+  background: #eee;
+
+  div {
+    padding: 1rem;
+    color: white;
+    background: #667eea;
+  }
+}
+
+// width-height
+.square {
+  @include width-height(120px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+
+  background: #4caf50;
+}
+
+// top-left / top-right
+.positionWrapper {
+  position: relative;
+  height: 120px;
+  background: #f3f3f3;
+}
+
+.topLeft {
+  @include top-left(10px);
+
+  position: absolute;
+  padding: 0.5rem;
+  color: white;
+  background: #2196f3;
+}
+
+.topRight {
+  @include top-right(10px);
+
+  position: absolute;
+  padding: 0.5rem;
+  color: white;
+  background: #f44336;
+}
+
+// Typography
+.typographyExample {
+  @include typography(24px, 32px, 700);
+}
+
+// Transition-basic
+.transitionBox {
+  padding: 1rem;
+  background: #ff9800;
+
+  @include transition-basic(background, transform);
+
+  &:hover {
+    transform: scale(1.05);
+    background: #4caf50;
+  }
+}
+
+// Prefix
+.prefixBox {
+  padding: 1rem;
+  background: #ddd;
+
+  @include prefix(user-select, none, (webkit, moz, ms));
+}
+
+// see in DevTools:
+// -webkit-user-select: none;
+// -moz-user-select: none;
+// -ms-user-select: none;
+// user-select: none;
