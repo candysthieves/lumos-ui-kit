@@ -1,7 +1,3 @@
-@forward '@radix-ui/themes/styles.css';
-
-@use 'mixins' as *;
-
 html {
   box-sizing: border-box;
   font-size: 100%;
@@ -13,7 +9,7 @@ html {
 *,
 *::before,
 *::after {
-  @include prefix(box-sizing, border-box, (webkit));
+  box-sizing: border-box;
 }
 
 input,
