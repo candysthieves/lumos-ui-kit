@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import s from './testMixins.module.scss'
 
 const TestMixins = () => {
