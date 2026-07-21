@@ -1,0 +1,456 @@
+@use '../../styles/mixins' as *;
+
+// Component styles
+.testContainer {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+// Test container mixin
+.header {
+  padding: 2rem 0;
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.container {
+  @include container;
+
+  padding: 2rem;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 10%);
+
+  h1 {
+    margin: 0;
+    font-size: 2.5rem;
+  }
+
+  p {
+    margin: 0.5rem 0 0;
+    opacity: 0.9;
+  }
+}
+
+// Test content mixin
+.main {
+  padding: 2rem 0;
+}
+
+.content {
+  @include content;
+}
+
+.testSection {
+  margin-bottom: 2rem;
+  padding: 2rem;
+  border-radius: 8px;
+
+  background: white;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+
+  h2 {
+    margin-top: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #667eea;
+    color: #333;
+  }
+}
+
+// Breakpoint indicators
+.breakpointIndicators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  > div {
+    flex: 1;
+
+    min-width: 150px;
+    padding: 1rem;
+    border-radius: 4px;
+
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+.desktopIndicator {
+  color: white;
+  background: #4caf50;
+
+  @include media-desktop {
+    color: white;
+    background: #ff9800;
+
+    &::after {
+      content: ' (Active)';
+    }
+  }
+}
+
+.tabletIndicator {
+  color: white;
+  background: #ff9800;
+
+  @include media-tablet {
+    color: white;
+    background: #2196f3;
+
+    &::after {
+      content: ' (Active)';
+    }
+  }
+}
+
+.mobileIndicator {
+  color: white;
+  background: #2196f3;
+
+  @include media-mobile {
+    color: white;
+    background: #f44336;
+
+    &::after {
+      content: ' (Active)';
+    }
+  }
+}
+
+// Modal sizes preview
+.modalSizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+
+  > div {
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 4px;
+
+    font-size: 0.9rem;
+
+    background: #e0e0e0;
+  }
+}
+
+.modalXs {
+  width: var(--modal-width-xs);
+  border-color: #2196f3;
+  background: #e3f2fd;
+}
+
+.modalS {
+  width: var(--modal-width-s);
+  border-color: #4caf50;
+  background: #e8f5e9;
+}
+
+.modalM {
+  width: var(--modal-width-m);
+  border-color: #ff9800;
+  background: #fff3e0;
+}
+
+.modalL {
+  width: var(--modal-width-l);
+  border-color: #f44336;
+  background: #fce4ec;
+}
+
+.modalXl {
+  width: var(--modal-width-xl);
+  border-color: #9c27b0;
+  background: #f3e5f5;
+}
+
+.openModalBtn {
+  cursor: pointer;
+
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+
+  font-size: 1rem;
+  color: white;
+
+  background: #667eea;
+
+  &:hover {
+    background: #764ba2;
+  }
+}
+
+// No-hover mixin test
+.hoverTest {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.hoverButton {
+  cursor: pointer;
+
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 4px;
+
+  font-size: 1rem;
+  color: white;
+
+  background: #764ba2;
+
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+    background: #667eea;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  // No hover on touch devices
+  @include no-hover-mobile {
+    &:hover {
+      transform: none;
+      background: #764ba2;
+      box-shadow: none;
+    }
+  }
+}
+
+.hoverCard {
+  min-width: 200px;
+  padding: 2rem;
+  border-radius: 8px;
+
+  text-align: center;
+
+  background: #e0e0e0;
+
+  transition: all 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    color: white;
+    background: #667eea;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 20%);
+  }
+
+  // No hover on touch devices
+  @include no-hover-mobile {
+    &:hover {
+      transform: none;
+      color: inherit;
+      background: #e0e0e0;
+      box-shadow: none;
+    }
+  }
+}
+
+// Modal styles
+.modalOverlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgb(0 0 0 / 70%);
+}
+
+.modal {
+  position: relative;
+
+  overflow-y: auto;
+
+  // Responsive modal widths
+  width: var(--modal-width-m); // Default medium
+  max-height: 80vh;
+  padding: 2rem;
+  border-radius: 8px;
+
+  background: white;
+
+  @include media-desktop {
+    width: var(--modal-width-xl);
+  }
+
+  @include media-tablet {
+    width: var(--modal-width-l);
+  }
+
+  @include media-mobile {
+    width: var(--modal-width-s);
+  }
+
+  // Individual width tests
+  .modalSizes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    span {
+      padding: 0.25rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      background: #f0f0f0;
+    }
+  }
+}
+
+.closeBtn {
+  cursor: pointer;
+
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  padding: 0.5rem;
+  border: none;
+
+  font-size: 2rem;
+  line-height: 1;
+  color: #999;
+
+  background: none;
+
+  &:hover {
+    color: #333;
+  }
+}
+
+// Responsive adjustments for the component itself
+@include media-tablet {
+  .container {
+    padding: 1rem;
+  }
+
+  .testSection {
+    padding: 1.5rem;
+  }
+
+  .breakpointIndicators {
+    > div {
+      min-width: 120px;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@include media-mobile {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+
+  .testSection {
+    padding: 1rem;
+  }
+
+  .modalSizes {
+    > div {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  .hoverTest {
+    flex-direction: column;
+  }
+}
+
+// Flex
+.utilityGrid {
+  display: grid;
+  gap: 2rem;
+}
+
+.flexBox {
+  @include flex(flex, center, center);
+
+  gap: 1rem;
+  padding: 1rem;
+  background: #eee;
+
+  div {
+    padding: 1rem;
+    color: white;
+    background: #667eea;
+  }
+}
+
+// width-height
+.square {
+  @include width-height(120px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+
+  background: #4caf50;
+}
+
+// top-left / top-right
+.positionWrapper {
+  position: relative;
+  height: 120px;
+  background: #f3f3f3;
+}
+
+.topLeft {
+  @include top-left(10px);
+
+  position: absolute;
+  padding: 0.5rem;
+  color: white;
+  background: #2196f3;
+}
+
+.topRight {
+  @include top-right(10px);
+
+  position: absolute;
+  padding: 0.5rem;
+  color: white;
+  background: #f44336;
+}
+
+// Typography
+.typographyExample {
+  @include typography(24px, 32px, 700);
+}
+
+// Transition-basic
+.transitionBox {
+  padding: 1rem;
+  background: #ff9800;
+
+  @include transition-basic(background, transform);
+
+  &:hover {
+    transform: scale(1.05);
+    background: #4caf50;
+  }
+}
+
+// Prefix
+.prefixBox {
+  padding: 1rem;
+  background: #ddd;
+
+  @include prefix(user-select, none, (webkit, moz, ms));
+}
+
+// see in DevTools:
+// -webkit-user-select: none;
+// -moz-user-select: none;
+// -ms-user-select: none;
+// user-select: none;

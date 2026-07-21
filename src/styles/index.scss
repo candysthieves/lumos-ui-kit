@@ -1,5 +1,4 @@
-@forward 'constants';
-@forward 'colors';
-@forward 'typography';
-@forward 'mixins';
-@forward 'boilerplate';
+@use './colors';
+@use './typography';
+@use './mixins';
+@use './boilerplate';
