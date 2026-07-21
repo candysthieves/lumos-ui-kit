@@ -32,3 +32,122 @@
   --transition-duration-basic: 0.3s;
   --transition-function-basic: ease;
 }
+
+@mixin typography($fontSize, $lineHeight, $fontWeight, $fontFamily: var(--font-family-primary)) {
+  margin: 0;
+
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  line-height: $lineHeight;
+  color: var(--color-text-primary);
+}
+
+.typography-large {
+  @include typography(var(--font-size-xxl), var(--line-height-s), var(--font-weight-semi-bold));
+}
+
+.typography-h1 {
+  @include typography(var(--font-size-xl), var(--line-height-xl), var(--font-weight-bold));
+}
+
+.typography-h2 {
+  @include typography(var(--font-size-l), var(--line-height-xs), var(--font-weight-bold));
+}
+
+.typography-h3 {
+  @include typography(var(--font-size-m), var(--line-height-m), var(--font-weight-semi-bold));
+}
+
+// regular_text 16
+.typography-subtitle1 {
+  @include typography(var(--font-size-m), var(--line-height-m), var(--font-weight-regular));
+}
+
+// bold_text 16
+.typography-subtitle2 {
+  @include typography(var(--font-size-m), var(--line-height-m), var(--font-weight-bold));
+}
+
+// regular_text 14
+.typography-body1 {
+  @include typography(var(--font-size-s), var(--line-height-l), var(--font-weight-regular));
+}
+
+// medium_text 14
+.typography-body2 {
+  @include typography(var(--font-size-s), var(--line-height-l), var(--font-weight-medium));
+}
+
+// bold_text 14
+.typography-body3 {
+  @include typography(var(--font-size-s), var(--line-height-l), var(--font-weight-bold));
+}
+
+// small_text
+.typography-caption1 {
+  @include typography(var(--font-size-xs), var(--line-height-xs), var(--font-weight-regular));
+}
+
+// semi-bold small_text
+.typography-caption2 {
+  @include typography(var(--font-size-xs), var(--line-height-xs), var(--font-weight-semi-bold));
+}
+
+// regular_link
+.typography-link {
+  @include typography(var(--font-size-s), var(--line-height-l), var(--font-weight-regular));
+
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
+// small_link
+.typography-subtitle-link {
+  @include typography(var(--font-size-s), var(--line-height-xs), var(--font-weight-regular));
+
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
+// The following is used in reCAPTCHA
+.typography-caution {
+  @include typography(
+    var(--font-size-xs),
+    var(--line-height-xxs),
+    var(--font-weight-medium),
+    var(--second-family)
+  );
+}
+
+// Recaptcha - error
+.typography-caution-error {
+  @include typography(
+    var(--font-size-xxs),
+    var(--line-height-xxs),
+    var(--font-weight-regular),
+    var(--second-family)
+  );
+
+  color: var(--color-danger-500); // in Figma FF0000
+}
+
+// Recaptcha - signature
+.typography-signature {
+  @include typography(
+    var(--font-size-3xs),
+    var(--line-height-3xs),
+    var(--font-weight-medium),
+    var(--second-family)
+  );
+}
+
+// Recaptcha - signature (legal)
+.typography-signature-legal {
+  @include typography(
+    var(--font-size-4xs),
+    var(--line-height-xxs),
+    var(--font-weight-medium),
+    var(--second-family)
+  );
+}
