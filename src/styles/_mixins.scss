@@ -1,19 +1,17 @@
 @use 'sass:list';
 
-:root {
-  --desktop-width: 1280px;
-  --tablet-width: 768px;
-  --mobile-width: 360px;
-  --container-width: 1156px;
-  --content-width: 972px;
-  --modal-width-xs: 366px;
-  --modal-width-s: 378px;
-  --modal-width-m: 492px;
-  --modal-width-l: 644px;
-  --modal-width-xl: 972px;
-  --container-padding-tablet: 30px;
-  --container-padding-mobile: 15px;
-}
+$desktop-width: 1280px;
+$tablet-width: 768px;
+$mobile-width: 360px;
+$container-width: 1156px;
+$content-width: 972px;
+$modal-width-xs: 366px;
+$modal-width-s: 378px;
+$modal-width-m: 492px;
+$modal-width-l: 644px;
+$modal-width-xl: 972px;
+$container-padding-tablet: 30px;
+$container-padding-mobile: 15px;
 
 @mixin flex($display, $justify-content: none, $align-items: none) {
   display: $display;
@@ -76,19 +74,19 @@
 }
 
 @mixin media-desktop {
-  @media (max-width: var(--desktop-width)) {
+  @media (max-width: $desktop-width) {
     @content;
   }
 }
 
 @mixin media-tablet {
-  @media (max-width: var(--tablet-width)) {
+  @media (max-width: $tablet-width) {
     @content;
   }
 }
 
 @mixin media-mobile {
-  @media (max-width: var(--mobile-width)) {
+  @media (max-width: $mobile-width) {
     @content;
   }
 }
@@ -124,16 +122,16 @@
  * //   }
  * // }
  */
-@mixin container($max-width: var(--container-width)) {
+@mixin container($max-width: $container-width) {
   max-width: $max-width;
   margin: 0 auto;
 
   @include media-tablet {
-    padding: 0 var(--container-padding-tablet);
+    padding: 0 $container-padding-tablet;
   }
 
   @include media-mobile {
-    padding: 0 var(--container-padding-mobile);
+    padding: 0 $container-padding-mobile;
   }
 }
 
@@ -149,7 +147,7 @@
  *   @include container;
  * }
  */
-@mixin content($max-width: var(--content-width)) {
+@mixin content($max-width: $content-width) {
   max-width: $max-width;
   margin: 0 auto;
 }
