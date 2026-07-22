@@ -1,6 +1,6 @@
-import type { ComponentPropsWithoutRef, CSSProperties, ElementType, ReactNode } from 'react'
+import type { ComponentPropsWithRef, CSSProperties, ElementType, ReactNode } from 'react'
 import clsx from 'clsx'
-import s from './typography.module.scss'
+import s from './Typography.module.scss'
 
 type TypographyVariant =
   | 'body1'
@@ -53,7 +53,7 @@ const tagMapping: Record<TypographyVariant, ElementType> = {
   'signature-legal': 'span',
 }
 
-type TypographyProps<T extends ElementType = 'p'> = {
+type TypographyProps<T extends ElementType = 'div'> = {
   variant?: TypographyVariant
   children: ReactNode
   color?: CSSProperties['color']
@@ -62,10 +62,24 @@ type TypographyProps<T extends ElementType = 'p'> = {
   noWrap?: boolean
   gutterBottom?: boolean
   align?: TypographyAlign
+  href?: string
+  target?: '_blank' | '_parent' | '_self' | '_top'
+  rel?: string
 } & MarginProps &
-  Omit<ComponentPropsWithoutRef<T>, 'style' | keyof MarginProps>
+  Omit<
+    ComponentPropsWithRef<T>,
+    | 'align'
+    | 'color'
+    | 'gutterBottom'
+    | 'href'
+    | 'noWrap'
+    | 'rel'
+    | 'style'
+    | 'target'
+    | keyof MarginProps
+  >
 
-const Typography = <C extends ElementType = 'p'>(props: TypographyProps<C>) => {
+const Typography = <C extends ElementType = 'div'>(props: TypographyProps<C>) => {
   const {
     ref,
     children,
@@ -82,19 +96,25 @@ const Typography = <C extends ElementType = 'p'>(props: TypographyProps<C>) => {
     my,
     gutterBottom,
     align,
+    href,
+    target,
+    rel,
     ...rest
   } = props
 
-  const Component = tagMapping[variant] || 'p'
+  const Component = tagMapping[variant] || 'div'
 
   const classes = clsx(
     s.typography,
-    s[`typography-${variant}`],
+    `typography-${variant}`,
     align && s[`align-${align}`],
     noWrap && s.noWrap,
     gutterBottom && s.gutterBottom,
     className
   )
+
+  const isLink = variant === 'link' || variant === 'subtitle-link' || Component === 'a'
+  const linkProps = isLink ? { href, target, rel } : {}
 
   const styles = {
     marginLeft: mx ?? ml ?? 0,
@@ -106,7 +126,7 @@ const Typography = <C extends ElementType = 'p'>(props: TypographyProps<C>) => {
   }
 
   return (
-    <Component ref={ref} className={classes} style={styles} {...rest}>
+    <Component ref={ref} className={classes} style={styles} {...linkProps} {...rest}>
       {children}
     </Component>
   )

@@ -40,7 +40,6 @@
   font-size: $fontSize;
   font-weight: $fontWeight;
   line-height: $lineHeight;
-  color: var(--color-text-primary);
 }
 
 .typography-large {
@@ -70,6 +69,11 @@
 }
 
 // regular_text 14
+.typography-body1 {
+  @include typography(var(--font-size-s), var(--line-height-l), var(--font-weight-regular));
+}
+
+// error (based on regular_text 14)
 .typography-body1 {
   @include typography(var(--font-size-s), var(--line-height-l), var(--font-weight-regular));
 }
@@ -129,7 +133,7 @@
     var(--second-family)
   );
 
-  color: var(--color-danger-500); // in Figma FF0000
+  color: var(--color-danger-500) !important; // in Figma FF0000
 }
 
 // Recaptcha - signature

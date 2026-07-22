@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Typography } from '@/components/typography'
+import { Typography } from '@/components/Typography'
 
 const meta = {
   title: 'Components/Typography',
@@ -61,7 +61,7 @@ const meta = {
     },
     color: {
       control: { type: 'color' as const },
-      description: 'Set typography color from the design system',
+      description: 'Set Typography color from the design system',
     },
     align: {
       control: 'select',
@@ -244,7 +244,7 @@ export const AllTypography: Story = {
         Caution
       </Typography>
       <Typography {...args} variant={'caution-error'}>
-        Caution Error
+        Caution Error (used only in reCAPTCHA)
       </Typography>
       <Typography {...args} variant={'signature'}>
         Signature
@@ -275,15 +275,17 @@ export const LargeWithColor: Story = {
   args: {
     variant: 'large',
     color: 'var(--color-danger-500)',
-    children: 'typography body1 with color-danger-500',
+    children: 'Typography body1 with color-danger-500',
   },
 }
 
-export const LooksAsLink: Story = {
+export const TypographyAsLink: Story = {
   args: {
     variant: 'link',
     color: 'var(--color-dark-900)',
-    children: 'Displayed as a link (typography)',
+    href: 'https://www.google.com',
+    target: '_blank',
+    children: 'Displayed as a link (Typography)',
   },
 }
 
@@ -302,6 +304,13 @@ export const TypographyWithMargin: Story = {
     variant: 'h1',
     my: '3rem',
     color: 'var(--color-dark-900)',
-    children: 'typography with h1 and Margin',
+    children: 'Typography with h1 and Margin',
+  },
+}
+
+export const TypographyCautionError: Story = {
+  args: {
+    variant: 'caution-error',
+    children: 'Typography with caution error',
   },
 }

@@ -1,5 +1,5 @@
 import { COLORS } from '@/stories/constants'
-import s from './styles.module.scss'
+import s from './ColorPalette.module.scss'
 
 type ColorCardProps = {
   colorName: string
