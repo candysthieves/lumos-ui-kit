@@ -1,4 +1,6 @@
-import type { ElementType } from 'react'
+import type { ComponentPropsWithoutRef, CSSProperties, ElementType, ReactNode } from 'react'
+import clsx from 'clsx'
+import s from './typography.module.scss'
 
 type TypographyVariant =
   | 'body1'
@@ -18,6 +20,17 @@ type TypographyVariant =
   | 'subtitle1'
   | 'subtitle2'
   | 'subtitle-link'
+
+type TypographyAlign = 'center' | 'justify' | 'left' | 'right'
+
+type MarginProps = {
+  mt?: CSSProperties['marginTop']
+  mb?: CSSProperties['marginBottom']
+  ml?: CSSProperties['marginLeft']
+  mr?: CSSProperties['marginRight']
+  mx?: CSSProperties['marginLeft']
+  my?: CSSProperties['marginTop']
+}
 
 const tagMapping: Record<TypographyVariant, ElementType> = {
   large: 'h1',
@@ -40,9 +53,63 @@ const tagMapping: Record<TypographyVariant, ElementType> = {
   'signature-legal': 'span',
 }
 
-const Typography = () => {
-  console.log(tagMapping)
-  return <>Typography</>
+type TypographyProps<T extends ElementType = 'p'> = {
+  variant?: TypographyVariant
+  children: ReactNode
+  color?: CSSProperties['color']
+  className?: string
+  style?: CSSProperties
+  noWrap?: boolean
+  gutterBottom?: boolean
+  align?: TypographyAlign
+} & MarginProps &
+  Omit<ComponentPropsWithoutRef<T>, 'style' | keyof MarginProps>
+
+const Typography = <C extends ElementType = 'p'>(props: TypographyProps<C>) => {
+  const {
+    ref,
+    children,
+    variant = 'body1',
+    color,
+    className,
+    style,
+    noWrap,
+    mb,
+    ml,
+    mr,
+    mt,
+    mx,
+    my,
+    gutterBottom,
+    align,
+    ...rest
+  } = props
+
+  const Component = tagMapping[variant] || 'p'
+
+  const classes = clsx(
+    s.typography,
+    s[`typography-${variant}`],
+    align && s[`align-${align}`],
+    noWrap && s.noWrap,
+    gutterBottom && s.gutterBottom,
+    className
+  )
+
+  const styles = {
+    marginLeft: mx ?? ml ?? 0,
+    marginRight: mx ?? mr ?? 0,
+    marginTop: my ?? mt ?? 0,
+    marginBottom: my ?? mb ?? 0,
+    color: color ?? 'inherit',
+    ...style,
+  }
+
+  return (
+    <Component ref={ref} className={classes} style={styles} {...rest}>
+      {children}
+    </Component>
+  )
 }
 
 export default Typography
