@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import clsx from 'clsx'
 import { forwardRef, useId } from 'react'
-import styles from './Checkbox.module.scss'
+import s from './Checkbox.module.scss'
 
 export type CheckboxProps = Omit<
   ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,
@@ -20,16 +20,16 @@ export const Checkbox = forwardRef<
   const checkboxId = id ?? generatedId
 
   return (
-    <div className={styles.container}>
-      <label htmlFor={checkboxId} className={styles.buttonWrapper}>
+    <div className={s.container}>
+      <label htmlFor={checkboxId} className={s.buttonWrapper}>
         <CheckboxPrimitive.Root
           ref={ref}
           id={checkboxId}
-          className={clsx(styles.root, className)}
+          className={clsx(s.root, className)}
           onCheckedChange={checked => onCheckedChange?.(checked === true)}
           {...props}
         >
-          <CheckboxPrimitive.Indicator className={styles.indicator}>
+          <CheckboxPrimitive.Indicator className={s.indicator}>
             <svg width={'16'} height={'12'} viewBox={'0 0 10 8'} fill={'none'}>
               <path
                 d={'M1 4L3.5 6.5L9 1'}
@@ -44,7 +44,7 @@ export const Checkbox = forwardRef<
       </label>
 
       {label && (
-        <label htmlFor={checkboxId} className={styles.label}>
+        <label htmlFor={checkboxId} className={s.label}>
           {label}
         </label>
       )}
