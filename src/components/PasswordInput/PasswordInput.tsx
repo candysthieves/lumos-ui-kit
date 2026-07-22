@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Input } from '../Input/Input'
-import styles from './PasswordInput.module.scss'
+import s from './PasswordInput.module.scss'
 
 export type PasswordInputProps = {
   label?: string
@@ -17,7 +17,7 @@ export const PasswordInput = ({ ...props }: PasswordInputProps) => {
       endAdornment={
         <button
           type={'button'}
-          className={styles.iconButton}
+          className={s.iconButton}
           onClick={() => setShowPassword(prev => !prev)}
           aria-label={showPassword ? 'Hide password' : 'Show password'}
         >

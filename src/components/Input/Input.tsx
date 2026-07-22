@@ -1,6 +1,6 @@
 import type { InputHTMLAttributes, ReactNode } from 'react'
 import clsx from 'clsx'
-import styles from './Input.module.scss'
+import s from './Input.module.scss'
 
 export type InputProps = {
   label?: string
@@ -19,23 +19,23 @@ export const Input = ({
   ...props
 }: InputProps) => {
   return (
-    <div className={styles.wrapper}>
-      {label && <label className={styles.label}>{label}</label>}
+    <div className={s.wrapper}>
+      {label && <label className={s.label}>{label}</label>}
 
       <div
-        className={clsx(styles.container, {
-          [styles.error]: !!error,
-          [styles.disabled]: disabled,
+        className={clsx(s.container, {
+          [s.error]: !!error,
+          [s.disabled]: disabled,
         })}
       >
-        {startAdornment && <span className={styles.adornment}>{startAdornment}</span>}
+        {startAdornment && <span className={s.adornment}>{startAdornment}</span>}
 
-        <input className={clsx(styles.input, className)} disabled={disabled} {...props} />
+        <input className={clsx(s.input, className)} disabled={disabled} {...props} />
 
-        {endAdornment && <span className={styles.adornment}>{endAdornment}</span>}
+        {endAdornment && <span className={s.adornment}>{endAdornment}</span>}
       </div>
 
-      {error && <span className={styles.errorText}>{error}</span>}
+      {error && <span className={s.errorText}>{error}</span>}
     </div>
   )
 }
