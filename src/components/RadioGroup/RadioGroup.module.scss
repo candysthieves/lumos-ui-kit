@@ -3,19 +3,19 @@
 .root {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .option {
   display: flex;
-  gap: 8px;
+  gap: 0.5rem;
   align-items: center;
 }
 
 .item {
   @include flex(flex, center, center);
 
-  @include width-height(36px);
+  @include width-height(2.25rem);
 
   cursor: pointer;
 
@@ -25,7 +25,7 @@
 
   background-color: transparent;
 
-  transition: background-color 0.2s;
+  @include transition-basic(background-color);
 
   &:hover:not([data-disabled]) {
     background-color: var(--color-dark-300);
@@ -53,7 +53,8 @@
   border: 2px solid var(--color-light-100);
   border-radius: 50%;
   background-color: transparent;
-  transition: border-color 0.2s;
+
+  @include transition-basic(background-color);
 
   .item[data-state='checked'] & {
     border-color: var(--color-light-100);
