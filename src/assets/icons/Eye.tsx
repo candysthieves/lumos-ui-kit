@@ -5,7 +5,7 @@ const EyeSvg = (props: SVGProps<SVGSVGElement>) => {
   const { fill } = props
   return (
     <svg xmlns={'http://www.w3.org/2000/svg'} viewBox={'0 0 24 24'} fill={'none'} {...props}>
-      <g fill={fill} clipPath={'url(#a)'}>
+      <g fill={fill} clipPath={'url(#eye-icon)'}>
         <path d={'M12 13.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3'} />
         <path
           d={
@@ -14,7 +14,7 @@ const EyeSvg = (props: SVGProps<SVGSVGElement>) => {
         />
       </g>
       <defs>
-        <clipPath id={'a'}>
+        <clipPath id={'eye-icon'}>
           <path fill={'var(--color-light-100)'} d={'M0 0h24v24H0z'} />
         </clipPath>
       </defs>

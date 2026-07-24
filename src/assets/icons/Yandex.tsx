@@ -4,7 +4,7 @@ import { IconBase, type IconProps } from '@/utils'
 const YandexSvg = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg xmlns={'http://www.w3.org/2000/svg'} viewBox={'0 0 36 36'} fill={'none'} {...props}>
-      <g clipPath={'url(#a)'}>
+      <g clipPath={'url(#yandex-icon)'}>
         <path
           stroke={'#f8604a'}
           strokeWidth={2}
@@ -18,7 +18,7 @@ const YandexSvg = (props: SVGProps<SVGSVGElement>) => {
         />
       </g>
       <defs>
-        <clipPath id={'a'}>
+        <clipPath id={'yandex-icon'}>
           <path fill={'var(--color-light-100)'} d={'M0 0h36v36H0z'} />
         </clipPath>
       </defs>

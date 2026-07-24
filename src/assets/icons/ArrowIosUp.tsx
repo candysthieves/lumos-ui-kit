@@ -1,14 +1,13 @@
-import { forwardRef, type SVGProps, useId } from 'react'
+import { forwardRef, type SVGProps } from 'react'
 import { IconBase, type IconProps } from '@/utils'
 
 const ArrowIosUpSvg = (props: SVGProps<SVGSVGElement>) => {
   const { fill } = props
-  const id = useId()
 
   return (
     <svg xmlns={'http://www.w3.org/2000/svg'} viewBox={'0 0 24 24'} fill={'none'} {...props}>
       <svg xmlns={'http://www.w3.org/2000/svg'} width={'24'} height={'24'} fill={'none'}>
-        <g clipPath={'url(#a)'}>
+        <g clipPath={'url(arrow-ios-up)'}>
           <path
             fill={fill}
             d={
@@ -17,7 +16,7 @@ const ArrowIosUpSvg = (props: SVGProps<SVGSVGElement>) => {
           />
         </g>
         <defs>
-          <clipPath id={id}>
+          <clipPath id={'arrow-ios-up'}>
             <path fill={'var(--color-light-100)'} d={'M0 0h24v24H0z'} />
           </clipPath>
         </defs>

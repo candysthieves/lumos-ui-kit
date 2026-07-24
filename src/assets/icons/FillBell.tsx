@@ -14,7 +14,7 @@ const FillBellSvg = (props: SVGProps<SVGSVGElement>) => {
         clipRule={'evenodd'}
       />
       <mask
-        id={'a'}
+        id={'fill-bell'}
         width={'19'}
         height={'21'}
         x={'2'}
@@ -31,7 +31,7 @@ const FillBellSvg = (props: SVGProps<SVGSVGElement>) => {
           clipRule={'evenodd'}
         />
       </mask>
-      <g mask={'url(#a)'}>
+      <g mask={'url(#fill-bell)'}>
         <path fill={fill} d={'M0 0h24v24H0z'} />
       </g>
     </svg>

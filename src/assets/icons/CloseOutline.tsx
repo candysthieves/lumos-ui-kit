@@ -5,7 +5,7 @@ const CloseOutlineSvg = (props: SVGProps<SVGSVGElement>) => {
   const { fill } = props
   return (
     <svg xmlns={'http://www.w3.org/2000/svg'} viewBox={'0 0 24 24'} fill={'none'} {...props}>
-      <g clipPath={'url(#a)'}>
+      <g clipPath={'url(#close-outline)'}>
         <path
           fill={fill}
           d={

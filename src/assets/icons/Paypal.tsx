@@ -4,7 +4,7 @@ import { ColorIconBaseSmall, type ColorIconProps } from '@/utils'
 const PaypalSvg = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg xmlns={'http://www.w3.org/2000/svg'} viewBox={'0 0 24 16'} fill={'none'} {...props}>
-      <g clipPath={'url(#a)'}>
+      <g clipPath={'url(#paypal)'}>
         <path
           fill={'#fff'}
           stroke={'#f3f3f3'}
@@ -54,7 +54,7 @@ const PaypalSvg = (props: SVGProps<SVGSVGElement>) => {
         />
       </g>
       <defs>
-        <clipPath id={'a'}>
+        <clipPath id={'paypal'}>
           <path fill={'#fff'} d={'M0 0h24v16H0z'} />
         </clipPath>
       </defs>

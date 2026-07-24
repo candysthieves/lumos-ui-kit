@@ -5,7 +5,7 @@ const MicOutlineSvg = (props: SVGProps<SVGSVGElement>) => {
   const { fill } = props
   return (
     <svg xmlns={'http://www.w3.org/2000/svg'} viewBox={'0 0 24 24'} fill={'none'} {...props}>
-      <g fill={fill} clipPath={'url(#a)'}>
+      <g fill={fill} clipPath={'url(#mic-outline)'}>
         <path
           d={
             'M12 15a4 4 0 0 0 4-4V6a4 4 0 1 0-8 0v5a4 4 0 0 0 4 4m-2-9a2 2 0 1 1 4 0v5a2 2 0 0 1-4 0z'
@@ -18,7 +18,7 @@ const MicOutlineSvg = (props: SVGProps<SVGSVGElement>) => {
         />
       </g>
       <defs>
-        <clipPath id={'a'}>
+        <clipPath id={'mic-outline'}>
           <path fill={'var(--color-light-100)'} d={'M0 0h24v24H0z'} />
         </clipPath>
       </defs>

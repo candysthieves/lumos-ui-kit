@@ -4,7 +4,7 @@ import { ColorIconBase, type ColorIconProps } from '@/utils'
 const FacebookSvg = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg xmlns={'http://www.w3.org/2000/svg'} viewBox={'0 0 24 24'} fill={'none'} {...props}>
-      <g clipPath={'url(#a)'}>
+      <g clipPath={'url(#facebook)'}>
         <path fill={'#fff'} d={'M8 4h13v20H8z'} />
         <path
           fill={'#475993'}
@@ -14,7 +14,7 @@ const FacebookSvg = (props: SVGProps<SVGSVGElement>) => {
         />
       </g>
       <defs>
-        <clipPath id={'a'}>
+        <clipPath id={'facebook'}>
           <path fill={'#fff'} d={'M0 0h24v24H0z'} />
         </clipPath>
       </defs>

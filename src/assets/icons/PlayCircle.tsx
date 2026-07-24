@@ -5,7 +5,7 @@ const PlayCircleSvg = (props: SVGProps<SVGSVGElement>) => {
   const { fill } = props
   return (
     <svg xmlns={'http://www.w3.org/2000/svg'} viewBox={'0 0 24 24'} fill={'none'} {...props}>
-      <g fill={fill} clipPath={'url(#a)'}>
+      <g fill={fill} clipPath={'url(#play-circle)'}>
         <path d={'m11.5 14.6 2.81-2.6-2.81-2.6z'} />
         <path
           d={
@@ -14,7 +14,7 @@ const PlayCircleSvg = (props: SVGProps<SVGSVGElement>) => {
         />
       </g>
       <defs>
-        <clipPath id={'a'}>
+        <clipPath id={'play-circle'}>
           <path fill={'var(--color-light-100)'} d={'M0 0h24v24H0z'} />
         </clipPath>
       </defs>

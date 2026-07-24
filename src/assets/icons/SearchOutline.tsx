@@ -5,7 +5,7 @@ const SearchOutlineSvg = (props: SVGProps<SVGSVGElement>) => {
   const { fill } = props
   return (
     <svg xmlns={'http://www.w3.org/2000/svg'} viewBox={'0 0 24 24'} fill={'none'} {...props}>
-      <g clipPath={'url(#a)'}>
+      <g clipPath={'url(#search-outline)'}>
         <path
           fill={fill}
           d={
@@ -14,7 +14,7 @@ const SearchOutlineSvg = (props: SVGProps<SVGSVGElement>) => {
         />
       </g>
       <defs>
-        <clipPath id={'a'}>
+        <clipPath id={'search-outline'}>
           <path fill={'var(--color-light-100)'} d={'M0 0h24v24H0z'} />
         </clipPath>
       </defs>

@@ -5,7 +5,7 @@ const MenuOutlineSvg = (props: SVGProps<SVGSVGElement>) => {
   const { fill } = props
   return (
     <svg xmlns={'http://www.w3.org/2000/svg'} viewBox={'0 0 24 24'} fill={'none'} {...props}>
-      <g fill={fill} clipPath={'url(#a)'}>
+      <g fill={fill} clipPath={'url(#menu-outline)'}>
         <path
           d={
             'M20.05 11H3.95a.95.95 0 0 0-.95.95v.1c0 .52.43.95.95.95h16.1c.52 0 .95-.43.95-.95v-.1a.95.95 0 0 0-.95-.95m0 5H3.95a.95.95 0 0 0-.95.95v.1c0 .52.43.95.95.95h16.1c.52 0 .95-.43.95-.95v-.1a.95.95 0 0 0-.95-.95m0-10H3.95a.95.95 0 0 0-.95.95v.1c0 .52.43.95.95.95h16.1c.52 0 .95-.43.95-.95v-.1a.95.95 0 0 0-.95-.95'
@@ -13,7 +13,7 @@ const MenuOutlineSvg = (props: SVGProps<SVGSVGElement>) => {
         />
       </g>
       <defs>
-        <clipPath id={'a'}>
+        <clipPath id={'menu-outline'}>
           <path fill={'var(--color-light-100)'} d={'M0 0h24v24H0z'} />
         </clipPath>
       </defs>

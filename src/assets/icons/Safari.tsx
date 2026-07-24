@@ -6,7 +6,7 @@ const SafariSvg = (props: SVGProps<SVGSVGElement>) => {
 
   return (
     <svg xmlns={'http://www.w3.org/2000/svg'} viewBox={'0 0 36 36'} fill={'none'} {...props}>
-      <g fill={fill} clipPath={'url(#a)'}>
+      <g fill={fill} clipPath={'url(#safari)'}>
         <path
           d={
             'M30.72 5.28a17.95 17.95 0 0 0-25.44 0 17.95 17.95 0 0 0 0 25.44 17.95 17.95 0 0 0 25.44 0 17.95 17.95 0 0 0 0-25.44m-1.74 23.7a15.5 15.5 0 0 1-21.96 0 15.5 15.5 0 0 1 0-21.96 15.5 15.5 0 0 1 21.96 0 15.5 15.5 0 0 1 0 21.96'
@@ -19,7 +19,7 @@ const SafariSvg = (props: SVGProps<SVGSVGElement>) => {
         />
       </g>
       <defs>
-        <clipPath id={'a'}>
+        <clipPath id={'safari'}>
           <path fill={'var(--color-light-100)'} d={'M0 0h36v36H0z'} />
         </clipPath>
       </defs>

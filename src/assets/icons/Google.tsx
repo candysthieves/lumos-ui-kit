@@ -4,7 +4,7 @@ import { ColorIconBase, type ColorIconProps } from '@/utils'
 const GoogleSvg = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg xmlns={'http://www.w3.org/2000/svg'} viewBox={'0 0 24 24'} fill={'none'} {...props}>
-      <g clipPath={'url(#a)'}>
+      <g clipPath={'url(#google)'}>
         <path
           fill={'#ea4335'}
           d={'M5.27 9.76A7.08 7.08 0 0 1 16.42 6.5L19.9 3A11.97 11.97 0 0 0 1.24 6.65z'}
@@ -27,7 +27,7 @@ const GoogleSvg = (props: SVGProps<SVGSVGElement>) => {
         />
       </g>
       <defs>
-        <clipPath id={'a'}>
+        <clipPath id={'google'}>
           <path fill={'#fff'} d={'M0 0h24v24H0z'} />
         </clipPath>
       </defs>
