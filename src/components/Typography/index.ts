@@ -1,1 +1,2 @@
-export { default as Typography } from './Typography'
+export { Typography } from './Typography'
+export type { TypographyAlign, TypographyProps, TypographyVariant } from './Typography'

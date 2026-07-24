@@ -13,6 +13,7 @@
     "lint": "eslint src --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
+    "test:storybook": "vitest --project storybook",
     "build-storybook": "storybook build",
     "prepare": "husky"
   },
