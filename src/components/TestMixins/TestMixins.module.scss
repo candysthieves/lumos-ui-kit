@@ -1,4 +1,5 @@
 @use '../../styles/mixins' as *;
+@use '../../styles/typography' as *;
 
 // Component styles
 .testContainer {
@@ -135,31 +136,31 @@
 }
 
 .modalXs {
-  width: var(--modal-width-xs);
+  width: $modal-width-xs;
   border-color: #2196f3;
   background: #e3f2fd;
 }
 
 .modalS {
-  width: var(--modal-width-s);
+  width: $modal-width-s;
   border-color: #4caf50;
   background: #e8f5e9;
 }
 
 .modalM {
-  width: var(--modal-width-m);
+  width: $modal-width-m;
   border-color: #ff9800;
   background: #fff3e0;
 }
 
 .modalL {
-  width: var(--modal-width-l);
+  width: $modal-width-l;
   border-color: #f44336;
   background: #fce4ec;
 }
 
 .modalXl {
-  width: var(--modal-width-xl);
+  width: $modal-width-xl;
   border-color: #9c27b0;
   background: #f3e5f5;
 }
@@ -271,7 +272,7 @@
   overflow-y: auto;
 
   // Responsive modal widths
-  width: var(--modal-width-m); // Default medium
+  width: $modal-width-m; // Default medium
   max-height: 80vh;
   padding: 2rem;
   border-radius: 8px;
@@ -279,15 +280,15 @@
   background: white;
 
   @include media-desktop {
-    width: var(--modal-width-xl);
+    width: $modal-width-xl;
   }
 
   @include media-tablet {
-    width: var(--modal-width-l);
+    width: $modal-width-l;
   }
 
   @include media-mobile {
-    width: var(--modal-width-s);
+    width: $modal-width-s;
   }
 
   // Individual width tests

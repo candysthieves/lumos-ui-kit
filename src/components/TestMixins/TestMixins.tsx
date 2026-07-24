@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import s from './testMixins.module.scss'
+import s from './TestMixins.module.scss'
 
 export const TestMixins = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -54,7 +54,7 @@ export const TestMixins = () => {
             </div>
           </section>
 
-          {/* Test flex, width-height, top-left, top-right, typography, prefix, transition-basic */}
+          {/* Test flex, width-height, top-left, top-right, Typography, prefix, transition-basic */}
           <section className={s.testSection}>
             <h2>Utility Mixins</h2>
 
