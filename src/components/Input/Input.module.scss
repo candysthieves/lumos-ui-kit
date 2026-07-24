@@ -46,17 +46,18 @@
 }
 
 .adornment {
-  @include flex(flex, center, none);
+  @include flex(flex, center, center);
 
   color: var(--color-light-700);
 }
 
-.errorText {
-  font-size: var(--font-size-xs);
-  color: var(--color-danger-500);
+.startAdornment {
+  margin-right: 8px;
 }
 
-/* ---------- Error ---------- */
+.endAdornment {
+  margin-left: 8px;
+}
 
 .error {
   border-color: var(--color-danger-500);
@@ -70,7 +71,10 @@
   }
 }
 
-/* ---------- Disabled ---------- */
+.errorText {
+  font-size: var(--font-size-s);
+  color: var(--color-danger-500);
+}
 
 .disabled {
   cursor: not-allowed;

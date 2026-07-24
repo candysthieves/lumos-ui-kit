@@ -28,11 +28,13 @@ export const Input = ({
           [s.disabled]: disabled,
         })}
       >
-        {startAdornment && <span className={s.adornment}>{startAdornment}</span>}
+        {startAdornment && (
+          <span className={clsx(s.adornment, s.startAdornment)}>{startAdornment}</span>
+        )}
 
         <input className={clsx(s.input, className)} disabled={disabled} {...props} />
 
-        {endAdornment && <span className={s.adornment}>{endAdornment}</span>}
+        {endAdornment && <span className={clsx(s.adornment, s.endAdornment)}>{endAdornment}</span>}
       </div>
 
       {error && <span className={s.errorText}>{error}</span>}
