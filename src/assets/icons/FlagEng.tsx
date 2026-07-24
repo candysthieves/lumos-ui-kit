@@ -1,5 +1,5 @@
 import { forwardRef, type SVGProps } from 'react'
-import { type ColorIconProps, IconBase } from '@/utils'
+import { ColorIconBase, type ColorIconProps } from '@/utils'
 
 const FlagEngSvg = (props: SVGProps<SVGSVGElement>) => {
   return (
@@ -24,7 +24,7 @@ const FlagEngSvg = (props: SVGProps<SVGSVGElement>) => {
 }
 
 const FlagEng = forwardRef<SVGSVGElement, ColorIconProps>((props, ref) => (
-  <IconBase ref={ref} icon={<FlagEngSvg />} {...props} />
+  <ColorIconBase ref={ref} icon={<FlagEngSvg />} {...props} />
 ))
 
 FlagEng.displayName = 'FlagEng'

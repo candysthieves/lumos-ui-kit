@@ -189,6 +189,9 @@ const meta = {
       },
     },
   },
+  args: {
+    color: 'var(--color-light-100)',
+  },
 } satisfies Meta<typeof Typography>
 
 export default meta
@@ -197,7 +200,6 @@ type Story = StoryObj<typeof meta>
 export const AllTypography: Story = {
   args: {
     children: 'Typography',
-    color: 'var(--color-dark-900)',
   },
   render: args => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -259,7 +261,6 @@ export const AllTypography: Story = {
 export const CustomComponent: Story = {
   args: {
     variant: 'h1',
-    color: 'var(--color-dark-900)',
     children: 'H1 Header',
   },
 }
@@ -282,7 +283,6 @@ export const LargeWithColor: Story = {
 export const TypographyAsLink: Story = {
   args: {
     variant: 'link',
-    color: 'var(--color-dark-900)',
     href: 'https://www.google.com',
     target: '_blank',
     children: 'Displayed as a link (Typography)',
@@ -293,7 +293,6 @@ export const NoWrapTrue: Story = {
   args: {
     variant: 'body1',
     noWrap: true,
-    color: 'var(--color-dark-900)',
     children:
       'Typography with very long text to test CSS "noWrap: true": Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset\'s Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum',
   },
@@ -303,7 +302,6 @@ export const TypographyWithMargin: Story = {
   args: {
     variant: 'h1',
     my: '3rem',
-    color: 'var(--color-dark-900)',
     children: 'Typography with h1 and Margin',
   },
 }

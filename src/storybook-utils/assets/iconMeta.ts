@@ -35,6 +35,6 @@ export const iconMeta = {
   args: {
     autoSize: false,
     size: 30,
-    color: 'var(--color-dark-900)',
+    color: 'var(--color-light-100)',
   },
 }

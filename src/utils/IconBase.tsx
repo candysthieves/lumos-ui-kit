@@ -39,4 +39,5 @@ const IconBase = (
 }
 
 const MemoizedIconBase = memo(forwardRef(IconBase))
+MemoizedIconBase.displayName = 'IconBase'
 export { MemoizedIconBase as IconBase }

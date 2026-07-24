@@ -19,7 +19,6 @@ export const Default: Story = {}
 export const WithStyle: Story = {
   args: {
     size: 36,
-    color: 'var(--color-light-100)',
     backgroundColor: 'var(--color-dark-500)',
     svgProps: {
       style: {
@@ -33,7 +32,6 @@ export const WithStyle: Story = {
 export const WithClassName: Story = {
   args: {
     size: 36,
-    color: 'var(--color-light-100)',
     backgroundColor: 'var(--color-dark-500)',
     svgProps: {
       className: s.icon,

@@ -22,4 +22,5 @@ const ColorIconBase = ({ icon, autoSize, size = 24, svgProps }: Props, ref: Ref<
 }
 
 const MemoizedIconBase = memo(forwardRef(ColorIconBase))
+MemoizedIconBase.displayName = 'ColorIconBase'
 export { MemoizedIconBase as ColorIconBase }

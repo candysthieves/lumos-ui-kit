@@ -11,7 +11,7 @@ const BlockOutlineSvg = (props: SVGProps<SVGSVGElement>) => {
           d={'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16'}
         />
         <path
-          stroke={'#000'}
+          stroke={fill}
           strokeDasharray={'6 6'}
           strokeLinecap={'round'}
           strokeWidth={2.3}
