@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { CheckmarkOutline } from '@/assets/icons'
+import { PlayCircle } from '@/assets/icons'
 import { iconMeta } from '@/storybook-utils'
 
 const meta = {
   ...iconMeta,
-  title: 'Components/Icons/CheckmarkOutline',
-  component: CheckmarkOutline,
+  title: 'Components/Icons/PlayCircle',
+  component: PlayCircle,
   tags: ['autodocs'],
-} satisfies Meta<typeof CheckmarkOutline>
+} satisfies Meta<typeof PlayCircle>
 
 export default meta
 

@@ -79,7 +79,7 @@ type TypographyProps<T extends ElementType = 'div'> = {
     | keyof MarginProps
   >
 
-const Typography = <C extends ElementType = 'div'>(props: TypographyProps<C>) => {
+export const Typography = <C extends ElementType = 'div'>(props: TypographyProps<C>) => {
   const {
     ref,
     children,
@@ -131,5 +131,3 @@ const Typography = <C extends ElementType = 'div'>(props: TypographyProps<C>) =>
     </Component>
   )
 }
-
-export default Typography
