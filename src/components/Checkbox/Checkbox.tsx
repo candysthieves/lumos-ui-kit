@@ -2,6 +2,7 @@ import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import clsx from 'clsx'
 import { forwardRef, useId } from 'react'
+import { CheckmarkOutline } from '@/assets/icons'
 import s from './Checkbox.module.scss'
 
 export type CheckboxProps = Omit<
@@ -30,15 +31,7 @@ export const Checkbox = forwardRef<
           {...props}
         >
           <CheckboxPrimitive.Indicator className={s.indicator}>
-            <svg width={'16'} height={'12'} viewBox={'0 0 10 8'} fill={'none'}>
-              <path
-                d={'M1 4L3.5 6.5L9 1'}
-                stroke={'currentColor'}
-                strokeWidth={'1.5'}
-                strokeLinecap={'round'}
-                strokeLinejoin={'round'}
-              />
-            </svg>
+            <CheckmarkOutline autoSize={false} color={"var(--color-dark-900)"} size={30} />
           </CheckboxPrimitive.Indicator>
         </CheckboxPrimitive.Root>
       </label>
