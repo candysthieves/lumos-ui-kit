@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import * as TabsPrimitive from '@radix-ui/react-tabs'
-import s from './tabs.module.scss'
+import s from './Tabs.module.scss'
 
 export type Tab = {
   value: string
