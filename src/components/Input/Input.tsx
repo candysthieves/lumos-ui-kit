@@ -1,6 +1,6 @@
 import type { InputHTMLAttributes, ReactNode } from 'react'
 import clsx from 'clsx'
-import { Typography } from '../Typography'
+import { Typography } from '../Typography/Typography'
 import s from './Input.module.scss'
 
 export type InputProps = {
@@ -39,7 +39,7 @@ export const Input = ({
       </div>
 
       {error && (
-        <Typography variant={"body1"} color={"var(--color-danger-500)"}>
+        <Typography variant={'body1'} color={'var(--color-danger-500)'}>
           {error}
         </Typography>
       )}
