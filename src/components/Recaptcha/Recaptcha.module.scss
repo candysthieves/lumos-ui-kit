@@ -1,0 +1,33 @@
+@use '../../styles/typography' as *;
+
+.errorBorder {
+  position: relative;
+  display: inline-block;
+  padding: 8px 7px;
+  border: 1px solid var(--color-danger-500);
+}
+
+%message {
+  color: var(--color-danger-500);
+
+  @include typography(
+    var(--font-size-xxs),
+    var(--line-height-3xs),
+    var(--font-weight-regular),
+    var(--font-family-secondary)
+  );
+}
+
+.expiredMessage {
+  @extend %message;
+
+  position: relative;
+  top: 20px;
+  left: 20px;
+}
+
+.errorMessage {
+  @extend %message;
+
+  margin-top: 13px;
+}
