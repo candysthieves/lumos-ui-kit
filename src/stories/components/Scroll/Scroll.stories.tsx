@@ -4,6 +4,7 @@ import { Scroll } from '@/components/Scroll'
 const meta: Meta<typeof Scroll> = {
   title: 'Components/Scroll',
   component: Scroll,
+  tags: ['autodocs'],
   argTypes: {
     orientation: {
       control: 'radio',
@@ -30,7 +31,7 @@ export const Both: Story = {
     children: <LongContent />,
   },
   render: args => (
-    <div style={{ width: 400, height: 300, border: '1px solid #333' }}>
+    <div style={{ width: 400, height: 300, border: '1px solid #333', background: '#000' }}>
       <Scroll {...args} />
     </div>
   ),
