@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { fn } from 'storybook/test'
 import { FlagEng, FlagRus } from '@/assets/icons'
-import { Button } from '@/components/Button'
+import { ButtonLegacy } from '@/components/Button'
 
 const meta = {
-  title: 'Components/Data Entry/Button',
-  component: Button,
+  title: 'Components/Data Entry/ButtonLegacy',
+  component: ButtonLegacy,
   parameters: {
     docs: {
       description: {
         component:
-          "Accepts all props of the native button element. Uses React 19's ref prop forwarding, allowing refs to be passed directly to the underlying DOM element or component",
+          "Accepts all props of the native button element. Uses React's `forwardRef` API for ref forwarding, which is the standard approach for ref handling in React versions below 19",
       },
     },
   },
@@ -24,7 +24,7 @@ const meta = {
       description: `The component used for the root node. Either a string to use an HTML element or a React component.
       **Examples:**
       - \`as="button"\` - renders a < button > element (default)
-      - \`as="a"\` - renders an <a> link element
+      - \`as="a"\` - renders an <a> anchor element
       - \`as="div"\` - renders a <div> element`,
       table: {
         type: { summary: 'ElementType' },
@@ -44,7 +44,7 @@ const meta = {
     as: 'button',
     onClick: fn(),
   },
-} satisfies Meta<typeof Button>
+} satisfies Meta<typeof ButtonLegacy>
 
 export default meta
 type Story = StoryObj<typeof meta>
