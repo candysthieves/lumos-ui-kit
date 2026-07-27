@@ -1,2 +1,3 @@
-export { Typography } from './Typography/Typography'
-export { TestMixins } from './TestMixins/TestMixins'
+export * from './Typography/Typography'
+export * from './TestMixins/TestMixins'
+export * from './RadioGroup/RadioGroup'

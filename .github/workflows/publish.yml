@@ -1,0 +1,37 @@
+name: Publish to NPM
+on:
+  push:
+   branches:
+#   - main
+#   - develop
+    - SCRUM-49-set-config-to-publish-project-to-npmjs
+#  pull_request:
+#    types: [ closed ]
+#    branches:
+#      - main
+#      - develop
+jobs:
+  build:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [24]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+      - name: Build lib
+        run: pnpm run build
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_PUBLISH_TOKEN }}
+          access: 'public'
