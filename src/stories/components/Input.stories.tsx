@@ -33,7 +33,8 @@ const meta = {
       description: 'Disables the input and applies disabled styles.',
     },
     type: {
-      control: 'text',
+      control: 'select',
+      options: ['text', 'email', 'password', 'search', 'number', 'tel', 'url'],
       description: 'Defines the input type attribute.',
     },
     placeholder: {
