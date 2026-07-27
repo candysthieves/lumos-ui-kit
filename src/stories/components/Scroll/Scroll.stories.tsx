@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { useEffect, useState } from 'react'
 import { Scroll } from '@/components/Scroll'
 
 const meta: Meta<typeof Scroll> = {
@@ -57,6 +58,33 @@ export const Horizontal: Story = {
   render: args => (
     <div style={{ width: 400, height: 300, border: '1px solid #333' }}>
       <Scroll {...args} />
+    </div>
+  ),
+}
+
+const DynamicContentDemo = () => {
+  const [count, setCount] = useState(10)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setCount(40), 2000)
+    return () => clearTimeout(timer)
+  }, [])
+
+  return (
+    <div style={{ width: 1200, padding: 16 }}>
+      {Array.from({ length: count }).map((_, i) => (
+        <p key={i}>Line {i + 1} — dynamically loaded content</p>
+      ))}
+    </div>
+  )
+}
+
+export const DynamicContent: Story = {
+  render: () => (
+    <div style={{ width: 400, height: 300, border: '1px solid #333', background: '#000' }}>
+      <Scroll orientation={'both'}>
+        <DynamicContentDemo />
+      </Scroll>
     </div>
   ),
 }
