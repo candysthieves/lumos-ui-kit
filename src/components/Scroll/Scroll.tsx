@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import s from './Scroll.module.scss'
 
 type Props = {
@@ -47,7 +47,7 @@ export const Scroll = ({ orientation = 'both', children }: Props) => {
     return { thumbWidth, maxThumbOffsetX, maxScrollOffsetX }
   }
 
-  const updateThumbs = () => {
+  const updateThumbs = useCallback(() => {
     const viewport = viewportRef.current
     if (!viewport) return
 
@@ -74,7 +74,7 @@ export const Scroll = ({ orientation = 'both', children }: Props) => {
     } else if (horizontalThumbRef.current) {
       horizontalThumbRef.current.style.display = 'none'
     }
-  }
+  }, [])
 
   const handleVerticalMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault()
@@ -159,7 +159,7 @@ export const Scroll = ({ orientation = 'both', children }: Props) => {
       viewport?.removeEventListener('scroll', updateThumbs)
       observer.disconnect()
     }
-  }, [])
+  }, [updateThumbs])
 
   return (
     <div className={s.scrollContainer}>
