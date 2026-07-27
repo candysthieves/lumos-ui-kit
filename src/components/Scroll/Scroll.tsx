@@ -7,9 +7,14 @@ type Props = {
   children?: React.ReactNode
 }
 
-type DragState = {
+type DragStateY = {
   startY: number
   startScrollTop: number
+}
+
+type DragStateX = {
+  startX: number
+  startScrollLeft: number
 }
 
 export const Scroll = ({ orientation = 'both', children }: Props) => {
@@ -17,7 +22,8 @@ export const Scroll = ({ orientation = 'both', children }: Props) => {
   const contentRef = useRef<HTMLDivElement>(null)
   const verticalThumbRef = useRef<HTMLDivElement>(null)
   const horizontalThumbRef = useRef<HTMLDivElement>(null)
-  const dragStartRef = useRef<DragState | null>(null)
+  const dragStartYRef = useRef<DragStateY | null>(null)
+  const dragStartXRef = useRef<DragStateX | null>(null)
 
   const getVerticalMetrics = (viewport: HTMLDivElement) => {
     const { clientHeight, scrollHeight } = viewport
@@ -75,13 +81,13 @@ export const Scroll = ({ orientation = 'both', children }: Props) => {
     const viewport = viewportRef.current
     if (!viewport) return
 
-    dragStartRef.current = {
+    dragStartYRef.current = {
       startY: event.clientY,
       startScrollTop: viewport.scrollTop,
     }
 
     const handleMouseMove = (moveEvent: MouseEvent) => {
-      const dragStart = dragStartRef.current
+      const dragStart = dragStartYRef.current
       const metrics = getVerticalMetrics(viewport)
       if (!dragStart || !metrics) return
 
@@ -94,7 +100,40 @@ export const Scroll = ({ orientation = 'both', children }: Props) => {
     }
 
     const handleMouseUp = () => {
-      dragStartRef.current = null
+      dragStartYRef.current = null
+      document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('mouseup', handleMouseUp)
+    }
+
+    document.addEventListener('mousemove', handleMouseMove)
+    document.addEventListener('mouseup', handleMouseUp)
+  }
+
+  const handleHorizontalMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.preventDefault()
+    const viewport = viewportRef.current
+    if (!viewport) return
+
+    dragStartXRef.current = {
+      startX: event.clientX,
+      startScrollLeft: viewport.scrollLeft,
+    }
+
+    const handleMouseMove = (moveEvent: MouseEvent) => {
+      const dragStart = dragStartXRef.current
+      const metrics = getHorizontalMetrics(viewport)
+      if (!dragStart || !metrics) return
+
+      const { maxThumbOffsetX, maxScrollOffsetX } = metrics
+      const deltaX = moveEvent.clientX - dragStart.startX
+      const scrollRatio = maxScrollOffsetX / maxThumbOffsetX
+      const newScrollLeft = dragStart.startScrollLeft + deltaX * scrollRatio
+
+      viewport.scrollLeft = Math.max(0, Math.min(newScrollLeft, maxScrollOffsetX))
+    }
+
+    const handleMouseUp = () => {
+      dragStartXRef.current = null
       document.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseup', handleMouseUp)
     }
@@ -129,7 +168,11 @@ export const Scroll = ({ orientation = 'both', children }: Props) => {
       </div>
       {(orientation === 'horizontal' || orientation === 'both') && (
         <div className={s.horizontalScrollTrack}>
-          <div className={clsx(s.scrollThumb, s.horizontalThumb)} ref={horizontalThumbRef} />
+          <div
+            className={clsx(s.scrollThumb, s.horizontalThumb)}
+            ref={horizontalThumbRef}
+            onMouseDown={handleHorizontalMouseDown}
+          />
         </div>
       )}
       {(orientation === 'vertical' || orientation === 'both') && (
