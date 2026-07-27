@@ -23,6 +23,10 @@
   padding: 0 16px;
   border-radius: 2px;
 
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
   color: var(--color-dark-100);
 
   &::after {
@@ -74,8 +78,6 @@
   }
 
   @include flex(flex, center, center);
-
-  @include typography(var(--font-size-m), var(--line-height-m), var(--font-weight-semi-bold));
 
   @include transition-basic(background-color, color);
 }

@@ -1,5 +1,6 @@
-import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import * as TabsPrimitive from '@radix-ui/react-tabs'
+import clsx from 'clsx'
+import { forwardRef, type ComponentPropsWithoutRef, type ComponentRef, type ReactNode } from 'react'
 import s from './Tabs.module.scss'
 
 export type Tab = {
@@ -9,7 +10,7 @@ export type Tab = {
   disabled?: boolean
 }
 
-type TabsProps = Omit<
+export type TabsProps = Omit<
   ComponentPropsWithoutRef<typeof TabsPrimitive.Root>,
   'defaultValue' | 'onValueChange'
 > & {
@@ -18,31 +19,37 @@ type TabsProps = Omit<
   onValueChange?: (value: string) => void
 }
 
-export const Tabs = ({ tabs, defaultValue, onValueChange, className, ...props }: TabsProps) => {
-  return (
-    <TabsPrimitive.Root
-      {...props}
-      defaultValue={defaultValue}
-      onValueChange={onValueChange}
-      className={className}
-    >
-      <TabsPrimitive.List className={s.list} loop>
+export const Tabs = forwardRef<ComponentRef<typeof TabsPrimitive.Root>, TabsProps>(
+  ({ tabs, defaultValue, onValueChange, className, ...props }, ref) => {
+    return (
+      <TabsPrimitive.Root
+        ref={ref}
+        defaultValue={defaultValue ?? tabs[0]?.value}
+        onValueChange={onValueChange}
+        className={clsx(className)}
+        {...props}
+      >
+        <TabsPrimitive.List className={s.list} loop>
+          {tabs.map(tab => (
+            <TabsPrimitive.Trigger
+              key={tab.value}
+              value={tab.value}
+              disabled={tab.disabled}
+              className={clsx(s.trigger, 'typography-h3')}
+            >
+              {tab.label}
+            </TabsPrimitive.Trigger>
+          ))}
+        </TabsPrimitive.List>
+
         {tabs.map(tab => (
-          <TabsPrimitive.Trigger
-            key={tab.value}
-            value={tab.value}
-            disabled={tab.disabled}
-            className={s.trigger}
-          >
-            {tab.label}
-          </TabsPrimitive.Trigger>
+          <TabsPrimitive.Content key={tab.value} value={tab.value}>
+            {tab.content}
+          </TabsPrimitive.Content>
         ))}
-      </TabsPrimitive.List>
-      {tabs.map(tab => (
-        <TabsPrimitive.Content key={tab.value} value={tab.value}>
-          {tab.content}
-        </TabsPrimitive.Content>
-      ))}
-    </TabsPrimitive.Root>
-  )
-}
+      </TabsPrimitive.Root>
+    )
+  }
+)
+
+Tabs.displayName = 'Tabs'
