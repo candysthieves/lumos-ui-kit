@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { forwardRef, type InputHTMLAttributes, type ReactNode } from 'react'
+import { forwardRef, type InputHTMLAttributes, type ReactNode, useId } from 'react'
 import { Typography } from '../Typography/Typography'
 import s from './Input.module.scss'
 
@@ -11,10 +11,30 @@ export type InputProps = {
 } & InputHTMLAttributes<HTMLInputElement>
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, startAdornment, endAdornment, className, disabled, ...props }, ref) => {
+  (
+    {
+      id,
+      label,
+      error,
+      startAdornment,
+      endAdornment,
+      className,
+      disabled,
+      type = 'text',
+      ...props
+    },
+    ref
+  ) => {
+    const generatedId = useId()
+    const inputId = id ?? generatedId
+
     return (
       <div className={s.wrapper}>
-        {label && <label className={s.label}>{label}</label>}
+        {label && (
+          <label htmlFor={inputId} className={clsx('typography-body2', s.label)}>
+            {label}
+          </label>
+        )}
 
         <div
           className={clsx(s.container, {
@@ -26,7 +46,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             <span className={clsx(s.adornment, s.startAdornment)}>{startAdornment}</span>
           )}
 
-          <input ref={ref} className={clsx(s.input, className)} disabled={disabled} {...props} />
+          <input
+            id={inputId}
+            ref={ref}
+            type={type}
+            className={clsx(s.input, className)}
+            disabled={disabled}
+            {...props}
+          />
 
           {endAdornment && (
             <span className={clsx(s.adornment, s.endAdornment)}>{endAdornment}</span>
