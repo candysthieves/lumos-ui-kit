@@ -1,0 +1,86 @@
+@use '../../styles/mixins' as *;
+
+.navBar {
+  @include flex(flex, none, none);
+
+  flex-direction: column;
+  padding-top: 4.5625rem;
+  padding-left: 3.75rem;
+
+  @include width-height(auto, 100%);
+}
+
+.navBar > ul {
+  flex-direction: column;
+  gap: 0.25rem;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  @include flex(flex, none, none);
+}
+
+.navBar > ul > li:nth-child(6) {
+  margin-top: 3.5rem; // 60px
+}
+
+%nav-button-base {
+  @include flex(flex, none, center);
+
+  cursor: pointer;
+
+  gap: 0.75rem;
+
+  border: none;
+
+  font: inherit;
+  color: var(--color-light-100);
+  text-align: left;
+
+  background: none;
+
+  @include transition-basic(color);
+
+  &:hover {
+    color: var(--color-accent-100);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: var(--color-light-900);
+  }
+}
+
+.navItem {
+  @extend %nav-button-base;
+
+  width: fit-content;
+  border: 2px solid transparent;
+  border-radius: 4px;
+
+  @include transition-basic(color, border-color);
+
+  &:focus-visible {
+    border-color: var(--color-accent-300);
+    outline: none;
+  }
+}
+
+.activeItem {
+  color: var(--color-accent-300);
+}
+
+.logOutBtn {
+  @extend %nav-button-base;
+
+  width: 100%;
+  margin-top: auto;
+  padding-bottom: 2.25rem;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent-300);
+    outline-offset: 2px;
+  }
+}
