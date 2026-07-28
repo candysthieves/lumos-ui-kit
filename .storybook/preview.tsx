@@ -2,9 +2,14 @@ import type { Preview } from '@storybook/react-vite'
 import '@fontsource-variable/inter/wght.css'
 import '@fontsource-variable/roboto/wght.css'
 import '../src/styles/index.scss'
+import { darkTheme } from './theme'
 
 const preview: Preview = {
   parameters: {
+    docs: {
+      theme: darkTheme,
+    },
+
     controls: {
       matchers: {
         color: /(background|color)$/i,
