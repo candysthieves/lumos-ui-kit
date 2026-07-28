@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { RadioButtonUnchecked } from '@/assets/icons'
+import { RadioButtonUnchecked } from '@/assets'
 import { iconMeta } from '@/storybook-utils'
 import s from './Icon.module.scss'
 

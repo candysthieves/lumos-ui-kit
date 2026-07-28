@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Google } from '@/assets/icons'
+import { Google } from '@/assets'
 import { coloredIconMeta } from '@/storybook-utils'
 import s from './Icon.module.scss'
 
