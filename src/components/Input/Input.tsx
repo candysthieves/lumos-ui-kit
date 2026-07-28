@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { forwardRef, type InputHTMLAttributes, type ReactNode, useId } from 'react'
+import { type ComponentPropsWithoutRef, forwardRef, type ReactNode, useId } from 'react'
 import { Typography } from '../Typography/Typography'
 import s from './Input.module.scss'
 
@@ -8,7 +8,7 @@ export type InputProps = {
   error?: string
   startAdornment?: ReactNode
   endAdornment?: ReactNode
-} & InputHTMLAttributes<HTMLInputElement>
+} & ComponentPropsWithoutRef<'input'>
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
@@ -61,7 +61,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {error && (
-          <Typography variant={"body1"} color={"var(--color-danger-500)"}>
+          <Typography variant={'body1'} color={'var(--color-danger-500)'}>
             {error}
           </Typography>
         )}
