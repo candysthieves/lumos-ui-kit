@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { EyeOffOutline, EyeOutline } from '@/assets/icons'
+import { EyeOffOutline, EyeOutline } from '@/assets'
 import { Input } from '../Input/Input'
 import s from './PasswordInput.module.scss'
 

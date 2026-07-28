@@ -1,4 +1,4 @@
-import { SearchOutline } from '@/assets/icons'
+import { SearchOutline } from '@/assets'
 import type { InputProps } from '../Input/Input'
 import { Input } from '../Input'
 
