@@ -1,18 +1,17 @@
 name: Publish to NPM
 on:
-  push:
-   branches:
+#  push:
+#   branches:
 #   - main
 #   - develop
-    - SCRUM-49-set-config-to-publish-project-to-npmjs
-#  pull_request:
-#    types: [ closed ]
-#    branches:
-#      - main
-#      - develop
+  pull_request:
+    types: [ closed ]
+    branches:
+      - main
+      - develop
 jobs:
   build:
-#    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     strategy:
       matrix:
