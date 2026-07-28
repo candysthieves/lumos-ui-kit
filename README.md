@@ -27,11 +27,13 @@ The project is built on _React_ and _TypeScript_, using _Storybook_ for componen
 
 ## 🔗 Related Projects
 
+[UI-kit Lumos npm-package](https://www.npmjs.com/package/@candy.thieves/ui-kit-lumos)
+
 [Lumos app](https://github.com/candysthieves/lumos-ui-kit) — main application using the UI Kit
 
 [Figma Design](https://www.figma.com/design/UehOuThHVruUR8jcC22FXS/Inctagram?m=auto&t=DixPh2DJFl4iZtwB-6) — mockups and design system
 
-## Instructions for Integrating UI-kit with the app
+## 📋 Instructions for Integrating UI-kit with the app
 
 ### 📦 UI-kit library installation
 
@@ -80,7 +82,7 @@ export const MyComponent = () => {
 
 <hr>
 
-🌐 **Global Style import for _Next.js_ app**
+🌐 **Global Style import for _Next.js_ (App Router)**
 
 🎨 _Add the styles to your root layout file:_
 

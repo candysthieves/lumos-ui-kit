@@ -1,0 +1,179 @@
+# Configure
+
+This guide explains how to install and configure **UI-kit Lumos** in your project.
+
+Lumos UI Kit is a reusable React component library designed to provide a consistent design system across the **Lumos** ecosystem.
+
+The library is built with **React**, **TypeScript**, and **Vite**, while **Storybook** serves as the primary source of component documentation, examples, and visual testing.
+
+---
+
+## Requirements
+
+- React 19+
+- TypeScript 5+
+- Vite, Next.js or any modern React bundler
+- Node.js 20+
+
+---
+
+## 🔗 Related Projects
+
+[UI-kit Lumos npm-package](https://www.npmjs.com/package/@candy.thieves/ui-kit-lumos) - A UI component library (UI-kit) for the Lumos application
+
+[Lumos app](https://github.com/candysthieves/lumos-ui-kit) — main application using the UI-kit
+
+[Figma Design](https://www.figma.com/design/UehOuThHVruUR8jcC22FXS/Inctagram?m=auto&t=DixPh2DJFl4iZtwB-6) — mockups and design system
+
+---
+
+# Installation
+
+Install the latest version of the package using your preferred package manager.
+
+## npm
+
+```bash
+npm install @candy.thieves/ui-kit-lumos@latest
+```
+
+## pnpm
+
+```bash
+pnpm add @candy.thieves/ui-kit-lumos@latest
+```
+
+## Yarn
+
+```bash
+yarn add @candy.thieves/ui-kit-lumos@latest
+```
+
+---
+
+# Global Styles
+
+Import the library stylesheet **once** at the root of your application (application entry point).
+
+## React (Vite / CRA)
+
+```tsx
+// my-vite-app/src/main.tsx
+
+import '@candy.thieves/ui-kit-lumos/dist/index.css'
+```
+
+## Next.js (App Router)
+
+```tsx
+// my-next-app/app/layout.tsx
+
+import '@candy.thieves/ui-kit-lumos/dist/index.css'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'My Next.js App',
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+---
+
+# Using Components
+
+Import components directly from the package. All components are fully typed.
+
+## React (Vite / CRA)
+
+```tsx
+// my-vite-app/src/components/MyComponent.tsx
+
+import { Button, Typography } from '@candy.thieves/ui-kit-lumos'
+
+export const MyComponent = () => {
+  return (
+    <div>
+      <Typography variant="h2" color="green">
+        How to use UI Kit components
+      </Typography>
+
+      <Button variant="primary" fullWidth onClick={() => console.log('clicked')}>
+        Click me!
+      </Button>
+    </div>
+  )
+}
+```
+
+## Next.js (App Router)
+
+```tsx
+// my-next-app/components/MyComponent.tsx
+
+'use client'
+
+import { Button, Typography } from '@candy.thieves/ui-kit-lumos'
+
+export const MyComponent = () => {
+  return (
+    <div>
+      <Typography variant={'h2'} color={'green'}>
+        How to use UI-kit components
+      </Typography>
+
+      <Button variant="primary" fullWidth onClick={() => console.log('clicked')}>
+        Click me!
+      </Button>
+    </div>
+  )
+}
+```
+
+---
+
+# Documentation
+
+Every exported component includes its own Storybook page with:
+
+- Interactive Controls
+- Props documentation
+- Usage examples
+- Available variants
+- Accessibility notes (where applicable)
+
+Use the navigation sidebar to explore all available components.
+
+---
+
+# Browser Support
+
+Lumos UI Kit supports all modern evergreen browsers:
+
+- Chrome
+- Edge
+- Firefox
+- Safari
+
+---
+
+# Best Practices
+
+- Import components from the package root.
+- Import the global stylesheet only once.
+- Prefer Storybook as the primary source of documentation.
+- Keep the package updated to receive new components, fixes, and improvements.
+
+---
+
+# About the Project
+
+Lumos UI Kit is part of the **Lumos** ecosystem and serves as the shared design system for the application.
+
+The project is maintained by the Lumos front-end team and is continuously expanded with new reusable components.
