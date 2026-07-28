@@ -32,7 +32,7 @@ export const Checkbox = forwardRef<
             {...props}
           >
             <CheckboxPrimitive.Indicator className={s.indicator}>
-              <CheckmarkOutline color={"var(--color-dark-900)"} />
+              <CheckmarkOutline color={'var(--color-dark-900)'} />
             </CheckboxPrimitive.Indicator>
           </CheckboxPrimitive.Root>
         </span>
