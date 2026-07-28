@@ -23,7 +23,7 @@ The project is built on _React_ and _TypeScript_, using _Storybook_ for componen
 
 ## 🔄 Deploy
 
-- [Deploy link](https://vercel.com/)
+- [UI-kit Storybook deploy link](https://vercel.com/)
 
 ## 🔗 Related Projects
 
