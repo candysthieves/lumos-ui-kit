@@ -18,12 +18,12 @@ jobs:
       matrix:
         node-version: [24]
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
         with:
           version: 8
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
@@ -31,7 +31,12 @@ jobs:
         run: pnpm install --no-frozen-lockfile
       - name: Build lib
         run: pnpm run build
-      - uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.NPM_PUBLISH_TOKEN }}
-          access: 'public'
+#      - uses: JS-DevTools/npm-publish@v3
+#        with:
+#          token: ${{ secrets.NPM_PUBLISH_TOKEN }}
+#          access: 'public'
+
+      - name: Publish to npm
+        run: pnpm publish --access public
+        env:
+         NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
