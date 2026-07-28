@@ -8,7 +8,7 @@ export const SearchInput = (props: SearchInputProps) => {
   return (
     <Input
       {...props}
-      startAdornment={<SearchOutline autoSize={false} color={"var(--color-light-100)"} size={20} />}
+      startAdornment={<SearchOutline autoSize={false} color={'var(--color-light-100)'} size={20} />}
       type={'search'}
     />
   )
