@@ -20,13 +20,9 @@
 
   box-sizing: border-box;
   height: 36px;
-  padding: 0 16px;
+  padding: 0 1rem;
   border-radius: 2px;
 
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
   color: var(--color-dark-100);
 
   &::after {
