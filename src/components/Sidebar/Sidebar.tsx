@@ -5,17 +5,18 @@ import s from './Sidebar.module.scss'
 export type SidebarItem = {
   activeIcon?: ReactNode
   disabled?: boolean
+  href?: string
   icon: ReactNode
   id: string
   label: string
 }
 
 type Props = {
-  items: SidebarItem[]
   activeId: string
-  onValueChange: (id: string) => void
-  onLogout: () => void
+  items: SidebarItem[]
   logOutIcon: ReactNode
+  onLogout: () => void
+  onValueChange?: (id: string) => void
 }
 
 export const Sidebar = ({ items, activeId, onValueChange, onLogout, logOutIcon }: Props) => {
@@ -27,19 +28,29 @@ export const Sidebar = ({ items, activeId, onValueChange, onLogout, logOutIcon }
 
           return (
             <li key={item.id}>
-              <button
-                type={'button'}
-                className={clsx(s.navItem, isActive && s.activeItem)}
-                onClick={() => onValueChange(item.id)}
-                disabled={item.disabled}
+              <a
+                href={item.disabled ? undefined : item.href || '#'}
+                className={clsx(s.navItem, isActive && s.activeItem, item.disabled && s.disabled)}
+                onClick={e => {
+                  if (item.disabled || !item.href || item.href === '#') {
+                    e.preventDefault()
+                  }
+
+                  if (!item.disabled) {
+                    onValueChange?.(item.id)
+                  }
+                }}
+                tabIndex={item.disabled ? -1 : 0}
+                aria-disabled={item.disabled}
               >
                 {isActive && item.activeIcon ? item.activeIcon : item.icon}
                 <span className={'typography-body2'}>{item.label}</span>
-              </button>
+              </a>
             </li>
           )
         })}
       </ul>
+
       <button type={'button'} className={s.logOutBtn} onClick={onLogout}>
         {logOutIcon}
         <span className={'typography-body2'}>Log Out</span>

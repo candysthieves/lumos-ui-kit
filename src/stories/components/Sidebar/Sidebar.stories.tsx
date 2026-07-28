@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useState } from 'react'
 import {
-  ArrowForwardOutline,
   Bookmark,
   BookmarkOutline,
   Home,
@@ -24,6 +23,10 @@ const meta: Meta<typeof Sidebar> = {
   title: 'Components/Sidebar',
   component: Sidebar,
   tags: ['autodocs'],
+  argTypes: {
+    onLogout: { action: 'logged out' },
+    onValueChange: { action: 'value changed' },
+  },
 }
 
 export default meta
@@ -31,47 +34,76 @@ export default meta
 type Story = StoryObj<typeof Sidebar>
 
 const items: SidebarItem[] = [
-  { id: 'feed', icon: <HomeOutline />, activeIcon: <Home />, label: 'Feed' },
-  { id: 'create', icon: <PlusSquareOutline />, activeIcon: <PlusSquare />, label: 'Create' },
-  { id: 'profile', icon: <PersonOutline />, activeIcon: <Person />, label: 'My Profile' },
+  { id: 'feed', href: '/feed', icon: <HomeOutline />, activeIcon: <Home />, label: 'Feed' },
+  {
+    id: 'create',
+    href: '/create',
+    icon: <PlusSquareOutline />,
+    activeIcon: <PlusSquare />,
+    label: 'Create',
+  },
+  {
+    id: 'profile',
+    href: '/profile',
+    icon: <PersonOutline />,
+    activeIcon: <Person />,
+    label: 'My Profile',
+  },
   {
     id: 'messenger',
+    href: '/messenger',
     icon: <MessageCircleOutline />,
     activeIcon: <MessageCircle />,
     label: 'Messenger',
   },
-  { id: 'search', icon: <SearchOutline />, activeIcon: <Search />, label: 'Search' },
+  {
+    id: 'search',
+    href: '/search',
+    icon: <SearchOutline />,
+    activeIcon: <Search />,
+    label: 'Search',
+  },
   {
     id: 'statistics',
+    href: '/statistics',
     icon: <TrendingUpOutline />,
     activeIcon: <TrendingUp />,
     label: 'Statistics',
   },
-  { id: 'favorites', icon: <BookmarkOutline />, activeIcon: <Bookmark />, label: 'Favorites' },
+  {
+    id: 'favorites',
+    href: '/favorites',
+    icon: <BookmarkOutline />,
+    activeIcon: <Bookmark />,
+    label: 'Favorites',
+  },
 ]
 
-const SidebarDemo = () => {
-  const [activeId, setActiveId] = useState('feed')
-
-  return (
-    <div style={{ width: 240, height: 600, background: '#000', border: '1px solid #333' }}>
-      <Sidebar
-        items={items}
-        activeId={activeId}
-        onValueChange={setActiveId}
-        onLogout={() => alert('logout clicked')}
-        logOutIcon={<LogOutOutline />}
-      />
-    </div>
-  )
-}
-
 export const Default: Story = {
-  render: () => <SidebarDemo />,
+  render: args => {
+    const [activeId, setActiveId] = useState('feed')
+
+    return (
+      <div style={{ width: 240, height: 600, background: '#000', border: '1px solid #333' }}>
+        <Sidebar
+          {...args}
+          items={items}
+          activeId={activeId}
+          onValueChange={id => {
+            setActiveId(id)
+            args.onValueChange?.(id)
+          }}
+          logOutIcon={<LogOutOutline />}
+        />
+      </div>
+    )
+  },
 }
 
 export const WithDisabledItem: Story = {
-  render: () => {
+  render: args => {
+    const [activeId, setActiveId] = useState('feed')
+
     const itemsWithDisabled = items.map(item =>
       item.id === 'search' ? { ...item, disabled: true } : item
     )
@@ -79,11 +111,14 @@ export const WithDisabledItem: Story = {
     return (
       <div style={{ width: 240, height: 600, background: '#000', border: '1px solid #333' }}>
         <Sidebar
+          {...args}
           items={itemsWithDisabled}
-          activeId={'feed'}
-          onValueChange={() => {}}
-          onLogout={() => {}}
-          logOutIcon={<ArrowForwardOutline />}
+          activeId={activeId}
+          onValueChange={id => {
+            setActiveId(id)
+            args.onValueChange?.(id)
+          }}
+          logOutIcon={<LogOutOutline />}
         />
       </div>
     )
