@@ -12,10 +12,6 @@
     "allowImportingTsExtensions": false,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-
-    "outDir": "dist/types",
-    "rootDir": "src",
-
     "emitDeclarationOnly": true,
     "declaration": true,
 
@@ -33,13 +29,4 @@
     }
   },
   "include": ["src/**/*", "vite-env.d.ts"]
-  //  "exclude": [
-  //    "src/**/*.stories.ts",
-  //    "src/**/*.stories.tsx",
-  //    "src/**/*.test.ts",
-  //    "src/**/*.test.tsx",
-  //    "src/stories/**/*",
-  //    "src/storybook-utils/**/*",
-  //    "node_modules"
-  //  ]
 }
