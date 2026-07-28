@@ -27,7 +27,7 @@ The project is built on _React_ and _TypeScript_, using _Storybook_ for componen
 
 ## 🔗 Related Projects
 
-[UI-kit Lumos npm-package](https://www.npmjs.com/package/@candy.thieves/ui-kit-lumos)
+[UI-kit Lumos npm-package](https://www.npmjs.com/package/@candy.thieves/ui-kit-lumos) — a UI component library (UI-kit) for the Lumos application
 
 [Lumos app](https://github.com/candysthieves/lumos-ui-kit) — main application using the UI Kit
 
