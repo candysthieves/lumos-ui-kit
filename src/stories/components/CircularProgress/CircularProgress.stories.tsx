@@ -12,7 +12,7 @@ const meta = {
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
-      description: 'Size of the spinner',
+      description: 'Size of the CircularProgress',
       defaultValue: 'md',
     },
     color: {
