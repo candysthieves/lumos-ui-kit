@@ -1,5 +1,6 @@
 import type { ComponentPropsWithRef, ElementType, ReactNode } from 'react'
 import clsx from 'clsx'
+import type { Variant } from '@/components/Button'
 import s from './Button.module.scss'
 
 /**
@@ -15,9 +16,8 @@ import s from './Button.module.scss'
 export type ButtonProps<T extends ElementType = 'button'> = {
   as?: T
   children: ReactNode
-  variant?: 'outlined' | 'primary' | 'secondary' | 'text'
+  variant?: Variant
   fullWidth?: boolean
-  className?: string
   disabled?: boolean
 } & ComponentPropsWithRef<T>
 
@@ -29,17 +29,16 @@ export const Button = <C extends ElementType = 'button'>(
     as: Component = 'button',
     variant = 'primary',
     disabled = false,
-    className,
     fullWidth,
     ...rest
   } = props
 
-  const isLink = Component.toLowerCase() === 'a'
+  const isLink = typeof Component === 'string' && Component.toLowerCase() === 'a'
 
   return (
     <Component
       ref={ref}
-      className={clsx(s.button, 'typography-h3', s[variant], className, fullWidth && s.fullWidth)}
+      className={clsx(s.button, 'typography-h3', s[variant], fullWidth && s.fullWidth)}
       {...(isLink ? { 'aria-disabled': disabled } : { disabled })}
       {...rest}
     />

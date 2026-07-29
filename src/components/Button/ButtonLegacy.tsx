@@ -9,7 +9,7 @@ import {
 import { forwardRef } from 'react'
 import s from './Button.module.scss'
 
-type Variant = 'outlined' | 'primary' | 'secondary' | 'text'
+export type Variant = 'outlined' | 'primary' | 'secondary' | 'text'
 
 type PolymorphicRef<C extends ElementType> = ComponentPropsWithRef<C>['ref']
 
@@ -33,8 +33,9 @@ type PolymorphicComponentPropWithRef<C extends ElementType, Props = {}> = Polymo
 type ButtonProps<C extends ElementType> = PolymorphicComponentPropWithRef<
   C,
   {
-    variant?: 'primary' | Variant
+    variant?: Variant
     fullWidth?: boolean
+    disabled?: boolean
   }
 >
 
@@ -71,7 +72,6 @@ export const ButtonLegacy = forwardRef(
     const {
       variant = 'primary',
       fullWidth,
-      className,
       as: Component = 'button',
       disabled = false,
       ...rest
@@ -80,7 +80,7 @@ export const ButtonLegacy = forwardRef(
 
     return (
       <Component
-        className={clsx(s.button, 'typography-h3', s[variant], className, fullWidth && s.fullWidth)}
+        className={clsx(s.button, 'typography-h3', s[variant], fullWidth && s.fullWidth)}
         ref={ref}
         {...(isLink ? { 'aria-disabled': disabled } : { disabled })}
         {...rest}
