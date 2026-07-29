@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { fn } from 'storybook/test'
 import { FlagEng, FlagRus } from '@/assets/icons'
 import { ButtonLegacy } from '@/components/Button'
+import { buttonMeta } from '@/storybook-utils'
 
 const meta = {
+  ...buttonMeta,
   title: 'Components/Data Entry/ButtonLegacy',
   component: ButtonLegacy,
   parameters: {
@@ -15,35 +16,6 @@ const meta = {
     },
   },
   tags: ['autodocs'],
-
-  argTypes: {
-    as: {
-      control: {
-        type: 'text',
-      },
-      description: `The component used for the root node. Either a string to use an HTML element or a React component.
-      **Examples:**
-      - \`as="button"\` - renders a <button> element (default)
-      - \`as="a"\` - renders an <a> anchor element
-      - \`as="div"\` - renders a <div> element`,
-      table: {
-        type: { summary: 'ElementType' },
-        defaultValue: { summary: '"button"' },
-      },
-    },
-    onClick: { action: 'clicked' },
-    variant: {
-      control: { type: 'radio' },
-      options: ['primary', 'secondary', 'outlined', 'text'],
-      table: {
-        type: { summary: "'primary' | 'secondary' | 'outlined' | 'text'" },
-      },
-    },
-  },
-  args: {
-    as: 'button',
-    onClick: fn(),
-  },
 } satisfies Meta<typeof ButtonLegacy>
 
 export default meta
