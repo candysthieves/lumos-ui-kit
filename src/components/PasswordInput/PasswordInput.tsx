@@ -23,9 +23,9 @@ export const PasswordInput = ({ ...props }: PasswordInputProps) => {
           aria-label={showPassword ? 'Hide password' : 'Show password'}
         >
           {showPassword ? (
-            <EyeOutline autoSize={false} color={"var(--color-light-100)"} size={24} />
+            <EyeOutline autoSize={false} color={'var(--color-light-100)'} size={24} />
           ) : (
-            <EyeOffOutline autoSize={false} color={"var(--color-light-100)"} size={24} />
+            <EyeOffOutline autoSize={false} color={'var(--color-light-100)'} size={24} />
           )}
         </button>
       }

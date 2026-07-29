@@ -36,10 +36,10 @@
 @mixin typography($fontSize, $lineHeight, $fontWeight, $fontFamily: var(--font-family-primary)) {
   margin: 0;
 
-  font-family: $fontFamily;
-  font-size: $fontSize;
-  font-weight: $fontWeight;
-  line-height: $lineHeight;
+  font-family: $fontFamily !important;
+  font-size: $fontSize !important;
+  font-weight: $fontWeight !important;
+  line-height: $lineHeight !important;
 }
 
 .typography-large {
