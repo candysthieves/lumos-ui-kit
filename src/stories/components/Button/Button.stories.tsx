@@ -23,7 +23,7 @@ const meta = {
       },
       description: `The component used for the root node. Either a string to use an HTML element or a React component.
       **Examples:**
-      - \`as="button"\` - renders a < button > element (default)
+      - \`as="button"\` - renders a <button> element (default)
       - \`as="a"\` - renders an <a> link element
       - \`as="div"\` - renders a <div> element`,
       table: {
