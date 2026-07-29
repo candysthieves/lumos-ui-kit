@@ -10,6 +10,22 @@ export type ReadMoreProps = {
   className?: string
 }
 
+const truncateText = (text: string, maxLength: number) => {
+  if (text.length <= maxLength) {
+    return text
+  }
+
+  const slicedText = text.slice(0, maxLength)
+
+  const lastSpaceIndex = slicedText.lastIndexOf(' ')
+
+  if (lastSpaceIndex === -1) {
+    return `${slicedText}...`
+  }
+
+  return `${slicedText.slice(0, lastSpaceIndex)}...`
+}
+
 export const ReadMore = ({
   text,
   maxLength,
@@ -29,7 +45,7 @@ export const ReadMore = ({
     )
   }
 
-  const displayedText = expanded ? text : `${text.slice(0, maxLength)}...`
+  const displayedText = expanded ? text : truncateText(text, maxLength)
 
   return (
     <Typography className={className} variant={"body1"}>
