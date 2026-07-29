@@ -1,6 +1,6 @@
-import type { ThemeColor } from '@/components/CircularProgress'
+import type { ThemeProgressColor } from '@/types'
 
-export const COLOR_MAP: Record<ThemeColor, string> = {
+export const COLOR_MAP: Record<ThemeProgressColor, string> = {
   error: 'var(--color-danger-500)',
   inherit: 'currentColor',
   primary: 'var(--color-accent-500)',
