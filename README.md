@@ -1,4 +1,4 @@
-# Lumos UI-Kit
+# Lumos UI-kit
 
 🎨 **Component library for **Lumos app** — a unified design system and interface elements.**
 
@@ -23,7 +23,7 @@ The project is built on _React_ and _TypeScript_, using _Storybook_ for componen
 
 ## 🔄 Deploy
 
-- [UI-kit Storybook deploy link](https://vercel.com/)
+- [UI-kit Storybook deploy link](https://lumos-ui-kit-storybook.vercel.app/)
 
 ## 🔗 Related Projects
 

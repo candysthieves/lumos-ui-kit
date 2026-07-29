@@ -1,4 +1,4 @@
-# Lumos UI Kit
+# Lumos UI-kit
 
 ## 🚀Getting Started locally
 
