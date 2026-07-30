@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { Avatar as AvatarItem } from 'radix-ui'
-import { type ComponentPropsWithoutRef, type ComponentRef, forwardRef } from 'react'
+import { type ComponentPropsWithoutRef, forwardRef } from 'react'
 import type { MainAvatarSize } from '@/types'
 import { CloseOutline, ImageOutline } from '@/assets/icons'
 import { Button } from '@/components/Button'
@@ -14,9 +14,9 @@ type MainAvatarProps = {
   hasCloseButton?: boolean
   onClose?: () => void
   size?: MainAvatarSize
-} & Omit<ComponentPropsWithoutRef<typeof AvatarItem.Root>, 'asChild'>
+} & Omit<ComponentPropsWithoutRef<'div'>, 'children'>
 
-export const MainAvatar = forwardRef<ComponentRef<typeof AvatarItem.Root>, MainAvatarProps>(
+export const MainAvatar = forwardRef<HTMLDivElement, MainAvatarProps>(
   (
     {
       src,
@@ -32,8 +32,8 @@ export const MainAvatar = forwardRef<ComponentRef<typeof AvatarItem.Root>, MainA
     ref
   ) => {
     return (
-      <div className={s.wrapper}>
-        <AvatarItem.Root ref={ref} className={clsx(s.root, s[size], className)} {...props}>
+      <div ref={ref} className={s.wrapper}>
+        <AvatarItem.Root className={clsx(s.root, s[size], className)} {...props}>
           {src && <AvatarItem.Image className={s.image} src={src} alt={alt || userName} />}
           <AvatarItem.Fallback className={s.fallback} delayMs={delayMs}>
             <ImageOutline size={48} />
