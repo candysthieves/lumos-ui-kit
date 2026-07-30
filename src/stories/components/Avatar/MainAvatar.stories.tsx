@@ -1,9 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Avatar } from '@/components/Avatar'
+import { useState } from 'react'
+import { fn } from 'storybook/test'
+import { MainAvatar } from '@/components/Avatar'
+import { Button } from '@/components/Button'
 
 const meta = {
-  title: 'Components/Avatar/Avatar',
-  component: Avatar,
+  title: 'Components/Avatar/MainAvatar',
+  component: MainAvatar,
   parameters: {
     layout: 'centered',
   },
@@ -11,8 +14,8 @@ const meta = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['s', 'm', 'l'],
-      description: 'Avatar size',
+      options: ['xl', 'xxl'],
+      description: 'MainAvatar size',
     },
     src: {
       control: 'text',
@@ -30,52 +33,54 @@ const meta = {
       control: 'number',
       description: 'Delay in milliseconds before showing fallback',
     },
+    hasCloseButton: {
+      control: 'boolean',
+      description: 'Show close button',
+    },
+    onClose: {
+      action: 'onClose clicked',
+      description: 'Callback when close button is clicked',
+    },
     className: {
       control: 'text',
       description: 'Additional CSS classes',
     },
   },
-} satisfies Meta<typeof Avatar>
+  args: {
+    onClose: fn(),
+  },
+} satisfies Meta<typeof MainAvatar>
 
 export default meta
-type Story = StoryObj<typeof Avatar>
+type Story = StoryObj<typeof MainAvatar>
 
 export const WithImage: Story = {
   args: {
     src: 'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80',
     userName: 'Jane Doe',
     alt: 'Jane Doe avatar',
-    size: 'm',
+    size: 'xl',
   },
 }
 
 export const WithFallback: Story = {
   args: {
     userName: 'Jane Smith',
-    size: 'm',
-  },
-}
-
-export const WithLongName: Story = {
-  args: {
-    userName: 'Alexander Hamilton',
-    size: 'm',
-  },
-}
-
-export const WithSpecialCharacters: Story = {
-  args: {
-    userName: 'José García',
-    size: 'm',
+    size: 'xl',
   },
 }
 
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-      <Avatar userName={'S'} size={'s'} />
-      <Avatar userName={'M'} size={'m'} />
-      <Avatar userName={'L'} size={'l'} />
+      <MainAvatar userName={'John Doe'} size={'xl'} hasCloseButton />
+      <MainAvatar
+        src={'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80'}
+        userName={'Jane Doe'}
+        alt={'Jane Doe avatar'}
+        size={'xxl'}
+        hasCloseButton
+      />
     </div>
   ),
 }
@@ -84,7 +89,7 @@ export const WithImageAndFallback: Story = {
   args: {
     src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?&w=128&h=128&dpr=2&q=80',
     userName: 'Alex Johnson',
-    size: 'm',
+    size: 'xl',
   },
 }
 
@@ -92,7 +97,7 @@ export const BrokenImage: Story = {
   args: {
     src: 'https://invalid-url.com/image.jpg',
     userName: 'Broken Image',
-    size: 'm',
+    size: 'xl',
   },
 }
 
@@ -101,7 +106,7 @@ export const DelayedFallback: Story = {
     src: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?&w=128&h=128&dpr=2&q=80',
     userName: 'Delayed User',
     delayMs: 2000,
-    size: 'm',
+    size: 'xl',
   },
 }
 
@@ -109,14 +114,14 @@ export const WithoutDelay: Story = {
   args: {
     userName: 'No Delay',
     delayMs: 0,
-    size: 'm',
+    size: 'xl',
   },
 }
 
 export const EmptyName: Story = {
   args: {
     userName: '',
-    size: 'm',
+    size: 'xl',
   },
 }
 
@@ -129,6 +134,8 @@ export const Grid: Story = {
       },
       {
         src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?&w=128&h=128&dpr=2&q=80',
+        hasCloseButton: true,
+        onClose: () => alert('Close button clicked!'),
         name: 'Alex Johnson',
       },
       { name: 'Charlie Brown' },
@@ -136,15 +143,56 @@ export const Grid: Story = {
         src: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?&w=128&h=128&dpr=2&q=80',
         name: 'Diana Clark',
       },
-      { name: 'Edward Norton' },
+      {
+        name: 'Edward Norton',
+        hasCloseButton: true,
+        onClose: () => alert('Close button clicked!'),
+      },
     ]
 
     return (
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
         {users.map((user, index) => (
-          <Avatar key={index} userName={user.name} src={user.src} size={'m'} />
+          <MainAvatar
+            key={index}
+            userName={user.name}
+            src={user.src}
+            hasCloseButton={user.hasCloseButton}
+            onClose={user.onClose}
+            size={'xl'}
+          />
         ))}
       </div>
+    )
+  },
+}
+
+export const InteractiveDemo: Story = {
+  render: function InteractiveDemo() {
+    const [isVisible, setIsVisible] = useState(true)
+
+    return (
+      <>
+        {!isVisible ? (
+          <Button
+            onClick={() => {
+              setIsVisible(true)
+            }}
+          >
+            Reset Avatar
+          </Button>
+        ) : (
+          <MainAvatar
+            userName={"Jane Doe"}
+            src={"https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"}
+            size={"xl"}
+            hasCloseButton
+            onClose={() => {
+              setIsVisible(false)
+            }}
+          />
+        )}
+      </>
     )
   },
 }
