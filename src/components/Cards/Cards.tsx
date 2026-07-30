@@ -1,16 +1,19 @@
-import type { ElementType, HTMLAttributes, ReactNode } from 'react'
 import clsx from 'clsx'
+import { type ComponentPropsWithoutRef, type ComponentRef, forwardRef, type ReactNode } from 'react'
 import s from './Cards.module.scss'
 
-type Props = {
+export type CardsProps = {
   children: ReactNode
-  as?: ElementType
-} & HTMLAttributes<HTMLElement>
+} & Omit<ComponentPropsWithoutRef<'div'>, 'children'>
 
-export const Cards = ({ children, as: Component = 'div', className, ...props }: Props) => {
-  return (
-    <Component className={clsx(s.card, className)} {...props}>
-      {children}
-    </Component>
-  )
-}
+export const Cards = forwardRef<ComponentRef<'div'>, CardsProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <div ref={ref} className={clsx(s.card, className)} {...props}>
+        {children}
+      </div>
+    )
+  }
+)
+
+Cards.displayName = 'Cards'
