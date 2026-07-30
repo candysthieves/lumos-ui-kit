@@ -30,11 +30,13 @@ Confirmed stack from project configuration:
 Use the checks that match the files changed:
 
 - `pnpm run type:check` - required after TypeScript or component API changes.
-- `pnpm run build` - required before delivering broad or release-facing changes.
+- `pnpm run build` - run for broad, release-facing, bundling, package/config or public API changes; `pnpm run type:check` is enough for narrow TypeScript-only validation.
 - `pnpm run build-storybook` - required after Storybook or component documentation changes.
 - `pnpm run test:storybook` - runs the configured Storybook/Vitest browser tests for stories.
 - `pnpm run stylelint:check` - required after SCSS changes.
+- `pnpm run stylelint:fix` - use it only when auto-fixing SCSS files is acceptable for the task.
 - `pnpm run lint` runs ESLint with `--fix`; use it only when auto-fixing source files is acceptable for the task.
+- `pnpm run format` runs Prettier over `src`; use it only when broad formatting changes are acceptable.
 
 Storybook browser tests are configured in [vite.config.ts](./vite.config.ts) through the Storybook Vitest addon and Playwright Chromium.
 
