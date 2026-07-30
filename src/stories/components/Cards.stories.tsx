@@ -1,4 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { Close } from '@/assets/icons'
+import { Typography } from '@/components'
+import { Button } from '@/components/Button'
 import { Cards } from '@/components/Cards/Cards'
 
 const meta: Meta<typeof Cards> = {
@@ -22,15 +25,16 @@ export const Default: Story = {
     <Cards
       {...args}
       style={{
-        width: 330,
-        padding: 16,
+        width: '20.625rem',
+        padding: '1rem',
       }}
     >
-      <h3 className={'typography-h3'} style={{ margin: '0 0 12px' }}>
+      <Typography variant={'h3'} style={{ marginBottom: '0.75rem' }}>
         Card title
-      </h3>
-
-      <p className={'typography-body2'}>The Card component is used as a container for content.</p>
+      </Typography>
+      <Typography variant={'body2'}>
+        The Card component is used as a container for content.
+      </Typography>
     </Cards>
   ),
 }
@@ -40,7 +44,7 @@ export const AddProfilePhoto: Story = {
     <Cards
       {...args}
       style={{
-        width: 330,
+        width: '20.625rem',
       }}
     >
       <div
@@ -48,17 +52,34 @@ export const AddProfilePhoto: Story = {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '12px 24px',
+          padding: '0.75rem 1.5rem',
           borderBottom: '1px solid var(--color-dark-300)',
         }}
       >
-        <span className={'typography-h3'}>Add a Profile Photo</span>
-        <span style={{ fontSize: 24 }}>×</span>
+        <Typography variant={'h3'} style={{ marginBottom: '0.75rem' }}>
+          Add a Profile Photo
+        </Typography>
+        <Button
+          type={'button'}
+          variant={'text'}
+          style={{
+            padding: 0,
+            minWidth: 'auto',
+            width: '1.5rem', // Размеры кнопки 24px в rem
+            height: '1.5rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'var(--color-light-100)',
+          }}
+        >
+          <Close />
+        </Button>
       </div>
 
       <div
         style={{
-          padding: 24,
+          padding: '1.5rem',
         }}
       >
         <div
@@ -73,36 +94,33 @@ export const AddProfilePhoto: Story = {
         >
           <div
             style={{
-              width: 222,
-              height: 222,
+              width: '13.875rem',
+              height: '13.875rem',
               margin: '0 auto',
               borderRadius: '50%',
               backgroundColor: 'var(--color-dark-300)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: 'var(--color-light-900)',
-              fontSize: 14,
             }}
           >
-            Photo
+            <Typography variant={'body2'} style={{ color: 'var(--color-light-900)' }}>
+              Photo
+            </Typography>
           </div>
         </div>
 
-        <button
+        <Button
           type={'button'}
+          variant={'primary'}
+          fullWidth
           style={{
-            marginTop: 24,
-            width: '100%',
-            height: 36,
-            border: 0,
-            background: '#397DF6',
-            color: '#fff',
-            cursor: 'pointer',
+            marginTop: '1.5rem',
+            height: '2.25rem',
           }}
         >
           Select from Gallery
-        </button>
+        </Button>
       </div>
     </Cards>
   ),
@@ -113,52 +131,54 @@ export const ErrorState: Story = {
     <Cards
       {...args}
       style={{
-        width: 330,
+        width: '20.625rem',
       }}
     >
       <div
         style={{
-          padding: 16,
+          padding: '1rem',
           borderBottom: '1px solid var(--color-dark-300)',
         }}
       >
-        <span className={'typography-h3'}>Add a Profile Photo</span>
+        <Typography variant={'h3'}>Add a Profile Photo</Typography>
       </div>
 
       <div
         style={{
-          padding: 24,
+          padding: '1.5rem',
         }}
       >
         <div
           style={{
-            marginBottom: 16,
-            padding: 8,
-            background: '#CC1439',
-            color: '#fff',
-            fontSize: 12,
+            marginBottom: '1rem',
+            padding: '0.5rem',
+            backgroundColor: 'var(--color-danger-500)',
+            color: 'var(--color-light-100)',
           }}
         >
-          Error: The uploaded photo must be PNG or JPEG.
+          <Typography variant={'caption1'} style={{ color: 'var(--color-light-100)' }}>
+            Error: The uploaded photo must be PNG or JPEG.
+          </Typography>
         </div>
 
         <div
           style={{
-            height: 220,
+            height: '13.75rem',
             background: 'var(--color-dark-300)',
           }}
         />
 
-        <button
+        <Button
           type={'button'}
+          variant={'primary'}
+          fullWidth
           style={{
-            marginTop: 24,
-            width: '100%',
-            height: 36,
+            marginTop: '1.5rem',
+            height: '2.25rem',
           }}
         >
           Select from Computer
-        </button>
+        </Button>
       </div>
     </Cards>
   ),
