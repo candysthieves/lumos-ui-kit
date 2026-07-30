@@ -9,12 +9,12 @@ const meta: Meta<typeof Tooltip> = {
   argTypes: {
     delayDuration: {
       control: { type: 'number' },
-      description: 'Задержка перед появлением тултипа в миллисекундах',
+      description: 'The delay before the tooltip appears, in milliseconds',
       defaultValue: 200,
     },
     sideOffset: {
       control: { type: 'number' },
-      description: 'Отступ всплывающего окна от элемента-триггера',
+      description: 'The distance between the tooltip content and the trigger element',
       defaultValue: 8,
     },
   },
@@ -28,18 +28,18 @@ export const Default: Story = {
     delayDuration: 200,
     sideOffset: 8,
     children: (
-      <button type={'button'} style={{ padding: '8px 16px', cursor: 'pointer' }}>
-        Наведи на меня
+      <button type={'button'} style={{ padding: '0.5rem 1rem', cursor: 'pointer' }}>
+        Hover over me
       </button>
     ),
 
     content: (
       <div>
-        <div className={'typography-h3'} style={{ marginBottom: '8px' }}>
-          Помните!
+        <div className={'typography-h3'} style={{ marginBottom: '0.5rem' }}>
+          Remember!
         </div>
         <div className={'typography-body1'}>
-          По нажатию на [ Log Out ] должен быть переход на страницу Sign In
+          Clicking [ Log Out ] should redirect you to the Sign In page
         </div>
       </div>
     ),
@@ -49,6 +49,6 @@ export const Default: Story = {
 export const SimpleText: Story = {
   args: {
     children: <span>ℹ️ Подсказка</span>,
-    content: 'Это простой вспомогательный текст для пользователя.',
+    content: 'This is a simple helper text for the user.',
   } as TooltipProps,
 }
