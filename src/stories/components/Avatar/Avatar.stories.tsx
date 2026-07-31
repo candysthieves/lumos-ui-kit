@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['s', 'm', 'l'],
+      options: ['xs', 's', 'm', 'l'],
       description: 'Avatar size',
     },
     src: {
@@ -73,6 +73,7 @@ export const WithSpecialCharacters: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+      <Avatar userName={'XS'} size={'xs'} />
       <Avatar userName={'S'} size={'s'} />
       <Avatar userName={'M'} size={'m'} />
       <Avatar userName={'L'} size={'l'} />

@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Avatar as AvatarItem } from 'radix-ui'
+import { Avatar } from 'radix-ui'
 import { type ComponentPropsWithoutRef, forwardRef } from 'react'
 import type { MainAvatarSize } from '@/types'
 import { CloseOutline, ImageOutline } from '@/assets/icons'
@@ -33,11 +33,11 @@ export const MainAvatar = forwardRef<HTMLDivElement, MainAvatarProps>(
   ) => {
     return (
       <div ref={ref} className={s.wrapper}>
-        <AvatarItem.Root className={clsx(s.root, s[size], className)} {...props}>
-          {src && <AvatarItem.Image className={s.image} src={src} alt={alt || userName} />}
-          <AvatarItem.Fallback className={s.fallback} delayMs={delayMs}>
+        <Avatar.Root className={clsx(s.root, s[size], className)} {...props}>
+          {src && <Avatar.Image className={s.image} src={src} alt={alt || userName} />}
+          <Avatar.Fallback className={s.fallback} delayMs={delayMs}>
             <ImageOutline size={48} />
-          </AvatarItem.Fallback>
+          </Avatar.Fallback>
 
           {hasCloseButton && (
             <Button
@@ -54,7 +54,7 @@ export const MainAvatar = forwardRef<HTMLDivElement, MainAvatarProps>(
               />
             </Button>
           )}
-        </AvatarItem.Root>
+        </Avatar.Root>
       </div>
     )
   }
