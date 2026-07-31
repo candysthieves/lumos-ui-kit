@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Typography } from '@/components'
-import { AvatarBlock } from '@/components/Avatar'
+import { Avatar, AvatarBlock } from '@/components/Avatar'
 
 const meta = {
   title: 'Components/Avatar/AvatarBlock',
@@ -277,11 +277,7 @@ export const Comparison: Story = {
                 borderRadius: '4px',
               }}
             >
-              <img
-                src={user.src}
-                alt={user.alt}
-                style={{ width: '2.5rem', height: '2.5rem', borderRadius: '50%' }}
-              />
+              <Avatar userName={user.userName} src={user.src} alt={user.alt} size={'xs'} />
               <Typography variant={'caption1'} style={{ marginTop: '0.625rem' }}>
                 {user.userName}
               </Typography>
