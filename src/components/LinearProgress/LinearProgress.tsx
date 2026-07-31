@@ -18,7 +18,6 @@ export const LinearProgress = forwardRef<HTMLDivElement, Props>(
     ref
   ) => {
     const barColor = isThemeColor(color) ? COLOR_MAP[color] : color
-    console.log(barColor)
     const clampedValue = Math.min(100, Math.max(0, value))
 
     return (
