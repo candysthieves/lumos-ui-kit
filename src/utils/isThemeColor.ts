@@ -1,4 +1,4 @@
-import type { ThemeProgressColor } from '@/types'
+import type { ProgressThemeColor } from '@/types'
 import { COLOR_MAP } from '@/constants'
 
-export const isThemeColor = (value: string): value is ThemeProgressColor => value in COLOR_MAP
+export const isThemeColor = (value: string): value is ProgressThemeColor => value in COLOR_MAP

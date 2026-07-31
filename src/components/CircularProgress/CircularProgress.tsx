@@ -1,15 +1,13 @@
 import clsx from 'clsx'
 import { type ComponentPropsWithoutRef, forwardRef } from 'react'
-import type { ThemeProgressColor } from '@/types'
+import type { ProgressSizeVariant, ProgressThemeColor } from '@/types'
 import { COLOR_MAP } from '@/constants'
 import { isThemeColor } from '@/utils'
 import s from './CircularProgress.module.scss'
 
-type SizeVariant = 'lg' | 'md' | 'sm'
-
 export type Props = {
-  size?: SizeVariant
-  color?: string | ThemeProgressColor
+  size?: ProgressSizeVariant
+  color?: ProgressThemeColor | string
 } & Omit<ComponentPropsWithoutRef<'span'>, 'aria-label' | 'aria-live' | 'role'>
 
 export const CircularProgress = forwardRef<HTMLSpanElement, Props>(
