@@ -1,0 +1,22 @@
+name: Build and Deploy Storybook
+on:
+  pull_request:
+    branches:
+      - 'develop'
+    types:
+      - closed
+jobs:
+  build-and-deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+
+      - name: Merge dev -> storybook-deploy 🚀
+        uses: devmasx/merge-branch@1.4.0
+        with:
+          type: now
+          from_branch: develop
+          target_branch: storybook-deploy
+          github_token: ${{ github.token }}
