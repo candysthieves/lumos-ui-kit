@@ -1,6 +1,8 @@
+import clsx from 'clsx'
 import { useState } from 'react'
 import { Typography } from '@/components'
 import { truncateText } from '@/utils'
+import { Button } from '../Button'
 import s from './ReadMore.module.scss'
 
 export type ReadMoreProps = {
@@ -32,12 +34,14 @@ export const ReadMore = ({
 
   const displayedText = expanded ? text : truncateText(text, maxLength)
 
+  const handleToggle = () => setExpanded(prev => !prev)
+
   return (
     <Typography className={className} variant={'body1'}>
       {displayedText}{' '}
-      <button className={s.button} type={'button'} onClick={() => setExpanded(prev => !prev)}>
+      <Button as={"a"} className={clsx('typography-link', s.button)} onClick={handleToggle}>
         {expanded ? collapseLabel : expandLabel}
-      </button>
+      </Button>
     </Typography>
   )
 }
