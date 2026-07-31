@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Typography } from '../Typography/Typography'
+import { Typography } from '@/components'
+import { truncateText } from '@/utils'
 import s from './ReadMore.module.scss'
 
 export type ReadMoreProps = {
@@ -8,22 +9,6 @@ export type ReadMoreProps = {
   expandLabel?: string
   collapseLabel?: string
   className?: string
-}
-
-const truncateText = (text: string, maxLength: number) => {
-  if (text.length <= maxLength) {
-    return text
-  }
-
-  const slicedText = text.slice(0, maxLength)
-
-  const lastSpaceIndex = slicedText.lastIndexOf(' ')
-
-  if (lastSpaceIndex === -1) {
-    return `${slicedText}...`
-  }
-
-  return `${slicedText.slice(0, lastSpaceIndex)}...`
 }
 
 export const ReadMore = ({
@@ -39,7 +24,7 @@ export const ReadMore = ({
 
   if (!shouldCollapse) {
     return (
-      <Typography className={className} variant={"body1"}>
+      <Typography className={className} variant={'body1'}>
         {text}
       </Typography>
     )
@@ -48,9 +33,9 @@ export const ReadMore = ({
   const displayedText = expanded ? text : truncateText(text, maxLength)
 
   return (
-    <Typography className={className} variant={"body1"}>
+    <Typography className={className} variant={'body1'}>
       {displayedText}{' '}
-      <button className={s.button} type={"button"} onClick={() => setExpanded(prev => !prev)}>
+      <button className={s.button} type={'button'} onClick={() => setExpanded(prev => !prev)}>
         {expanded ? collapseLabel : expandLabel}
       </button>
     </Typography>
