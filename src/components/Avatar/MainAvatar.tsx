@@ -11,7 +11,7 @@ type MainAvatarProps = {
   alt?: string
   userName: string
   delayMs?: number
-  hasCloseButton?: boolean
+  showCloseButton?: boolean
   onClose?: () => void
   size?: MainAvatarSize
 } & Omit<ComponentPropsWithoutRef<'div'>, 'children'>
@@ -25,7 +25,7 @@ export const MainAvatar = forwardRef<HTMLDivElement, MainAvatarProps>(
       delayMs = 600,
       size = 'xl',
       className,
-      hasCloseButton = false,
+      showCloseButton = false,
       onClose,
       ...props
     },
@@ -39,7 +39,7 @@ export const MainAvatar = forwardRef<HTMLDivElement, MainAvatarProps>(
             <ImageOutline size={48} />
           </Avatar.Fallback>
 
-          {hasCloseButton && (
+          {showCloseButton && (
             <Button
               as={'span'}
               onClick={onClose}

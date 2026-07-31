@@ -33,7 +33,7 @@ const meta = {
       control: 'number',
       description: 'Delay in milliseconds before showing fallback',
     },
-    hasCloseButton: {
+    showCloseButton: {
       control: 'boolean',
       description: 'Show close button',
     },
@@ -73,13 +73,13 @@ export const WithFallback: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-      <MainAvatar userName={'John Doe'} size={'xl'} hasCloseButton />
+      <MainAvatar userName={'John Doe'} size={'xl'} showCloseButton />
       <MainAvatar
         src={'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80'}
         userName={'Jane Doe'}
         alt={'Jane Doe avatar'}
         size={'xxl'}
-        hasCloseButton
+        showCloseButton
       />
     </div>
   ),
@@ -134,7 +134,7 @@ export const Grid: Story = {
       },
       {
         src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?&w=128&h=128&dpr=2&q=80',
-        hasCloseButton: true,
+        showCloseButton: true,
         onClose: () => alert('Close button clicked!'),
         name: 'Alex Johnson',
       },
@@ -145,7 +145,7 @@ export const Grid: Story = {
       },
       {
         name: 'Edward Norton',
-        hasCloseButton: true,
+        showCloseButton: true,
         onClose: () => alert('Close button clicked!'),
       },
     ]
@@ -157,7 +157,7 @@ export const Grid: Story = {
             key={index}
             userName={user.name}
             src={user.src}
-            hasCloseButton={user.hasCloseButton}
+            showCloseButton={user.showCloseButton}
             onClose={user.onClose}
             size={'xl'}
           />
@@ -183,10 +183,12 @@ export const InteractiveDemo: Story = {
           </Button>
         ) : (
           <MainAvatar
-            userName={"Jane Doe"}
-            src={"https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"}
-            size={"xl"}
-            hasCloseButton
+            userName={'Jane Doe'}
+            src={
+              'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80'
+            }
+            size={'xl'}
+            showCloseButton
             onClose={() => {
               setIsVisible(false)
             }}
