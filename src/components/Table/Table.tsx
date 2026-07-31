@@ -37,7 +37,7 @@ TableRow.displayName = 'TableRow'
 export const TableHeaderCell = forwardRef<HTMLTableCellElement, ComponentPropsWithoutRef<'th'>>(
   ({ className, children, ...props }, ref) => (
     <th ref={ref} className={clsx(s.headerCell, className)} {...props}>
-      <Typography variant={"body3"}>{children}</Typography>
+      <Typography variant={'body3'}>{children}</Typography>
     </th>
   )
 )
@@ -47,7 +47,7 @@ TableHeaderCell.displayName = 'TableHeaderCell'
 export const TableCell = forwardRef<HTMLTableCellElement, ComponentPropsWithoutRef<'td'>>(
   ({ className, children, ...props }, ref) => (
     <td ref={ref} className={clsx(s.cell, className)} {...props}>
-      <Typography variant={"body1"}>{children}</Typography>
+      <Typography variant={'body1'}>{children}</Typography>
     </td>
   )
 )
