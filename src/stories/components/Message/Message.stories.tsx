@@ -10,6 +10,23 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  tags: ['autodocs'],
+  argTypes: {
+    type: {
+      control: 'select',
+      options: ['incoming', 'outgoing'],
+      description: 'Message type',
+      table: {
+        defaultValue: { summary: 'incoming' },
+      },
+    },
+    status: {
+      control: 'select',
+      options: ['all', 'delivered', 'error', 'read', 'sending', 'sent'],
+      description: 'Change message status',
+      defaultValue: 'all',
+    },
+  },
   decorators: [
     Story => (
       <div
