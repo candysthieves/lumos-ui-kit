@@ -20,7 +20,7 @@ const meta = {
     },
     error: {
       control: 'text',
-      description: 'Error message displayed below the input. Changes the input state to error.',
+      description: 'ErrorIcon message displayed below the input. Changes the input state to error.',
     },
     disabled: {
       control: 'boolean',
