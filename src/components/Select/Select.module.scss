@@ -7,7 +7,7 @@
 
   width: 13.125rem;
   min-height: 2.25rem;
-  padding: 0.3125rem 0.6875rem;
+  padding: 0.325rem 0.7rem;
   border: 1px solid var(--color-dark-100);
   border-radius: 2px;
 
@@ -27,14 +27,12 @@
   }
 
   &:focus-visible {
-    border-color: var(--color-accent-500);
-    border-width: 2px;
-    outline: none;
+    border-color: transparent;
+    outline: 2px solid var(--color-accent-500);
   }
 
   &[data-state='open'] {
     border-color: var(--color-light-100);
-    border-bottom-color: transparent;
     border-radius: 2px 2px 0 0;
     background-color: var(--color-dark-500);
   }
@@ -97,8 +95,8 @@
   span {
     transform: rotate(45deg) translateY(-2px);
 
-    width: 0.5rem;
-    height: 0.5rem;
+    @include width-height(0.5rem);
+
     border-right: 2px solid currentcolor;
     border-bottom: 2px solid currentcolor;
 
@@ -131,7 +129,7 @@
 }
 
 .groupLabel {
-  padding: 0.375rem 0.6875rem;
+  padding: 0.375rem 0.7rem;
 
   font-family: var(--font-family-primary);
   font-size: var(--font-size-s);
@@ -150,11 +148,10 @@
   cursor: pointer;
   user-select: none;
 
-  display: flex;
-  align-items: center;
+  @include flex(flex, none, center);
 
   min-height: 2.25rem;
-  padding: 0.375rem 0.6875rem;
+  padding: 0.375rem 0.7rem;
 
   font-family: var(--font-family-primary);
   font-size: var(--font-size-m);
