@@ -36,10 +36,10 @@
 @mixin typography($fontSize, $lineHeight, $fontWeight, $fontFamily: var(--font-family-primary)) {
   margin: 0;
 
-  font-family: $fontFamily;
-  font-size: $fontSize;
-  font-weight: $fontWeight;
-  line-height: $lineHeight;
+  font-family: $fontFamily !important;
+  font-size: $fontSize !important;
+  font-weight: $fontWeight !important;
+  line-height: $lineHeight !important;
 }
 
 .typography-large {
@@ -69,11 +69,6 @@
 }
 
 // regular_text 14
-.typography-body1 {
-  @include typography(var(--font-size-s), var(--line-height-l), var(--font-weight-regular));
-}
-
-// error (based on regular_text 14)
 .typography-body1 {
   @include typography(var(--font-size-s), var(--line-height-l), var(--font-weight-regular));
 }
@@ -120,7 +115,7 @@
     var(--font-size-xs),
     var(--line-height-xxs),
     var(--font-weight-medium),
-    var(--second-family)
+    var(--font-family-secondary)
   );
 }
 
@@ -130,7 +125,7 @@
     var(--font-size-xxs),
     var(--line-height-xxs),
     var(--font-weight-regular),
-    var(--second-family)
+    var(--font-family-secondary)
   );
 
   color: var(--color-danger-500) !important; // in Figma FF0000
@@ -142,7 +137,7 @@
     var(--font-size-3xs),
     var(--line-height-3xs),
     var(--font-weight-medium),
-    var(--second-family)
+    var(--font-family-secondary)
   );
 }
 
@@ -152,6 +147,6 @@
     var(--font-size-4xs),
     var(--line-height-xxs),
     var(--font-weight-medium),
-    var(--second-family)
+    var(--font-family-secondary)
   );
 }
