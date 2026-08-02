@@ -1,5 +1,6 @@
 import { useRef, type RefObject } from 'react'
-import { getHorizontalMetrics, getVerticalMetrics } from './scrollMetrics'
+import { getHorizontalMetrics } from '@/utils/getHorizontalMetrics'
+import { getVerticalMetrics } from '@/utils/getVerticalMetrics'
 
 type DragStateY = {
   startY: number

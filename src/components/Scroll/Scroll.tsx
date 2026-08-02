@@ -1,8 +1,7 @@
 import clsx from 'clsx'
 import { useRef } from 'react'
+import { useScrollThumbs, useThumbDrag } from '@/hooks'
 import s from './Scroll.module.scss'
-import { useScrollThumbs } from './useScrollThumbs'
-import { useThumbDrag } from './useThumbDrag'
 
 type Props = {
   orientation?: 'both' | 'horizontal' | 'vertical'

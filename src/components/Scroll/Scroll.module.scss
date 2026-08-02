@@ -3,12 +3,12 @@
 .scrollContainer {
   position: relative;
   overflow: hidden;
-  width: 100%;
-  height: 100%;
+
+  @include width-height(100%);
 }
 
 .scrollArea {
-  @include width-height(100%, 100%);
+  @include width-height(100%);
 
   scrollbar-width: none;
   overflow: auto;
@@ -28,19 +28,19 @@
   @extend %scroll-track-base;
 
   top: 0;
-  width: 4px;
+  width: 0.88rem;
 }
 
 .horizontalScrollTrack {
   @extend %scroll-track-base;
 
   left: 0;
-  height: 4px;
+  height: 0.88rem;
 }
 
 .scrollThumb {
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 0.88rem;
   background: var(--color-dark-300);
   transition: background 0.15s ease;
 
@@ -50,11 +50,12 @@
 }
 
 .verticalThumb {
+  @include width-height(100%, 3, 75rem);
+
   width: 100%;
-  height: 60px; // временно, заменим на динамику в JS
+  height: 0.26rem;
 }
 
 .horizontalThumb {
-  width: 60px; // временно
-  height: 100%;
+  @include width-height(3, 75rem, 100%);
 }

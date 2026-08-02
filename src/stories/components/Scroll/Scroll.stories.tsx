@@ -19,9 +19,47 @@ export default meta
 type Story = StoryObj<typeof Scroll>
 
 const LongContent = () => (
-  <div style={{ width: 1200, height: 1200, padding: 16 }}>
+  <div
+    style={{
+      width: 'fit-content',
+      padding: '16px 20px',
+      fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+      fontSize: '13px',
+      color: '#e4e4e7',
+    }}
+  >
     {Array.from({ length: 40 }).map((_, i) => (
-      <p key={i}>Line {i + 1} — some long content to force scrolling in both directions</p>
+      <div
+        key={i}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '24px',
+          padding: '8px 12px',
+          borderRadius: '6px',
+          whiteSpace: 'nowrap',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+          transition: 'background-color 0.15s ease',
+          cursor: 'default',
+        }}
+        onMouseEnter={e => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)')}
+        onMouseLeave={e => (e.currentTarget.style.backgroundColor = 'transparent')}
+      >
+        <span
+          style={{
+            display: 'inline-block',
+            width: '60px',
+            color: '#71717a',
+            userSelect: 'none',
+          }}
+        >
+          {String(i + 1).padStart(2, '0')}.
+        </span>
+        <span style={{ fontWeight: 500, color: '#fafafa' }}>Line {i + 1} — start</span>
+        <span style={{ color: '#a1a1aa' }}>
+          Line {i + 1} — extended end of the line for horizontal scroll testing
+        </span>
+      </div>
     ))}
   </div>
 )
@@ -71,7 +109,7 @@ const DynamicContentDemo = () => {
   }, [])
 
   return (
-    <div style={{ width: 1200, padding: 16 }}>
+    <div style={{ width: 120, padding: 16 }}>
       {Array.from({ length: count }).map((_, i) => (
         <p key={i}>Line {i + 1} — dynamically loaded content</p>
       ))}

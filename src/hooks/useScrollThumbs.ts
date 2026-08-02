@@ -1,5 +1,6 @@
 import { useCallback, useEffect, type RefObject } from 'react'
-import { getHorizontalMetrics, getVerticalMetrics } from './scrollMetrics'
+import { getHorizontalMetrics } from '@/utils/getHorizontalMetrics'
+import { getVerticalMetrics } from '@/utils/getVerticalMetrics'
 
 type UseScrollThumbsParams = {
   viewportRef: RefObject<HTMLDivElement | null>
