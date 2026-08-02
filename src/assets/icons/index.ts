@@ -97,3 +97,7 @@ export { Opera } from './Opera'
 export { Safari } from './Safari'
 export { UcBrowser } from './UcBrowser'
 export { Yandex } from './Yandex'
+// Added
+export { Sending } from './Sending'
+export { ErrorIcon } from './ErrorIcon'
+export { FileIcon } from './FileIcon'
