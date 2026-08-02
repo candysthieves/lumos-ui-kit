@@ -2,7 +2,7 @@ import type { ComponentPropsWithRef, CSSProperties, ElementType, ReactNode } fro
 import clsx from 'clsx'
 import s from './Typography.module.scss'
 
-type TypographyVariant =
+export type TypographyVariant =
   | 'body1'
   | 'body2'
   | 'body3'
@@ -21,9 +21,9 @@ type TypographyVariant =
   | 'subtitle2'
   | 'subtitle-link'
 
-type TypographyAlign = 'center' | 'justify' | 'left' | 'right'
+export type TypographyAlign = 'center' | 'justify' | 'left' | 'right'
 
-type MarginProps = {
+export type MarginProps = {
   mt?: CSSProperties['marginTop']
   mb?: CSSProperties['marginBottom']
   ml?: CSSProperties['marginLeft']
@@ -53,7 +53,7 @@ const tagMapping: Record<TypographyVariant, ElementType> = {
   'signature-legal': 'span',
 }
 
-type TypographyProps<T extends ElementType = 'div'> = {
+export type TypographyProps<T extends ElementType = 'div'> = {
   variant?: TypographyVariant
   children: ReactNode
   color?: CSSProperties['color']
