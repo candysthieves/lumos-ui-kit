@@ -23,7 +23,7 @@ The project is built on _React_ and _TypeScript_, using _Storybook_ for componen
 
 ## 🌐 Deploy
 
-- [Deploy link](https://vercel.com/)
+- [Deploy link](https://lumos-ui-kit-storybook.vercel.app)
 
 ## 🔗 Related Projects
 
