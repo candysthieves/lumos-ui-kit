@@ -120,7 +120,7 @@ export const SingleUser: Story = {
   },
 }
 
-export const Empty: Story = {
+export const EmptyUserArray: Story = {
   args: {
     users: [],
   },

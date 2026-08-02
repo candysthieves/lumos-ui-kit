@@ -1,8 +1,6 @@
 import clsx from 'clsx'
-import { Avatar } from 'radix-ui'
 import { type ComponentPropsWithoutRef, forwardRef } from 'react'
-import { Typography } from '@/components'
-import { getFirstLetterCapitalized } from '@/utils'
+import { Avatar } from '@/components/Avatar'
 import s from './Avatar.module.scss'
 
 type AvatarItem = {
@@ -15,29 +13,25 @@ type AvatarItem = {
 type AvatarBlockProps = {
   users: AvatarItem[]
   className?: string
-} & Omit<ComponentPropsWithoutRef<typeof Avatar.Root>, 'asChild' | 'children'>
+} & Omit<ComponentPropsWithoutRef<'div'>, 'children'>
 
 export const AvatarBlock = forwardRef<HTMLDivElement, AvatarBlockProps>(
   ({ users, className, ...props }, ref) => {
-    const lastUsers = [...users].slice(-3)
+    const lastUsers = users.slice(-3)
 
     return (
-      <div ref={ref} className={clsx(s.avatarGroup, className)}>
+      <div ref={ref} className={clsx(s.avatarGroup, className)} {...props}>
         {lastUsers.map((user, index) => (
-          <Avatar.Root key={index} className={clsx(s.rootBlock)} {...props}>
-            {user.src && (
-              <Avatar.Image
-                className={s.blockImage}
-                src={user.src}
-                alt={user.alt || user.userName}
-              />
-            )}
-            <Avatar.Fallback className={s.fallback} delayMs={user.delayMs}>
-              <Typography variant={'body3'} color={'var(--color-light-100)'}>
-                {getFirstLetterCapitalized(user.userName)}
-              </Typography>
-            </Avatar.Fallback>
-          </Avatar.Root>
+          <div key={index} className={s.rootBlock}>
+            <Avatar
+              src={user.src}
+              className={s.blockImage}
+              alt={user.alt || user.userName}
+              userName={user.userName}
+              delayMs={user.delayMs}
+              size={'xs'}
+            />
+          </div>
         ))}
       </div>
     )
