@@ -115,10 +115,23 @@
   @extend %root;
   @extend %xs;
 
-  margin-left: -54%;
+  position: relative;
+  z-index: 1;
+
+  // margin-left: -54%;
+  margin-left: -0.5rem;
 
   &:first-child {
+    z-index: 3;
     margin-left: 0;
+  }
+
+  &:nth-child(2) {
+    z-index: 2;
+  }
+
+  &:last-child {
+    z-index: 1;
   }
 }
 
@@ -133,9 +146,9 @@
   @extend %image;
 }
 
-// Add if we will need
+//// Add if we will need
 // .rootBlock:hover {
-//  z-index: 3;
+//  z-index: 4;
 //  transform: scale(1.07);
 //  @include transition-basic(transform);
 // }

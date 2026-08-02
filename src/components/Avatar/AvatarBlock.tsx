@@ -19,12 +19,11 @@ type AvatarBlockProps = {
 
 export const AvatarBlock = forwardRef<HTMLDivElement, AvatarBlockProps>(
   ({ users, className, ...props }, ref) => {
-    const lastUsers = [...users].slice(-3)
-
+    const lastUsers = users.slice(-3)
     return (
       <div ref={ref} className={clsx(s.avatarGroup, className)}>
         {lastUsers.map((user, index) => (
-          <Avatar.Root key={index} className={clsx(s.rootBlock)} {...props}>
+          <Avatar.Root key={index} className={s.rootBlock} {...props}>
             {user.src && (
               <Avatar.Image
                 className={s.blockImage}
