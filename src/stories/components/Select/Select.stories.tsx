@@ -9,7 +9,7 @@ const flagUnitedKingdom = new URL(
   import.meta.url
 ).href
 
-const meta = {
+const meta: Meta<typeof Select> = {
   title: 'Components/Select',
   component: Select,
   tags: ['autodocs'],
@@ -78,7 +78,7 @@ const meta = {
       control: false,
     },
   },
-} satisfies Meta<typeof Select>
+}
 
 export default meta
 
