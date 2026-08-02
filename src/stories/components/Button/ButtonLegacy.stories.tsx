@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { FlagEng, FlagRus } from '@/assets/icons'
+import { FlagEng, FlagRus } from '@/assets'
 import { ButtonLegacy } from '@/components/Button'
 import { buttonMeta } from '@/storybook-utils'
 
