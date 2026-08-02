@@ -1,13 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useState } from 'react'
+import { FlagEng, FlagRus } from '@/assets'
 import { Select } from '@/components/Select'
 import s from './Select.stories.module.scss'
-
-const flagRussia = new URL('../../../assets/icons/flags/flag-russia.png', import.meta.url).href
-const flagUnitedKingdom = new URL(
-  '../../../assets/icons/flags/flag-united-kingdom.png',
-  import.meta.url
-).href
 
 const meta: Meta<typeof Select> = {
   title: 'Components/Select',
@@ -140,12 +135,12 @@ export const Language: Story = {
       {
         value: 'russian',
         label: 'Russian',
-        icon: <img src={flagRussia} className={s.flag} alt={''} />,
+        icon: <FlagRus size={20} />,
       },
       {
         value: 'english',
         label: 'English',
-        icon: <img src={flagUnitedKingdom} className={s.flag} alt={''} />,
+        icon: <FlagEng size={20} />,
       },
     ],
   },

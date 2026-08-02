@@ -30,7 +30,7 @@ type PolymorphicComponentPropWithRef<C extends ElementType, Props = {}> = Polymo
   Props
 > & { ref?: PolymorphicRef<C> }
 
-type ButtonProps<C extends ElementType> = PolymorphicComponentPropWithRef<
+export type ButtonProps<C extends ElementType> = PolymorphicComponentPropWithRef<
   C,
   {
     variant?: Variant
@@ -39,7 +39,7 @@ type ButtonProps<C extends ElementType> = PolymorphicComponentPropWithRef<
   }
 >
 
-type ButtonComponent = (<C extends ElementType = 'button'>(
+export type ButtonComponent = (<C extends ElementType = 'button'>(
   props: ButtonProps<C>
 ) => null | ReactElement) & {
   displayName?: string

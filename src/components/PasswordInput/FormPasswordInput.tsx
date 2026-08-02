@@ -1,7 +1,7 @@
 import { type Control, Controller, type FieldPath, type FieldValues } from 'react-hook-form'
-import { PasswordInput, type PasswordInputProps } from './PasswordInput'
+import { PasswordInput, type PasswordInputProps } from '@/components'
 
-type FormPasswordInputProps<T extends FieldValues> = {
+export type FormPasswordInputProps<T extends FieldValues> = {
   control: Control<T>
   name: FieldPath<T>
 } & Omit<PasswordInputProps, 'name' | 'onBlur' | 'onChange' | 'value'>

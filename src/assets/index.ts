@@ -97,3 +97,8 @@ export { Opera } from './icons/Opera'
 export { Safari } from './icons/Safari'
 export { UcBrowser } from './icons/UcBrowser'
 export { Yandex } from './icons/Yandex'
+export { Sending } from './icons/Sending'
+export { ErrorIcon } from './icons/ErrorIcon'
+export { FileIcon } from './icons/FileIcon'
+// Logo asset
+export { Logo } from './logo/Logo'

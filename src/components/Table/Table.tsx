@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { Typography } from '../Typography/Typography'
+import { Typography } from '@/components'
 import s from './Table.module.scss'
 
 export const Table = forwardRef<HTMLTableElement, ComponentPropsWithoutRef<'table'>>(

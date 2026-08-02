@@ -5,4 +5,5 @@ import './styles/index.scss'
 
 export * from './assets'
 export * from './components'
+export * from './demo'
 export { clsx } from 'clsx'
