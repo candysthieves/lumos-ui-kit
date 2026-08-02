@@ -21,6 +21,7 @@ on:
    branches:
    - main
    - develop
+   - SCRUM-49-set-config-to-publish-project-to-npmjs
 #  pull_request:
 #    types: [ closed ]
 #    branches:
