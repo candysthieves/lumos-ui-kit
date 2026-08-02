@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { type ComponentPropsWithoutRef, forwardRef, type ReactNode, useId } from 'react'
-import { Typography } from '../Typography/Typography'
+import { Typography } from '@/components'
 import s from './Input.module.scss'
 
 export type InputProps = {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Person } from '@/assets/icons'
+import { Person } from '@/assets'
 import { iconMeta } from '@/storybook-utils'
 import s from './Icon.module.scss'
 

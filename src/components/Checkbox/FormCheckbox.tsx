@@ -1,7 +1,7 @@
 import { useController, type Control, type FieldValues, type Path } from 'react-hook-form'
 import { Checkbox, type CheckboxProps } from './Checkbox'
 
-type FormCheckboxProps<T extends FieldValues> = Omit<
+export type FormCheckboxProps<T extends FieldValues> = Omit<
   CheckboxProps,
   'checked' | 'defaultChecked' | 'onCheckedChange'
 > & {

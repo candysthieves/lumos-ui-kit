@@ -3,14 +3,14 @@ import { type ComponentPropsWithoutRef, forwardRef } from 'react'
 import { Avatar } from '@/components/Avatar'
 import s from './Avatar.module.scss'
 
-type AvatarItem = {
+export type AvatarItem = {
   src?: string
   alt?: string
   userName: string
   delayMs?: number
 }
 
-type AvatarBlockProps = {
+export type AvatarBlockProps = {
   users: AvatarItem[]
   className?: string
 } & Omit<ComponentPropsWithoutRef<'div'>, 'children'>

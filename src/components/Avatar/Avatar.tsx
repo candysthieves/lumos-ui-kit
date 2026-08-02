@@ -6,7 +6,7 @@ import { Typography } from '@/components'
 import { getFirstLetterCapitalized } from '@/utils'
 import s from './Avatar.module.scss'
 
-type AvatarProps = {
+export type AvatarProps = {
   src?: string
   alt?: string
   userName: string

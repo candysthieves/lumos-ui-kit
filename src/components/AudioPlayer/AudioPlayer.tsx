@@ -1,13 +1,13 @@
 import clsx from 'clsx'
 import { useRef, useState } from 'react'
-import { PauseCircle, PlayCircle } from '@/assets/icons'
+import { PauseCircle, PlayCircle } from '@/assets'
 import { Typography } from '@/components'
 import { Button } from '@/components/Button'
 import { WAVE_FORM } from '@/constants'
 import { formatTime } from '@/utils'
 import s from './AudioPlayer.module.scss'
 
-type AudioPlayerProps = {
+export type AudioPlayerProps = {
   src: string
   className?: string
   waveform: number[]

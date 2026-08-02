@@ -1,11 +1,19 @@
 {
-  "name": "ui-kit-lumos",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@candy.thieves/ui-kit-lumos",
+  "private": false,
+  "version": "0.0.11",
+  "license": "MIT",
   "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist",
+    "dist/index.css"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build && tsc --build tsconfig.build.json",
     "type:check": "tsc -b --noEmit",
     "stylelint:check": "npx stylelint \"**/*.{css,scss}\"",
     "stylelint:fix": "stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input",

@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import { EyeOffOutline, EyeOutline } from '@/assets/icons'
-import { Input } from '../Input/Input'
+import { type InputHTMLAttributes, useState } from 'react'
+import { EyeOffOutline, EyeOutline } from '@/assets'
+import { Input } from '@/components'
 import s from './PasswordInput.module.scss'
 
 export type PasswordInputProps = {
   label?: string
   error?: string
-} & React.InputHTMLAttributes<HTMLInputElement>
+} & InputHTMLAttributes<HTMLInputElement>
 
 export const PasswordInput = ({ ...props }: PasswordInputProps) => {
   const [showPassword, setShowPassword] = useState(false)

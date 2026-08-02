@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Close } from '@/assets/icons'
+import { Close } from '@/assets'
 import { Typography } from '@/components'
 import { Button } from '@/components/Button'
 import { Cards } from '@/components/Cards/Cards'

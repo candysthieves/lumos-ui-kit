@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
-import type { MessageStatusProps } from '@/components/Message/types'
-import { CheckmarkOutline, DoneAllOutline, ErrorIcon, Sending } from '@/assets/icons'
+import type { MessageStatusProps } from '@/components/Message'
+import { CheckmarkOutline, DoneAllOutline, ErrorIcon, Sending } from '@/assets'
 import type { MessageStatus as Status } from './types'
 import s from './Message.module.scss'
 
