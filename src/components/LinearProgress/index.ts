@@ -1,1 +1,1 @@
-export { LinearProgress } from './LinearProgress'
+export * from './LinearProgress'

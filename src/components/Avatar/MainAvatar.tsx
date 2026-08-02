@@ -2,11 +2,11 @@ import clsx from 'clsx'
 import { Avatar } from 'radix-ui'
 import { type ComponentPropsWithoutRef, forwardRef } from 'react'
 import type { MainAvatarSize } from '@/types'
-import { CloseOutline, ImageOutline } from '@/assets/icons'
+import { CloseOutline, ImageOutline } from '@/assets'
 import { Button } from '@/components/Button'
 import s from './Avatar.module.scss'
 
-type MainAvatarProps = {
+export type MainAvatarProps = {
   src?: string
   alt?: string
   userName: string

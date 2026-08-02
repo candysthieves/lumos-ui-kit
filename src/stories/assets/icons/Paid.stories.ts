@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Paid } from '@/assets/icons'
+import { Paid } from '@/assets'
 import { coloredIconMeta } from '@/storybook-utils'
 import s from './Icon.module.scss'
 

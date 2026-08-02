@@ -1,3 +1,3 @@
-export { Avatar } from './Avatar'
-export { MainAvatar } from './MainAvatar'
-export { AvatarBlock } from './AvatarBlock'
+export * from './Avatar'
+export * from './MainAvatar'
+export * from './AvatarBlock'

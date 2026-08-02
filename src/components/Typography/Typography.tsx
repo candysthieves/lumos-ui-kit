@@ -23,7 +23,7 @@ export type TypographyVariant =
 
 export type TypographyAlign = 'center' | 'justify' | 'left' | 'right'
 
-type MarginProps = {
+export type MarginProps = {
   mt?: CSSProperties['marginTop']
   mb?: CSSProperties['marginBottom']
   ml?: CSSProperties['marginLeft']

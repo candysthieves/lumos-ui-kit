@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Avatar } from '@/components/Avatar'
 
-const meta = {
+const meta: Meta<typeof Avatar> = {
   title: 'Components/Avatar/Avatar',
   component: Avatar,
   parameters: {
@@ -35,7 +35,7 @@ const meta = {
       description: 'Additional CSS classes',
     },
   },
-} satisfies Meta<typeof Avatar>
+}
 
 export default meta
 type Story = StoryObj<typeof Avatar>

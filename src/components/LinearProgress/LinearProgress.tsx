@@ -5,14 +5,14 @@ import { COLOR_MAP } from '@/constants'
 import { isThemeColor } from '@/utils'
 import s from './LinearProgress.module.scss'
 
-export type Props = {
+export type LinearProgressProps = {
   size?: ProgressSizeVariant
   color?: ProgressThemeColor | string
   value?: number
   determinate?: boolean
 } & Omit<ComponentPropsWithoutRef<'div'>, 'aria-label' | 'aria-live' | 'role'>
 
-export const LinearProgress = forwardRef<HTMLDivElement, Props>(
+export const LinearProgress = forwardRef<HTMLDivElement, LinearProgressProps>(
   (
     { className, size = 'md', color = 'primary', value = 0, determinate = false, ...props },
     ref

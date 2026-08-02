@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 export type MessageStatus = 'delivered' | 'error' | 'read' | 'sending' | 'sent'
-export type Message = 'incoming' | 'outgoing'
+export type MessageType = 'incoming' | 'outgoing'
 
 export type Attachment = {
   id: number | string
@@ -32,7 +32,7 @@ export type MessageProps = {
   author: string
   text?: string
   timestamp: string
-  type?: Message
+  type?: MessageType
   avatar?: string
   status?: MessageStatus
   replyTo?: ReplyTo
