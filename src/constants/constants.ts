@@ -1,6 +1,6 @@
-import type { ThemeProgressColor } from '@/types'
+import type { ProgressThemeColor } from '@/types'
 
-export const COLOR_MAP: Record<ThemeProgressColor, string> = {
+export const COLOR_MAP: Record<ProgressThemeColor, string> = {
   error: 'var(--color-danger-500)',
   inherit: 'currentColor',
   primary: 'var(--color-accent-500)',
