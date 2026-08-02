@@ -30,7 +30,7 @@ type PolymorphicComponentPropWithRef<C extends ElementType, Props = {}> = Polymo
   Props
 > & { ref?: PolymorphicRef<C> }
 
-export type ButtonProps<C extends ElementType> = PolymorphicComponentPropWithRef<
+export type ButtonLegacyProps<C extends ElementType> = PolymorphicComponentPropWithRef<
   C,
   {
     variant?: Variant
@@ -39,8 +39,8 @@ export type ButtonProps<C extends ElementType> = PolymorphicComponentPropWithRef
   }
 >
 
-export type ButtonComponent = (<C extends ElementType = 'button'>(
-  props: ButtonProps<C>
+export type ButtonLegacyComponent = (<C extends ElementType = 'button'>(
+  props: ButtonLegacyProps<C>
 ) => null | ReactElement) & {
   displayName?: string
 }
@@ -68,7 +68,7 @@ export type ButtonComponent = (<C extends ElementType = 'button'>(
 
 export const ButtonLegacy = forwardRef(
   // @ts-expect-error React.forwardRef doesn't preserve polymorphic generic parameters in react 19
-  <C extends ElementType = 'button'>(props: ButtonProps<C>, ref?: PolymorphicRef<C>) => {
+  <C extends ElementType = 'button'>(props: ButtonLegacyProps<C>, ref?: PolymorphicRef<C>) => {
     const {
       variant = 'primary',
       fullWidth,
@@ -87,6 +87,6 @@ export const ButtonLegacy = forwardRef(
       />
     )
   }
-) as ButtonComponent
+) as ButtonLegacyComponent
 
 ButtonLegacy.displayName = 'ButtonLegacy'
