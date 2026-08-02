@@ -17,6 +17,11 @@ const FileIconSvg = (props: SVGProps<SVGSVGElement>) => {
           }
         />
       </g>
+      <defs>
+        <clipPath id={'file-icon'}>
+          <path fill={'var(--color-light-100)'} d={'M0 0h24v24H0z'} />
+        </clipPath>
+      </defs>
     </svg>
   )
 }
