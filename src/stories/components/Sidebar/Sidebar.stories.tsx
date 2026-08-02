@@ -16,7 +16,7 @@ import {
   SearchOutline,
   TrendingUp,
   TrendingUpOutline,
-} from '@/assets/icons'
+} from '@/assets'
 import { Sidebar, type SidebarItem } from '@/components/Sidebar'
 
 const meta: Meta<typeof Sidebar> = {

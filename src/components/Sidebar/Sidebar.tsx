@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import clsx from 'clsx'
+import { Button, Typography } from '@/components'
 import s from './Sidebar.module.scss'
 
 const NON_NAVIGABLE_HREF = '#'
@@ -46,7 +47,8 @@ export const Sidebar = ({ items, activeId, onValueChange, onLogout, logOutIcon }
 
           return (
             <li key={item.id}>
-              <a
+              <Button
+                as={'a'}
                 href={isDisabled ? undefined : (item.href ?? NON_NAVIGABLE_HREF)}
                 className={clsx(s.navItem, isActive && s.activeItem, isDisabled && s.disabled)}
                 onClick={handleClick}
@@ -54,17 +56,17 @@ export const Sidebar = ({ items, activeId, onValueChange, onLogout, logOutIcon }
                 aria-disabled={isDisabled}
               >
                 {isActive && item.activeIcon ? item.activeIcon : item.icon}
-                <span className={'typography-body2'}>{item.label}</span>
-              </a>
+                <Typography variant={'body2'}>{item.label}</Typography>
+              </Button>
             </li>
           )
         })}
       </ul>
 
-      <button type={'button'} className={s.logOutBtn} onClick={onLogout}>
+      <Button type={'button'} className={s.logOutBtn} onClick={onLogout}>
         {logOutIcon}
-        <span className={'typography-body2'}>Log Out</span>
-      </button>
+        <Typography variant={'body2'}>{'Log Out'}</Typography>
+      </Button>
       <div className={s.line}></div>
     </nav>
   )
