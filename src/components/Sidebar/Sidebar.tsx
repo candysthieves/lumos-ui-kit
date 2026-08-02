@@ -65,6 +65,7 @@ export const Sidebar = ({ items, activeId, onValueChange, onLogout, logOutIcon }
         {logOutIcon}
         <span className={'typography-body2'}>Log Out</span>
       </button>
+      <div className={s.line}></div>
     </nav>
   )
 }
