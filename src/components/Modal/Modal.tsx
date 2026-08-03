@@ -2,12 +2,12 @@ import clsx from 'clsx'
 import { Dialog } from 'radix-ui'
 import { type ComponentPropsWithoutRef, type ComponentRef, forwardRef, type ReactNode } from 'react'
 import { Close } from '@/assets'
-import { Typography } from '@/components'
+import { Button, Typography } from '@/components'
 import s from './Modal.module.scss'
 
-type ModalSize = 'l' | 'm' | 's' | 'xl' | 'xs'
+export type ModalSize = 'l' | 'm' | 's' | 'xl' | 'xs'
 
-type Props = {
+export type ModalProps = {
   open: boolean
   onClose: () => void
   size?: ModalSize
@@ -19,7 +19,7 @@ type Props = {
   closeButtonOutside?: boolean
 } & ComponentPropsWithoutRef<typeof Dialog.Content>
 
-export const Modal = forwardRef<ComponentRef<typeof Dialog.Content>, Props>(
+export const Modal = forwardRef<ComponentRef<typeof Dialog.Content>, ModalProps>(
   (
     {
       open,
@@ -63,13 +63,13 @@ export const Modal = forwardRef<ComponentRef<typeof Dialog.Content>, Props>(
           <div className={clsx(s.childContent, fullSize && s.fullSize)}>{children}</div>
           {showCloseButton && (
             <Dialog.Close asChild>
-              <button
+              <Button
                 type={'button'}
                 className={clsx(s.iconButton, closeButtonOutside && s.closeButtonOutside)}
                 aria-label={'Close'}
               >
                 <Close />
-              </button>
+              </Button>
             </Dialog.Close>
           )}
         </Dialog.Content>
