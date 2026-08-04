@@ -1,11 +1,10 @@
 import clsx from 'clsx'
 import { Dialog } from 'radix-ui'
 import { type ComponentPropsWithoutRef, type ComponentRef, forwardRef, type ReactNode } from 'react'
+import type { ModalSize } from '@/types'
 import { Close } from '@/assets'
 import { Button, Typography } from '@/components'
 import s from './Modal.module.scss'
-
-export type ModalSize = 'l' | 'm' | 's' | 'xl' | 'xs'
 
 export type ModalProps = {
   open: boolean
