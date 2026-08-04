@@ -29,32 +29,17 @@ const meta: Meta<typeof Modal> = {
 export default meta
 type Story = StoryObj<typeof Modal>
 
-export const ModalOpen: Story = {
-  args: {
-    modalTitle: 'Email sent',
-    open: true,
-    size: 's',
-    showHeader: true,
-    onClose: () => console.log('Modal closed'),
-    children: (
-      <>
-        <Typography variant={'subtitle1'}>
-          We have sent a link to confirm your email to epam@epam.com
-        </Typography>
-        <div className={s.buttonContainer}>
-          <Button variant={'primary'}>Ok</Button>
-        </div>
-      </>
-    ),
-  },
-}
-
 export const WithTriggerButton: Story = {
   render: () => {
     const [isOpen, setIsOpen] = useState(false)
 
     const openModal = () => setIsOpen(true)
     const closeModal = () => setIsOpen(false)
+
+    const onClickHandler = () => {
+      alert('Button "Ok" clicked')
+      closeModal()
+    }
 
     return (
       <div className={s.wrapper}>
@@ -71,20 +56,19 @@ export const WithTriggerButton: Story = {
         <Modal
           open={isOpen}
           onClose={closeModal}
-          modalTitle={'Delete Post'}
+          modalTitle={'Email sent'}
           size={'s'}
           showHeader
           showCloseButton
         >
           <div className={s.triggerContent}>
             <Typography variant={'subtitle1'}>
-              Are you sure you want to delete this post?
+              We have sent a link to confirm your email to epam@epam.com
             </Typography>
             <div className={s.triggerControls}>
-              <Button variant={'secondary'} onClick={closeModal}>
-                Cancel
+              <Button variant={'primary'} onClick={onClickHandler}>
+                Ok
               </Button>
-              <Button onClick={closeModal}>Delete</Button>
             </div>
           </div>
         </Modal>
