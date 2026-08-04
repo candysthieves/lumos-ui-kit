@@ -19,7 +19,7 @@ export type ButtonProps<T extends ElementType = 'button'> = {
   variant?: Variant
   fullWidth?: boolean
   disabled?: boolean
-} & Omit<ComponentPropsWithRef<T>, 'children'>
+} & ComponentPropsWithRef<T>
 
 export const Button = <C extends ElementType = 'button'>(
   props: ButtonProps<C> & Omit<ComponentPropsWithRef<C>, keyof ButtonProps<C>>
