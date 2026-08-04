@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { MicOutline } from '@/assets/icons'
+import { MicOutline } from '@/assets'
 import { iconMeta } from '@/storybook-utils'
 import s from './Icon.module.scss'
 

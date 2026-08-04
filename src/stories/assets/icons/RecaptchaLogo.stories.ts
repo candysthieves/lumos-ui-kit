@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { RecaptchaLogo } from '@/assets/icons'
+import { RecaptchaLogo } from '@/assets'
 import { coloredIconMeta } from '@/storybook-utils'
 import s from './Icon.module.scss'
 const meta = {
