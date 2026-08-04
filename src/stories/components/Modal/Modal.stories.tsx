@@ -15,13 +15,34 @@ const meta: Meta<typeof Modal> = {
 
   argTypes: {
     open: {
-      control: 'boolean',
-      description: 'Controls whether the modal is visible',
-      defaultValue: true,
+      description: 'Controls whether the modal is visible (true / false)',
     },
     onClose: {
       action: 'closed',
       description: 'Callback function when modal is closed',
+    },
+    size: {
+      description: "Size of the modal ('xs', 's', 'm', 'l', 'xl')",
+      defaultValue: 'm',
+    },
+    modalTitle: {
+      description: 'Title of the modal (can be string or ReactNode)',
+    },
+    showHeader: {
+      description: 'Whether to show the header with title (true / false)',
+    },
+    showCloseButton: {
+      description: 'Whether to show the close button (true / false)',
+    },
+    fullSize: {
+      description: 'Whether the content should take full size (true / false)',
+    },
+    closeButtonOutside: {
+      description: 'Whether the close button should be positioned outside (true / false)',
+    },
+    className: {
+      control: 'text',
+      description: 'Additional CSS classes',
     },
   },
 }
