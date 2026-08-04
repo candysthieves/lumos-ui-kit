@@ -1,7 +1,7 @@
-@use '../../styles/mixins' as *;
+@use '@/styles/mixins' as *;
 
 .button {
-  all: unset; // check
+  all: unset;
 
   cursor: pointer;
 
