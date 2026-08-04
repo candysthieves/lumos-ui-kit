@@ -1,5 +1,5 @@
+import * as Dialog from '@radix-ui/react-dialog'
 import clsx from 'clsx'
-import { Dialog } from 'radix-ui'
 import { type ComponentPropsWithoutRef, type ComponentRef, forwardRef, type ReactNode } from 'react'
 import type { ModalSize } from '@/types'
 import { Close } from '@/assets'
@@ -16,7 +16,7 @@ export type ModalProps = {
   showCloseButton?: boolean
   fullSize?: boolean
   closeButtonOutside?: boolean
-} & ComponentPropsWithoutRef<typeof Dialog.Content>
+} & Omit<ComponentPropsWithoutRef<typeof Dialog.Content>, 'children'>
 
 export const Modal = forwardRef<ComponentRef<typeof Dialog.Content>, ModalProps>(
   (

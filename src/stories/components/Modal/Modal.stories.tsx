@@ -22,7 +22,13 @@ const meta: Meta<typeof Modal> = {
       description: 'Callback function when modal is closed',
     },
     size: {
-      description: "Size of the modal ('xs', 's', 'm', 'l', 'xl')",
+      description: `Size of the modal:
+    **Examples:**
+  - \`size="xs"\` - 366px
+  - \`size="s"\` - 378px
+  - \`size="m"\` - 492px
+  - \`size="l"\` - 644px
+  - \`size="xl"\` - 972px`,
       defaultValue: 'm',
     },
     modalTitle: {
