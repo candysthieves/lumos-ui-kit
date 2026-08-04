@@ -18,9 +18,8 @@
 .textarea {
   cursor: text;
   resize: none;
-  scrollbar-width: none; /* Firefox */
-
-  overflow-y: auto;
+  scrollbar-color: var(--color-dark-300) transparent;
+  scrollbar-width: thin;
 
   box-sizing: border-box;
   width: 100%;
@@ -38,7 +37,17 @@
   outline: none;
 
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    width: 0.25rem;
+    height: 0.25rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0.9rem;
+    background: var(--color-dark-300);
   }
 
   &::placeholder {

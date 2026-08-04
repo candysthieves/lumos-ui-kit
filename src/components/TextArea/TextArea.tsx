@@ -6,6 +6,7 @@ import s from './TextArea.module.scss'
 export type TextAreaProps = {
   label?: string
   error?: string
+  resize?: 'both' | 'horizontal' | 'none' | 'vertical'
 } & ComponentPropsWithoutRef<'textarea'>
 
 export const TextArea = forwardRef<ComponentRef<'textarea'>, TextAreaProps>(
