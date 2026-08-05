@@ -1,0 +1,61 @@
+@use '../../styles/mixins' as *;
+
+.scrollContainer {
+  position: relative;
+  overflow: hidden;
+
+  @include width-height(100%);
+}
+
+.scrollArea {
+  @include width-height(100%);
+
+  scrollbar-width: none;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+%scroll-track-base {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.verticalScrollTrack {
+  @extend %scroll-track-base;
+
+  top: 0;
+  width: 0.25rem;
+}
+
+.horizontalScrollTrack {
+  @extend %scroll-track-base;
+
+  left: 0;
+  height: 0.25rem;
+}
+
+.scrollThumb {
+  cursor: pointer;
+  border-radius: 0.9rem;
+  background: var(--color-dark-300);
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: var(--color-light-900);
+  }
+}
+
+.verticalThumb {
+  @include width-height(100%, 3.75rem);
+
+  width: 100%;
+  height: 0.25rem;
+}
+
+.horizontalThumb {
+  @include width-height(3.75rem, 100%);
+}

@@ -1,0 +1,118 @@
+@use '@/styles/mixins' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  opacity: 0.6;
+  background-color: var(--color-dark-900);
+
+  animation: overlay-show 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.content {
+  position: fixed;
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+  max-height: 85vh;
+  border: 1px solid var(--color-dark-100);
+  border-radius: 0.375rem;
+
+  background-color: var(--color-dark-300);
+
+  animation: content-show 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+
+  @include top-left(50%);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.size-xs {
+  max-width: $modal-width-xs;
+}
+
+.size-s {
+  max-width: $modal-width-s;
+}
+
+.size-m {
+  max-width: $modal-width-m;
+}
+
+.size-l {
+  max-width: $modal-width-l;
+}
+
+.size-xl {
+  max-width: $modal-width-xl;
+}
+
+.title {
+  min-height: 3.75rem;
+  margin: 0;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--color-dark-100);
+}
+
+.childContent {
+  overflow: hidden;
+  width: 100%;
+  padding: 1.875rem 1.5rem 2.25rem;
+
+  img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+.fullSize {
+  padding: 0;
+}
+
+.iconButton {
+  all: unset;
+  cursor: pointer;
+  position: absolute;
+  font-family: inherit;
+
+  @include flex(inline-flex, center, center);
+  @include top-right(1rem, 1.5rem);
+
+  &:hover {
+    color: var(--color-danger-500);
+  }
+}
+
+.closeButtonOutside {
+  @include top-right(-1.875rem, -2rem);
+}
+
+@keyframes overlay-show {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes content-show {
+  from {
+    transform: translate(-50%, -48%) scale(0.96);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
