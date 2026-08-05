@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef } from 'react'
+import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import clsx from 'clsx'
 import { useState } from 'react'
 import { ArrowIosDownOutline, FlagEng, FlagRus, OutlineBell } from '@/assets'
@@ -9,17 +9,13 @@ import s from './Header.module.scss'
 
 export type HeaderLanguage = 'english' | 'russian'
 
-export type HeaderProps = {
-  isAuthenticated?: boolean
-  language?: HeaderLanguage
-  notificationCount?: number
-  onLanguageChange?: (value: HeaderLanguage) => void
-  onLogInClick?: () => void
-  onNotificationClick?: () => void
-  onSignUpClick?: () => void
-} & ComponentPropsWithoutRef<'header'>
+export type HeaderLanguageOption = {
+  icon?: ReactNode
+  label: string
+  value: HeaderLanguage
+}
 
-const languageOptions: SelectItem[] = [
+const defaultLanguageOptions: HeaderLanguageOption[] = [
   {
     value: 'english',
     label: 'English',
@@ -32,19 +28,46 @@ const languageOptions: SelectItem[] = [
   },
 ]
 
+export type HeaderProps = {
+  brandName?: string
+  defaultLanguage?: HeaderLanguage
+  isAuthenticated?: boolean
+  language?: HeaderLanguage
+  languageOptions?: HeaderLanguageOption[]
+  logInLabel?: string
+  notificationCount?: number
+  notificationLabel?: string
+  onLanguageChange?: (value: HeaderLanguage) => void
+  onLogInClick?: () => void
+  onNotificationClick?: () => void
+  onSignUpClick?: () => void
+  signUpLabel?: string
+} & ComponentPropsWithoutRef<'header'>
+
 export const Header = ({
+  brandName = 'Inctagram',
   className,
+  defaultLanguage = 'english',
   isAuthenticated = true,
   language,
+  languageOptions = defaultLanguageOptions,
+  logInLabel = 'Log in',
   notificationCount = 0,
+  notificationLabel = 'Notifications',
   onLanguageChange,
   onLogInClick,
   onNotificationClick,
   onSignUpClick,
+  signUpLabel = 'Sign up',
   ...props
 }: HeaderProps) => {
-  const [internalLanguage, setInternalLanguage] = useState<HeaderLanguage>('english')
+  const [internalLanguage, setInternalLanguage] = useState<HeaderLanguage>(defaultLanguage)
   const selectedLanguage = language ?? internalLanguage
+  const selectOptions: SelectItem[] = languageOptions.map(option => ({
+    icon: option.icon,
+    label: option.label,
+    value: option.value,
+  }))
 
   const handleLanguageChange = (value: string) => {
     const nextLanguage = value as HeaderLanguage
@@ -60,7 +83,7 @@ export const Header = ({
     <header className={clsx(s.header, className)} {...props}>
       <div className={s.content}>
         <Typography variant={'large'} className={s.logo}>
-          Inctagram
+          {brandName}
         </Typography>
 
         <div className={s.actions}>
@@ -68,7 +91,7 @@ export const Header = ({
             <button
               type={'button'}
               className={s.notificationButton}
-              aria-label={'Notifications'}
+              aria-label={notificationLabel}
               onClick={onNotificationClick}
             >
               <OutlineBell size={24} msgCounter={notificationCount} />
@@ -78,7 +101,7 @@ export const Header = ({
           <Select
             className={s.languageSelect}
             value={selectedLanguage}
-            options={languageOptions}
+            options={selectOptions}
             triggerIcon={<ArrowIosDownOutline size={24} />}
             onValueChange={handleLanguageChange}
           />
@@ -91,7 +114,7 @@ export const Header = ({
                 style={{ minWidth: '6.25rem' }}
                 onClick={onLogInClick}
               >
-                Log in
+                {logInLabel}
               </Button>
               <Button
                 type={'button'}
@@ -99,7 +122,7 @@ export const Header = ({
                 style={{ minWidth: '6.25rem' }}
                 onClick={onSignUpClick}
               >
-                Sign up
+                {signUpLabel}
               </Button>
             </div>
           )}

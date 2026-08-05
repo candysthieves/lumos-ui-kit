@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { ComponentProps } from 'react'
-import { useState } from 'react'
+import { useArgs } from 'storybook/preview-api'
 import type { HeaderLanguage } from '@/components/Header'
 import { Header } from '@/components/Header'
 
@@ -12,6 +11,13 @@ const meta = {
     layout: 'fullscreen',
   },
   argTypes: {
+    brandName: {
+      control: 'text',
+    },
+    defaultLanguage: {
+      control: 'select',
+      options: ['english', 'russian'],
+    },
     isAuthenticated: {
       control: 'boolean',
     },
@@ -25,6 +31,15 @@ const meta = {
         min: 0,
       },
     },
+    languageOptions: {
+      control: false,
+    },
+    logInLabel: {
+      control: 'text',
+    },
+    notificationLabel: {
+      control: 'text',
+    },
     onLanguageChange: {
       action: 'language changed',
     },
@@ -37,6 +52,9 @@ const meta = {
     onSignUpClick: {
       action: 'sign up clicked',
     },
+    signUpLabel: {
+      control: 'text',
+    },
   },
 } satisfies Meta<typeof Header>
 
@@ -44,26 +62,37 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-const StatefulHeader = (args: ComponentProps<typeof Header>) => {
-  const [language, setLanguage] = useState<HeaderLanguage>(args.language ?? 'english')
+const renderHeader: Story['render'] = args => {
+  const [, updateArgs] = useArgs()
 
-  return <Header {...args} language={language} onLanguageChange={setLanguage} />
+  const handleLanguageChange = (value: HeaderLanguage) => {
+    updateArgs({ language: value })
+    args?.onLanguageChange?.(value)
+  }
+
+  return <Header {...args} onLanguageChange={handleLanguageChange} />
 }
 
 export const Authorized: Story = {
   args: {
+    brandName: 'Inctagram',
     isAuthenticated: true,
     language: 'english',
     notificationCount: 3,
+    notificationLabel: 'Notifications',
   },
-  render: args => <StatefulHeader {...args} />,
+  render: renderHeader,
 }
 
 export const NotAuthorized: Story = {
   args: {
+    brandName: 'Inctagram',
     isAuthenticated: false,
     language: 'english',
+    logInLabel: 'Log in',
     notificationCount: 0,
+    notificationLabel: 'Notifications',
+    signUpLabel: 'Sign up',
   },
-  render: args => <StatefulHeader {...args} />,
+  render: renderHeader,
 }
