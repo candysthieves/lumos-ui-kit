@@ -42,6 +42,7 @@ Follow the confirmed pattern from `Typography` and `RadioGroup`:
 - `src/styles/index.scss` is the global style entry and is imported by `src/main.tsx` and `.storybook/preview.tsx`.
 - Use existing CSS variables such as `var(--color-...)`, `var(--font-size-...)`, `var(--line-height-...)` and `var(--font-weight-...)`.
 - Do not hardcode colors or typography values when a token already exists.
+- When converting pixel values to `rem`, round to three digits after the decimal point and use the nearest value divisible by `0.025rem`, for example `10.1875rem` becomes `10.2rem`.
 - Use existing mixins such as `flex`, `width-height`, `transition-basic`, `media-*`, `container` and `content` where they fit.
 - Global typography classes such as `typography-h1` are defined in `src/styles/_typography.scss`.
 - Prettier extends `@it-incubator/prettier-config`; Stylelint extends `@it-incubator/stylelint-config`.
