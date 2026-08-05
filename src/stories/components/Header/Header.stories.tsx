@@ -20,8 +20,10 @@ const meta = {
       control: 'boolean',
     },
     language: {
-      control: 'select',
-      options: ['english', 'russian'],
+      control: false,
+      table: {
+        disable: true,
+      },
     },
     notificationCount: {
       control: {

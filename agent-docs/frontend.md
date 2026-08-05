@@ -98,3 +98,9 @@ After frontend changes, run the checks that apply:
 - `pnpm run test:storybook` to run the configured Storybook/Vitest browser tests for stories.
 - `pnpm run build` for broad component or public API changes.
 - `pnpm run lint` only when ESLint auto-fix is acceptable for the task.
+
+## Commit Message Follow-up
+
+After completing code, style, Storybook, or documentation changes, include a suggested commit message in the final response. The message must follow the project commitlint format from `commitlint.config.js` and use an appropriate conventional type and optional scope.
+
+The `prepare-commit-msg` hook prefixes the Jira key from the current branch when the message does not already start with one. For the normal IDE/git commit flow, suggest the message without the Jira key to avoid duplicate prefixes, for example `fix(header): improve docs controls`. If showing the final message after hooks, label it clearly as the final expanded form, for example `SCRUM-53 fix(header): improve docs controls`.
