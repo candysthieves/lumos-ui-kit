@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useArgs } from 'storybook/preview-api'
-import type { HeaderLanguage } from '@/components/Header'
 import { Header } from '@/components/Header'
 
 const meta = {
@@ -62,37 +60,24 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-const renderHeader: Story['render'] = args => {
-  const [, updateArgs] = useArgs()
-
-  const handleLanguageChange = (value: HeaderLanguage) => {
-    updateArgs({ language: value })
-    args?.onLanguageChange?.(value)
-  }
-
-  return <Header {...args} onLanguageChange={handleLanguageChange} />
-}
-
 export const Authorized: Story = {
   args: {
     brandName: 'Inctagram',
+    defaultLanguage: 'english',
     isAuthenticated: true,
-    language: 'english',
     notificationCount: 3,
     notificationLabel: 'Notifications',
   },
-  render: renderHeader,
 }
 
 export const NotAuthorized: Story = {
   args: {
     brandName: 'Inctagram',
+    defaultLanguage: 'english',
     isAuthenticated: false,
-    language: 'english',
     logInLabel: 'Log in',
     notificationCount: 0,
     notificationLabel: 'Notifications',
     signUpLabel: 'Sign up',
   },
-  render: renderHeader,
 }
