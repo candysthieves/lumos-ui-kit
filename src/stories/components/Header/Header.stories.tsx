@@ -21,9 +21,6 @@ const meta = {
     },
     language: {
       control: false,
-      table: {
-        disable: true,
-      },
     },
     notificationCount: {
       control: {
