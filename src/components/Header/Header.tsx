@@ -42,7 +42,7 @@ export type HeaderProps = {
   onNotificationClick?: () => void
   onSignUpClick?: () => void
   signUpLabel?: string
-} & ComponentPropsWithoutRef<'header'>
+} & Omit<ComponentPropsWithoutRef<'header'>, 'children'>
 
 export const Header = ({
   brandName = 'Inctagram',
