@@ -69,7 +69,13 @@
   }
 
   .actions {
+    flex-wrap: wrap;
     gap: 1.5rem;
+    width: 100%;
+  }
+
+  .authActions {
+    gap: 0.5rem;
   }
 }
 
@@ -81,12 +87,6 @@
   }
 
   .actions {
-    flex-wrap: wrap;
     gap: 0.75rem;
-    width: 100%;
-  }
-
-  .authActions {
-    gap: 0.5rem;
   }
 }

@@ -63,6 +63,8 @@ export const Header = ({
 }: HeaderProps) => {
   const [internalLanguage, setInternalLanguage] = useState<HeaderLanguage>(defaultLanguage)
   const selectedLanguage = language ?? internalLanguage
+  const notificationAccessibleLabel =
+    notificationCount > 0 ? `${notificationLabel}, ${notificationCount} unread` : notificationLabel
   const selectOptions: SelectItem[] = languageOptions.map(option => ({
     icon: option.icon,
     label: option.label,
@@ -91,7 +93,7 @@ export const Header = ({
             <button
               type={'button'}
               className={s.notificationButton}
-              aria-label={notificationLabel}
+              aria-label={notificationAccessibleLabel}
               onClick={onNotificationClick}
             >
               <OutlineBell size={24} msgCounter={notificationCount} />
@@ -102,6 +104,7 @@ export const Header = ({
             className={s.languageSelect}
             value={selectedLanguage}
             options={selectOptions}
+            triggerProps={{ 'aria-label': 'Language' }}
             triggerIcon={<ArrowIosDownOutline size={24} />}
             onValueChange={handleLanguageChange}
           />
