@@ -1,0 +1,95 @@
+@use '@/styles/mixins' as *;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.option {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.item {
+  @include flex(flex, center, center);
+
+  @include width-height(2.25rem);
+
+  cursor: pointer;
+
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+
+  background-color: transparent;
+
+  @include transition-basic(background-color);
+
+  &:hover:not([data-disabled]) {
+    background-color: var(--color-dark-300);
+  }
+
+  &:active:not([data-disabled]) {
+    background-color: var(--color-dark-100);
+  }
+
+  &:focus-visible {
+    background-color: var(--color-dark-500);
+    outline: none;
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.radio {
+  @include flex(flex, center, center);
+
+  @include width-height(20px);
+
+  border: 2px solid var(--color-light-100);
+  border-radius: 50%;
+  background-color: transparent;
+
+  @include transition-basic(background-color);
+
+  .item[data-state='checked'] & {
+    border-color: var(--color-light-100);
+  }
+
+  .item[data-disabled] & {
+    border-color: var(--color-dark-100);
+  }
+}
+
+.indicator {
+  @include flex(flex, center, center);
+
+  @include width-height(100%);
+
+  &::after {
+    content: '';
+    border-radius: 50%;
+    background-color: var(--color-light-100);
+
+    @include width-height(10px);
+  }
+
+  .item[data-disabled] &::after {
+    background-color: var(--color-dark-100);
+  }
+}
+
+.label {
+  cursor: pointer;
+  user-select: none;
+  color: var(--color-light-100);
+
+  .disabled & {
+    cursor: not-allowed;
+    color: var(--color-dark-100);
+  }
+}

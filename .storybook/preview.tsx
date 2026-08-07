@@ -1,19 +1,21 @@
 import type { Preview } from '@storybook/react-vite'
-
 import '@fontsource-variable/inter/wght.css'
 import '@fontsource-variable/roboto/wght.css'
-
 import '../src/styles/index.scss'
+import { darkTheme } from './theme'
 
 const preview: Preview = {
   parameters: {
+    docs: {
+      theme: darkTheme,
+    },
+
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
     },
-
     a11y: {
       // 'todo' - show a11y violations in the test UI only
       // 'error' - fail CI on a11y violations
