@@ -1,29 +1,28 @@
+/* eslint-disable import/no-nodejs-modules */
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin'
+import react from '@vitejs/plugin-react-swc'
 import { playwright } from '@vitest/browser-playwright'
+import * as path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import * as path from 'path'
-import { resolve } from 'path'
-/// <reference types="vitest/config" />
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import pkg from './package.json' with { type: 'json' }
+
 const { dependencies, devDependencies } = pkg
 
 const dirname =
   typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
 
+// https://vite.dev/config/
+// More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: path.resolve(dirname, 'src/index.ts'),
       name: 'ui-kit-lumos',
       formats: ['es'],
       fileName: 'index',
     },
-
     rolldownOptions: {
-      // former rollupOptions
-      // make sure to externalize deps that shouldn't be bundled
-      // into your library
       external: [
         'react/jsx-runtime',
         ...Object.keys(dependencies),
@@ -33,12 +32,15 @@ export default defineConfig({
     sourcemap: true,
     target: 'esnext',
   },
-
+  plugins: [react()],
+  optimizeDeps: {
+    include: ['@radix-ui/themes'],
+  },
   resolve: {
     alias: [
       {
         find: '@',
-        replacement: path.resolve(__dirname, 'src'),
+        replacement: path.resolve(dirname, 'src'),
       },
     ],
   },

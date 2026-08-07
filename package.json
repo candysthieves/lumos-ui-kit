@@ -15,7 +15,7 @@
     "dev": "vite",
     "build": "vite build && tsc --build tsconfig.build.json",
     "type:check": "tsc -b --noEmit",
-    "stylelint:check": "npx stylelint \"**/*.{css,scss}\"",
+    "stylelint:check": "npx stylelint \"src/**/*.{css,scss}\" \".storybook/**/*.{css,scss}\" --allow-empty-input",
     "stylelint:fix": "stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input",
     "format": "prettier --write src",
     "lint": "eslint src --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix",

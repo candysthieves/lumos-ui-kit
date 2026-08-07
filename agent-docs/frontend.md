@@ -42,6 +42,7 @@ Follow the confirmed pattern from `Typography` and `RadioGroup`:
 - `src/styles/index.scss` is the global style entry and is imported by `src/main.tsx` and `.storybook/preview.tsx`.
 - Use existing CSS variables such as `var(--color-...)`, `var(--font-size-...)`, `var(--line-height-...)` and `var(--font-weight-...)`.
 - Do not hardcode colors or typography values when a token already exists.
+- When converting pixel values to `rem`, round to three digits after the decimal point and use the nearest value divisible by `0.025rem`, for example `10.1875rem` becomes `10.2rem`.
 - Use existing mixins such as `flex`, `width-height`, `transition-basic`, `media-*`, `container` and `content` where they fit.
 - Global typography classes such as `typography-h1` are defined in `src/styles/_typography.scss`.
 - Prettier extends `@it-incubator/prettier-config`; Stylelint extends `@it-incubator/stylelint-config`.
@@ -97,3 +98,9 @@ After frontend changes, run the checks that apply:
 - `pnpm run test:storybook` to run the configured Storybook/Vitest browser tests for stories.
 - `pnpm run build` for broad component or public API changes.
 - `pnpm run lint` only when ESLint auto-fix is acceptable for the task.
+
+## Commit Message Follow-up
+
+After completing code, style, Storybook, or documentation changes, include a suggested commit message in the final response. The message must follow the project commitlint format from `commitlint.config.js`, start with a Jira key, and use an appropriate conventional type and optional scope.
+
+Use the Jira key from the current branch when available, for example `SCRUM-53 fix(header): improve docs controls`. The `prepare-commit-msg` hook only prefixes the Jira key when it can extract one from the branch and the message does not already start with a key; it skips messages that already start with a Jira key. If no Jira key is available, ask the user for the key instead of suggesting a keyless commit message.
