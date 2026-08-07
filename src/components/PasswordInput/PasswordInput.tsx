@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import { EyeOffOutline, EyeOutline } from '@/assets/icons'
-import { Input } from '../Input/Input'
+import { type InputHTMLAttributes, useState } from 'react'
+import { EyeOffOutline, EyeOutline } from '@/assets'
+import { Input } from '@/components'
 import s from './PasswordInput.module.scss'
 
 export type PasswordInputProps = {
   label?: string
   error?: string
-} & React.InputHTMLAttributes<HTMLInputElement>
+} & InputHTMLAttributes<HTMLInputElement>
 
 export const PasswordInput = ({ ...props }: PasswordInputProps) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -23,9 +23,9 @@ export const PasswordInput = ({ ...props }: PasswordInputProps) => {
           aria-label={showPassword ? 'Hide password' : 'Show password'}
         >
           {showPassword ? (
-            <EyeOutline autoSize={false} color={"var(--color-light-100)"} size={24} />
+            <EyeOutline autoSize={false} color={'var(--color-light-100)'} size={24} />
           ) : (
-            <EyeOffOutline autoSize={false} color={"var(--color-light-100)"} size={24} />
+            <EyeOffOutline autoSize={false} color={'var(--color-light-100)'} size={24} />
           )}
         </button>
       }
