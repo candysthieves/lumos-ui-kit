@@ -61,7 +61,7 @@ type Story = StoryObj<typeof meta>
 
 export const Authorized: Story = {
   args: {
-    brandName: 'Inctagram',
+    brandName: 'Lumos',
     defaultLanguage: 'english',
     isAuthenticated: true,
     notificationCount: 3,
@@ -71,7 +71,7 @@ export const Authorized: Story = {
 
 export const NotAuthorized: Story = {
   args: {
-    brandName: 'Inctagram',
+    brandName: 'Lumos',
     defaultLanguage: 'english',
     isAuthenticated: false,
     logInLabel: 'Log in',

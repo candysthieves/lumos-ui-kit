@@ -1,32 +1,13 @@
-import type { ComponentPropsWithoutRef, ReactNode } from 'react'
+import type { ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
 import { useState } from 'react'
-import { ArrowIosDownOutline, FlagEng, FlagRus, OutlineBell } from '@/assets'
+import type { HeaderLanguage, HeaderLanguageOption } from '@/types'
+import { ArrowIosDownOutline, OutlineBell } from '@/assets'
 import { Button } from '@/components/Button'
 import { Select, type SelectItem } from '@/components/Select'
 import { Typography } from '@/components/Typography'
+import { DEFAULT_HEADER_LANGUAGE_OPTIONS } from '@/constants'
 import s from './Header.module.scss'
-
-export type HeaderLanguage = 'english' | 'russian'
-
-export type HeaderLanguageOption = {
-  icon?: ReactNode
-  label: string
-  value: HeaderLanguage
-}
-
-const defaultLanguageOptions: HeaderLanguageOption[] = [
-  {
-    value: 'english',
-    label: 'English',
-    icon: <FlagEng size={20} />,
-  },
-  {
-    value: 'russian',
-    label: 'Russian',
-    icon: <FlagRus size={20} />,
-  },
-]
 
 export type HeaderProps = {
   brandName?: string
@@ -45,12 +26,12 @@ export type HeaderProps = {
 } & Omit<ComponentPropsWithoutRef<'header'>, 'children'>
 
 export const Header = ({
-  brandName = 'Inctagram',
+  brandName = 'Lumos',
   className,
   defaultLanguage = 'english',
   isAuthenticated = true,
   language,
-  languageOptions = defaultLanguageOptions,
+  languageOptions = DEFAULT_HEADER_LANGUAGE_OPTIONS,
   logInLabel = 'Log in',
   notificationCount = 0,
   notificationLabel = 'Notifications',
