@@ -1,9 +1,8 @@
 import type { ReactNode } from 'react'
 import clsx from 'clsx'
 import { Button } from '@/components'
+import { getNavItemClickHandler } from '@/utils/getNavItemClickHandler'
 import s from './Menu.module.scss'
-
-const NON_NAVIGABLE_HREF = '#'
 
 export type MenuItem = {
   activeIcon?: ReactNode
@@ -25,21 +24,15 @@ export const Menu = ({ items, activeId, onValueChange }: Props) => {
         <ul className={s.list}>
           {items.map(item => {
             const isActive = activeId === item.id
-            const hasRealHref = Boolean(item.href) && item.href !== NON_NAVIGABLE_HREF
-
-            const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-              if (!hasRealHref) {
-                event.preventDefault()
-              }
-
+            const { handleClick, resolvedHref } = getNavItemClickHandler(item.href, () =>
               onValueChange?.(item.id)
-            }
+            )
 
             return (
-              <li key={item.id} className={s.navItem}>
+              <li key={item.id}>
                 <Button
                   as={'a'}
-                  href={item.href ?? NON_NAVIGABLE_HREF}
+                  href={resolvedHref}
                   className={clsx(s.navItem, isActive && s.activeItem)}
                   onClick={handleClick}
                 >
