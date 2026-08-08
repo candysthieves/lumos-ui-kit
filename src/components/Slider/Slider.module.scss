@@ -1,17 +1,24 @@
+@use '../../styles/mixins' as *; // путь поправь под свой проект
+
 .root {
+  @include flex(flex, none, center);
+
   user-select: none;
 
   position: relative;
 
-  display: flex;
-  align-items: center;
-
   width: 100%;
-  height: 3.5rem;
+  height: 2.25rem;
   padding: 0.75rem;
-  border-radius: 0.31rem;
+  border-radius: 0.3rem;
 
   background-color: color-mix(in srgb, var(--color-dark-500) 80%, transparent);
+
+  &[data-disabled] {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 }
 
 .track {
@@ -33,27 +40,21 @@
 }
 
 .thumb {
+  @include flex(flex, center, center);
+  @include width-height(0.75rem);
+  @include transition-basic(outline-offset);
+
   cursor: pointer;
-
   position: relative;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 0.75rem;
-  height: 0.75rem;
   border-radius: 50%;
-
   background: var(--color-accent-500);
 
   &::after {
     content: '';
 
-    width: 0.37rem;
-    height: 0.37rem;
-    border-radius: 50%;
+    @include width-height(0.35rem);
 
+    border-radius: 50%;
     background: var(--color-light-100);
   }
 
