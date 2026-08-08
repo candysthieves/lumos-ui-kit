@@ -16,6 +16,7 @@ export const Default: Story = {
     defaultValue: [50],
     max: 100,
     step: 1,
+    'aria-label': 'Slider',
   },
   render: args => (
     <div style={{ width: 300, padding: '2rem', background: '#FFF' }}>
@@ -36,4 +37,22 @@ export const Disabled: Story = {
       <Slider {...args} />
     </div>
   ),
+}
+export const WithHandleChange: Story = {
+  args: {
+    defaultValue: [30],
+    max: 100,
+    step: 1,
+  },
+  render: args => {
+    const handleChange = (newValue: number[]) => {
+      console.log('Current value:', newValue[0])
+    }
+
+    return (
+      <div style={{ width: 300, padding: '2rem', background: '#FFF' }}>
+        <Slider {...args} onValueChange={handleChange} />
+      </div>
+    )
+  },
 }
