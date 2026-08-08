@@ -20,11 +20,15 @@ export const Carousel = ({ slides }: CarouselProps) => {
     setCurrentIndex(prev => (prev + 1) % slides.length)
   }
 
+  if (!slides.length) {
+    return null
+  }
+
   return (
     <div className={s.root}>
-      <button type={'button'} className={s.arrowButton} onClick={handlePrev}>
+      <Button type={'button'} className={clsx(s.arrowButton, s.prev)} onClick={handlePrev}>
         <ArrowIosBack />
-      </button>
+      </Button>
 
       <div className={s.slideWrapper}>
         <div className={s.track} style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
@@ -36,19 +40,21 @@ export const Carousel = ({ slides }: CarouselProps) => {
         </div>
       </div>
 
-      <Button type={'button'} className={s.arrowButton} onClick={handleNext}>
+      <Button type={'button'} className={clsx(s.arrowButton, s.next)} onClick={handleNext}>
         <ArrowIosForward />
       </Button>
 
       <div className={s.dots}>
         {slides.map((_, index) => (
-          <button
+          <Button
             key={index}
             type={'button'}
             className={clsx(s.dot, index === currentIndex && s.dotActive)}
             onClick={() => setCurrentIndex(index)}
             aria-label={`Go to slide ${index + 1}`}
-          />
+          >
+            {null}
+          </Button>
         ))}
       </div>
     </div>
