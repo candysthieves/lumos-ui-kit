@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import clsx from 'clsx'
 import { useState } from 'react'
 import { ArrowIosBack, ArrowIosForward } from '@/assets/icons'
+import { Button } from '@/components/Button'
 import s from './Carousel.module.scss'
 
 export type CarouselProps = {
@@ -35,9 +36,9 @@ export const Carousel = ({ slides }: CarouselProps) => {
         </div>
       </div>
 
-      <button type={'button'} className={s.arrowButton} onClick={handleNext}>
+      <Button type={'button'} className={s.arrowButton} onClick={handleNext}>
         <ArrowIosForward />
-      </button>
+      </Button>
 
       <div className={s.dots}>
         {slides.map((_, index) => (
