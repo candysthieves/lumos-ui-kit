@@ -1,0 +1,49 @@
+@use '../../styles/mixins' as *;
+
+.navBar {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-dark-700);
+}
+
+.list {
+  @include flex(flex, space-around, center);
+
+  width: 100%;
+  padding: 0.75rem 1rem;
+}
+
+.navItem {
+  @include flex(flex, center, center);
+  @include width-height(2.5rem);
+  @include transition-basic(opacity);
+
+  cursor: pointer;
+
+  border: none;
+
+  color: var(--color-light-100);
+  text-decoration: none;
+
+  background: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent-100);
+    outline-offset: 2px;
+  }
+}
+
+.activeItem {
+  color: var(--color-accent-300);
+}
+
+.line {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background-color: var(--color-dark-300);
+}
