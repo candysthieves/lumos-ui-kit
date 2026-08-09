@@ -1,7 +1,7 @@
 import { type Control, Controller, type FieldPath, type FieldValues } from 'react-hook-form'
 import { Input, type InputProps } from './Input'
 
-type FormInputProps<T extends FieldValues> = {
+export type FormInputProps<T extends FieldValues> = {
   control: Control<T>
   name: FieldPath<T>
 } & Omit<InputProps, 'name' | 'onBlur' | 'onChange' | 'value'>
