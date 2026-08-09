@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Paypal } from '@/assets/icons'
+import { Paypal } from '@/assets'
 import { coloredIconMeta } from '@/storybook-utils'
 
 const meta = {
