@@ -1,0 +1,7 @@
+@use '@/styles/mixins' as *;
+
+.wrapper {
+  width: 100%;
+  max-width: $container-carousel;
+  margin: 0 auto;
+}
