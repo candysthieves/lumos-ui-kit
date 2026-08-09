@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { forwardRef } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
+import { Typography } from '@/components'
 import s from './Recaptcha.module.scss'
 
 export interface RecaptchaProps {
@@ -41,7 +42,11 @@ export const Recaptcha = forwardRef<ReCAPTCHA, RecaptchaProps>(
             onErrored={onError}
             theme={theme}
           />
-          {isError && <span className={s.errorMessage}>{errorMessage}</span>}
+          {isError && (
+            <Typography variant={'caution-error'} className={s.errorMessage}>
+              {errorMessage}
+            </Typography>
+          )}
         </div>
       </div>
     )
