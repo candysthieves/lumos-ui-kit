@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import clsx from 'clsx'
 import { useState } from 'react'
-import { ArrowIosBack, ArrowIosForward } from '@/assets/icons'
+import { ArrowIosBack, ArrowIosForward } from '@/assets'
 import { Button } from '@/components/Button'
 import s from './Carousel.module.scss'
 
