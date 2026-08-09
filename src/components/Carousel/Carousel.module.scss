@@ -1,0 +1,98 @@
+@use '../../styles/mixins' as *;
+
+.root {
+  position: relative;
+
+  @include width-height(30.5rem, 31.5rem);
+
+  overflow: hidden;
+}
+
+.slideWrapper {
+  overflow: hidden;
+
+  @include width-height(100%);
+}
+
+.track {
+  display: flex;
+
+  @include width-height(100%);
+  @include transition-basic(transform);
+}
+
+.slide {
+  flex: 0 0 100%;
+
+  @include width-height(100%);
+}
+
+%round-control-base {
+  cursor: pointer;
+  border: none;
+
+  @include transition-basic(background);
+}
+
+.arrowButton {
+  @extend %round-control-base;
+
+  @include flex(flex, center, center);
+  @include width-height(3rem);
+
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+
+  color: var(--color-light-100);
+
+  background: rgb(0 0 0 / 40%);
+
+  &:hover {
+    background: rgb(0 0 0 / 60%);
+  }
+}
+
+.prev {
+  left: 1rem;
+}
+
+.next {
+  right: 1rem;
+}
+
+.dots {
+  @include flex(flex, center, center);
+
+  position: absolute;
+  z-index: 1;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  gap: 0.5rem;
+
+  padding: 0.5rem;
+  border-radius: 0.1rem;
+
+  background: color-mix(in srgb, var(--color-dark-300) 40%, transparent);
+}
+
+.dot {
+  @extend %round-control-base;
+
+  @include width-height(0.5rem);
+
+  padding: 0;
+  border-radius: 50%;
+  background: var(--color-light-100);
+
+  &:hover {
+    background: color-mix(in srgb, var(--color-dark-300) 75%, transparent);
+  }
+}
+
+.dotActive {
+  background: var(--color-accent-500);
+}
