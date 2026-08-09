@@ -1,0 +1,64 @@
+@use '../../styles/mixins' as *; // путь поправь под свой проект
+
+.root {
+  @include flex(flex, none, center);
+  @include width-height(100%, 2.25rem);
+
+  user-select: none;
+
+  position: relative;
+
+  padding: 0.75rem;
+  border-radius: 0.3rem;
+
+  background-color: color-mix(in srgb, var(--color-dark-500) 80%, transparent);
+
+  &[data-disabled] {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.track {
+  position: relative;
+
+  flex-grow: 1;
+
+  height: 0.125rem;
+  border-radius: 100rem;
+
+  background: var(--color-light-100);
+}
+
+.range {
+  position: absolute;
+  height: 100%;
+  border-radius: 100rem;
+  background: var(--color-accent-500);
+}
+
+.thumb {
+  @include flex(flex, center, center);
+  @include width-height(0.75rem);
+  @include transition-basic(outline-offset);
+
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+  background: var(--color-accent-500);
+
+  &::after {
+    content: '';
+
+    @include width-height(0.35rem);
+
+    border-radius: 50%;
+    background: var(--color-light-100);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent-100);
+    outline-offset: 2px;
+  }
+}
