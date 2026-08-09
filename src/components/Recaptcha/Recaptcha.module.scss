@@ -1,0 +1,12 @@
+@use '../../styles/typography' as *;
+
+.errorBorder {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem;
+  border: 1px solid var(--color-danger-500);
+}
+
+.errorMessage {
+  margin-top: 0.8rem;
+}
