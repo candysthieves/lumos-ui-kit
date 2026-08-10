@@ -11,7 +11,7 @@ export interface AlertsProps extends ComponentPropsWithoutRef<'div'> {
   variant?: 'error' | 'success'
 }
 
-export const Alerts = ({
+export const Alert = ({
   className,
   onClose,
   title,

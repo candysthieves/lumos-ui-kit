@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Alerts } from '@/components/Alerts'
+import { Alert } from '../../../components/Alert'
 
 const meta = {
-  title: 'Components/Alerts',
-  component: Alerts,
+  title: 'Components/Alert',
+  component: Alert,
   tags: ['autodocs'],
   argTypes: {
     variant: {
@@ -24,7 +24,7 @@ const meta = {
       description: 'Колбэк при клике на крестик',
     },
   },
-} satisfies Meta<typeof Alerts>
+} satisfies Meta<typeof Alert>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -37,7 +37,6 @@ export const ErrorWithTitle: Story = {
   },
 }
 
-// 2. Успех без заголовка (как на макете Figma)
 export const SuccessSimple: Story = {
   args: {
     variant: 'success',
@@ -46,7 +45,6 @@ export const SuccessSimple: Story = {
   },
 }
 
-// 3. Вариант без кнопки закрытия
 export const WithoutCloseButton: Story = {
   args: {
     variant: 'success',
