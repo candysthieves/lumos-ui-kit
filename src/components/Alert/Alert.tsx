@@ -1,14 +1,17 @@
-import type { ComponentPropsWithoutRef, ReactNode } from 'react'
+import type { ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
 import { CloseOutline } from '@/assets'
-import { Button, Typography } from '@/components'
+import { Typography } from '@/components'
 import s from './Alert.module.scss'
 
-export interface AlertsProps extends ComponentPropsWithoutRef<'div'> {
-  children?: ReactNode
+export type FieldError = { field: string; message: string }
+export type AlertMessage = FieldError[] | string
+
+export interface AlertProps extends Omit<ComponentPropsWithoutRef<'div'>, 'children'> {
+  children?: AlertMessage
   onClose?: () => void
   title?: string
-  variant?: 'error' | 'success'
+  variant?: 'error' | 'success' | 'warning'
 }
 
 export const Alert = ({
@@ -18,8 +21,11 @@ export const Alert = ({
   children,
   variant = 'success',
   ...props
-}: AlertsProps) => {
-  if (!title && !children) return null
+}: AlertProps) => {
+  const isFieldErrors = Array.isArray(children) && children.length > 0
+  const isStringContent = typeof children === 'string' && children.trim().length > 0
+
+  if (!title && !isStringContent && !isFieldErrors) return null
 
   return (
     <div
@@ -34,13 +40,25 @@ export const Alert = ({
           </Typography>
         )}
 
-        {children && <Typography variant={'subtitle1'}>{children}</Typography>}
+        {isStringContent && <Typography variant={'subtitle1'}>{children}</Typography>}
+
+        {isFieldErrors && (
+          <ul className={s.errorList}>
+            {children.map((err, index) => (
+              <li key={`${err.field}-${index}`}>
+                <Typography variant={'subtitle1'}>
+                  <b className={s.errorField}>{err.field}:</b> {err.message}
+                </Typography>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       {onClose && (
-        <Button type={'button'} aria-label={'Close'} className={s.closeBtn} onClick={onClose}>
+        <button type={'button'} aria-label={'Close'} className={s.closeBtn} onClick={onClose}>
           <CloseOutline />
-        </Button>
+        </button>
       )}
     </div>
   )
