@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Carousel } from '@/components/Carousel'
+import s from './CarouselWrapper.module.scss'
 
 const meta: Meta<typeof Carousel> = {
   title: 'Components/Carousel',
@@ -71,6 +72,17 @@ export const FewSlides: Story = {
   },
   render: args => (
     <div style={{ width: 400, height: 400 }}>
+      <Carousel {...args} />
+    </div>
+  ),
+}
+
+export const DefaultAdaptive: Story = {
+  args: {
+    slides: placeholderSlides, // проверь, как у тебя называются слайды-заглушки в файле
+  },
+  render: args => (
+    <div className={s.wrapper}>
       <Carousel {...args} />
     </div>
   ),
