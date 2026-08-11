@@ -11,7 +11,7 @@
 }
 
 .container {
-  @include container;
+  @include container($desktop-width, 0 4rem 0 3.75rem);
   @include flex(flex, space-between, center);
 
   min-height: 3.75rem;
