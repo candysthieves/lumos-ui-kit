@@ -1,5 +1,6 @@
 import type { HeaderLanguageOption, ProgressThemeColor } from '@/types'
-import { FlagEng, FlagRus } from '@/assets'
+import { FlagEng } from '@/assets/icons/FlagEng'
+import { FlagRus } from '@/assets/icons/FlagRus'
 
 export const COLOR_MAP: Record<ProgressThemeColor, string> = {
   error: 'var(--color-danger-500)',
