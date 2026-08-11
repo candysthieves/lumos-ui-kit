@@ -1,34 +1,13 @@
 name: Publish to NPM
 on:
-  workflow_dispatch:
-    inputs:
-      version_type:
-        description: 'Version type'
-        required: true
-        default: 'patch'
-        type: choice
-        options:
-          - patch
-          - minor
-          - major
-          - prerelease
-      branch:
-        description: 'Branch to publish from'
-        required: true
-        default: 'develop'
-        type: string
   push:
    branches:
    - main
    - develop
    - SCRUM-49-set-config-to-publish-project-to-npmjs
-#  pull_request:
-#    types: [ closed ]
-#    branches:
-#      - develop
+   - SCRUM-60-refactor-input-component
 jobs:
   build:
-#    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     strategy:
       matrix:

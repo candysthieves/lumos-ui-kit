@@ -11,13 +11,13 @@ export type MenuItem = {
   id: string
 }
 
-type Props = {
+type MenuProps = {
   activeId: string
   items: MenuItem[]
   onValueChange?: (id: string) => void
 }
 
-export const Menu = ({ items, activeId, onValueChange }: Props) => {
+export const Menu = ({ items, activeId, onValueChange }: MenuProps) => {
   return (
     <div>
       <nav className={s.navBar}>

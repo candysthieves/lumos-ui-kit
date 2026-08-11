@@ -4,7 +4,7 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { Typography } from '@/components'
 import s from './Recaptcha.module.scss'
 
-export interface RecaptchaProps {
+export type RecaptchaProps = {
   siteKey: string
   onChange?: (token: null | string) => void
   onExpired?: () => void

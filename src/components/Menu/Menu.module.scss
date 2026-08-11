@@ -1,4 +1,4 @@
-@use '../../styles/mixins' as *;
+@use '@/styles/mixins' as *;
 
 .navBar {
   position: relative;
@@ -40,11 +40,9 @@
 
 .line {
   position: absolute;
-  top: 0;
-  left: 0;
 
-  width: 100%;
-  height: 1px;
+  @include width-height(100%, 1px);
+  @include top-left(0);
 
   background-color: var(--color-dark-300);
 }
