@@ -1,6 +1,6 @@
-import type { ComponentPropsWithoutRef } from 'react'
+import type { ComponentPropsWithoutRef, KeyboardEvent } from 'react'
 import clsx from 'clsx'
-import { useId, useState } from 'react'
+import { useId, useRef, useState } from 'react'
 import type { HeaderLanguage, HeaderLanguageOption } from '@/types'
 import { ArrowIosDownOutline, MoreHorizontalOutline, OutlineBell } from '@/assets'
 import { Button } from '@/components/Button'
@@ -47,6 +47,7 @@ export const Header = ({
   const [internalLanguage, setInternalLanguage] = useState<HeaderLanguage>(defaultLanguage)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const mobileMenuId = useId()
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null)
   const selectedLanguage = language ?? internalLanguage
   const notificationAccessibleLabel =
     notificationCount > 0 ? `${notificationLabel}, ${notificationCount} unread` : notificationLabel
@@ -81,6 +82,13 @@ export const Header = ({
     onSignUpClick?.()
   }
 
+  const handleMobileMenuKeyDown = (event: KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => {
+    if (event.key === 'Escape') {
+      setIsMobileMenuOpen(false)
+      mobileMenuButtonRef.current?.focus()
+    }
+  }
+
   return (
     <header className={clsx(s.header, className)} {...props}>
       <div className={s.container}>
@@ -103,6 +111,7 @@ export const Header = ({
 
           <Select
             className={s.languageSelect}
+            contentClassName={s.languageSelectContent}
             value={selectedLanguage}
             options={selectOptions}
             triggerProps={{ 'aria-label': 'Language' }}
@@ -134,6 +143,7 @@ export const Header = ({
           )}
 
           <Button
+            ref={mobileMenuButtonRef}
             type={'button'}
             variant={'text'}
             className={s.mobileMenuButton}
@@ -141,18 +151,18 @@ export const Header = ({
             aria-expanded={isMobileMenuOpen}
             aria-label={mobileMenuLabel}
             onClick={() => setIsMobileMenuOpen(isOpen => !isOpen)}
+            onKeyDown={handleMobileMenuKeyDown}
           >
             <MoreHorizontalOutline size={24} />
           </Button>
 
           {isMobileMenuOpen && (
-            <div id={mobileMenuId} className={s.mobileMenu} role={'menu'}>
+            <div id={mobileMenuId} className={s.mobileMenu} onKeyDown={handleMobileMenuKeyDown}>
               {isAuthenticated ? (
                 <Button
                   type={'button'}
                   variant={'text'}
                   className={s.mobileMenuItem}
-                  role={'menuitem'}
                   onClick={handleMobileNotificationClick}
                 >
                   {notificationCount > 0
@@ -165,7 +175,6 @@ export const Header = ({
                     type={'button'}
                     variant={'text'}
                     className={s.mobileMenuItem}
-                    role={'menuitem'}
                     onClick={handleMobileLogInClick}
                   >
                     {logInLabel}
@@ -174,7 +183,6 @@ export const Header = ({
                     type={'button'}
                     variant={'text'}
                     className={s.mobileMenuItem}
-                    role={'menuitem'}
                     onClick={handleMobileSignUpClick}
                   >
                     {signUpLabel}
