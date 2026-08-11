@@ -4,6 +4,7 @@ import { Header } from '@/components/Header'
 const meta = {
   title: 'Components/Header',
   component: Header,
+  render: args => <Header key={args.defaultLanguage} {...args} />,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
