@@ -1,4 +1,4 @@
-@use '../../styles/mixins' as *;
+@use '@/styles/mixins' as *;
 
 .wrapper {
   position: relative;
@@ -62,9 +62,10 @@
 
 .errorMessage {
   position: absolute;
+
+  @include top-left(calc(100% + 0.25rem), 0);
+
   z-index: 1;
-  top: calc(100% + 0.25rem);
-  left: 0;
 }
 
 .error {

@@ -63,7 +63,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {error && (
           <Typography
             className={s.errorMessage}
-            variant={'body1'}
+            variant={'caution-error'}
             color={'var(--color-danger-500)'}
           >
             {error}
