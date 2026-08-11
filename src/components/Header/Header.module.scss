@@ -10,13 +10,11 @@
   background-color: var(--color-dark-700);
 }
 
-.content {
+.container {
+  @include container;
   @include flex(flex, space-between, center);
 
-  max-width: 80rem;
   min-height: 3.75rem;
-  margin: 0 auto;
-  padding: 0 3.75rem;
 }
 
 .logo {
@@ -30,12 +28,11 @@
 }
 
 .notificationButton {
-  all: unset;
-  cursor: pointer;
-
-  @include flex(inline-flex, center, center);
   @include width-height(1.5rem);
 
+  min-width: 1.5rem;
+  padding: 0;
+  border: 0;
   color: var(--color-light-100);
 
   @include transition-basic(color);
@@ -46,7 +43,7 @@
 
   &:focus-visible {
     border-radius: 2px;
-    outline: 2px solid var(--color-accent-500);
+    outline: 2px solid var(--color-accent-700);
     outline-offset: 2px;
   }
 }
@@ -64,9 +61,8 @@
 }
 
 @include media-tablet {
-  .content {
+  .container {
     flex-wrap: wrap;
-    padding: 0 1.875rem;
   }
 
   .actions {
@@ -81,9 +77,8 @@
 }
 
 @include media-mobile {
-  .content {
+  .container {
     gap: 0.75rem;
-    padding: 0.75rem 0.95rem;
   }
 
   .actions {

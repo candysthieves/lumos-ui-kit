@@ -64,21 +64,22 @@ export const Header = ({
 
   return (
     <header className={clsx(s.header, className)} {...props}>
-      <div className={s.content}>
+      <div className={s.container}>
         <Typography variant={'large'} className={s.logo}>
           {brandName}
         </Typography>
 
         <div className={s.actions}>
           {isAuthenticated && (
-            <button
+            <Button
               type={'button'}
+              variant={'text'}
               className={s.notificationButton}
               aria-label={notificationAccessibleLabel}
               onClick={onNotificationClick}
             >
               <OutlineBell size={24} msgCounter={notificationCount} />
-            </button>
+            </Button>
           )}
 
           <Select
