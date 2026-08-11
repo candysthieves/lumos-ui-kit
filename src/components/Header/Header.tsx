@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import type { HeaderLanguage, HeaderLanguageOption } from '@/types'
 import { ArrowIosDownOutline, MoreHorizontalOutline, OutlineBell } from '@/assets'
 import { Button } from '@/components/Button'
@@ -16,12 +16,10 @@ export type HeaderProps = {
   language?: HeaderLanguage
   languageOptions?: HeaderLanguageOption[]
   logInLabel?: string
-  mobileMenuLabel?: string
   notificationCount?: number
   notificationLabel?: string
   onLanguageChange?: (value: HeaderLanguage) => void
   onLogInClick?: () => void
-  onMobileMenuClick?: () => void
   onNotificationClick?: () => void
   onSignUpClick?: () => void
   signUpLabel?: string
@@ -35,18 +33,18 @@ export const Header = ({
   language,
   languageOptions = DEFAULT_HEADER_LANGUAGE_OPTIONS,
   logInLabel = 'Log in',
-  mobileMenuLabel = 'Open menu',
   notificationCount = 0,
   notificationLabel = 'Notifications',
   onLanguageChange,
   onLogInClick,
-  onMobileMenuClick,
   onNotificationClick,
   onSignUpClick,
   signUpLabel = 'Sign up',
   ...props
 }: HeaderProps) => {
   const [internalLanguage, setInternalLanguage] = useState<HeaderLanguage>(defaultLanguage)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const mobileMenuId = useId()
   const selectedLanguage = language ?? internalLanguage
   const notificationAccessibleLabel =
     notificationCount > 0 ? `${notificationLabel}, ${notificationCount} unread` : notificationLabel
@@ -64,6 +62,21 @@ export const Header = ({
     }
 
     onLanguageChange?.(nextLanguage)
+  }
+
+  const handleMobileNotificationClick = () => {
+    setIsMobileMenuOpen(false)
+    onNotificationClick?.()
+  }
+
+  const handleMobileLogInClick = () => {
+    setIsMobileMenuOpen(false)
+    onLogInClick?.()
+  }
+
+  const handleMobileSignUpClick = () => {
+    setIsMobileMenuOpen(false)
+    onSignUpClick?.()
   }
 
   return (
@@ -118,16 +131,55 @@ export const Header = ({
             </div>
           )}
 
-          {!isAuthenticated && (
-            <Button
-              type={'button'}
-              variant={'text'}
-              className={s.mobileMenuButton}
-              aria-label={mobileMenuLabel}
-              onClick={onMobileMenuClick}
-            >
-              <MoreHorizontalOutline size={24} />
-            </Button>
+          <Button
+            type={'button'}
+            variant={'text'}
+            className={s.mobileMenuButton}
+            aria-controls={mobileMenuId}
+            aria-expanded={isMobileMenuOpen}
+            aria-label={'Open menu'}
+            onClick={() => setIsMobileMenuOpen(isOpen => !isOpen)}
+          >
+            <MoreHorizontalOutline size={24} />
+          </Button>
+
+          {isMobileMenuOpen && (
+            <div id={mobileMenuId} className={s.mobileMenu} role={'menu'}>
+              {isAuthenticated ? (
+                <Button
+                  type={'button'}
+                  variant={'text'}
+                  className={s.mobileMenuItem}
+                  role={'menuitem'}
+                  onClick={handleMobileNotificationClick}
+                >
+                  {notificationCount > 0
+                    ? `${notificationLabel} (${notificationCount})`
+                    : notificationLabel}
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    type={'button'}
+                    variant={'text'}
+                    className={s.mobileMenuItem}
+                    role={'menuitem'}
+                    onClick={handleMobileLogInClick}
+                  >
+                    {logInLabel}
+                  </Button>
+                  <Button
+                    type={'button'}
+                    variant={'text'}
+                    className={s.mobileMenuItem}
+                    role={'menuitem'}
+                    onClick={handleMobileSignUpClick}
+                  >
+                    {signUpLabel}
+                  </Button>
+                </>
+              )}
+            </div>
           )}
         </div>
       </div>
