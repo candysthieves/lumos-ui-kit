@@ -35,6 +35,9 @@ const meta = {
     logInLabel: {
       control: 'text',
     },
+    mobileMenuLabel: {
+      control: 'text',
+    },
     notificationLabel: {
       control: 'text',
     },
@@ -65,6 +68,7 @@ export const Authorized: Story = {
     brandName: 'Lumos',
     defaultLanguage: 'english',
     isAuthenticated: true,
+    mobileMenuLabel: 'Open menu',
     notificationCount: 3,
     notificationLabel: 'Notifications',
   },
@@ -76,6 +80,7 @@ export const NotAuthorized: Story = {
     defaultLanguage: 'english',
     isAuthenticated: false,
     logInLabel: 'Log in',
+    mobileMenuLabel: 'Open menu',
     notificationCount: 0,
     notificationLabel: 'Notifications',
     signUpLabel: 'Sign up',

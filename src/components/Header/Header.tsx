@@ -16,6 +16,7 @@ export type HeaderProps = {
   language?: HeaderLanguage
   languageOptions?: HeaderLanguageOption[]
   logInLabel?: string
+  mobileMenuLabel?: string
   notificationCount?: number
   notificationLabel?: string
   onLanguageChange?: (value: HeaderLanguage) => void
@@ -33,6 +34,7 @@ export const Header = ({
   language,
   languageOptions = DEFAULT_HEADER_LANGUAGE_OPTIONS,
   logInLabel = 'Log in',
+  mobileMenuLabel = 'Open menu',
   notificationCount = 0,
   notificationLabel = 'Notifications',
   onLanguageChange,
@@ -137,7 +139,7 @@ export const Header = ({
             className={s.mobileMenuButton}
             aria-controls={mobileMenuId}
             aria-expanded={isMobileMenuOpen}
-            aria-label={'Open menu'}
+            aria-label={mobileMenuLabel}
             onClick={() => setIsMobileMenuOpen(isOpen => !isOpen)}
           >
             <MoreHorizontalOutline size={24} />
