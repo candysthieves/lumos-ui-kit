@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
 import { useState } from 'react'
 import type { HeaderLanguage, HeaderLanguageOption } from '@/types'
-import { ArrowIosDownOutline, OutlineBell } from '@/assets'
+import { ArrowIosDownOutline, MoreHorizontalOutline, OutlineBell } from '@/assets'
 import { Button } from '@/components/Button'
 import { Select, type SelectItem } from '@/components/Select'
 import { Typography } from '@/components/Typography'
@@ -16,10 +16,12 @@ export type HeaderProps = {
   language?: HeaderLanguage
   languageOptions?: HeaderLanguageOption[]
   logInLabel?: string
+  mobileMenuLabel?: string
   notificationCount?: number
   notificationLabel?: string
   onLanguageChange?: (value: HeaderLanguage) => void
   onLogInClick?: () => void
+  onMobileMenuClick?: () => void
   onNotificationClick?: () => void
   onSignUpClick?: () => void
   signUpLabel?: string
@@ -33,10 +35,12 @@ export const Header = ({
   language,
   languageOptions = DEFAULT_HEADER_LANGUAGE_OPTIONS,
   logInLabel = 'Log in',
+  mobileMenuLabel = 'Open menu',
   notificationCount = 0,
   notificationLabel = 'Notifications',
   onLanguageChange,
   onLogInClick,
+  onMobileMenuClick,
   onNotificationClick,
   onSignUpClick,
   signUpLabel = 'Sign up',
@@ -87,6 +91,8 @@ export const Header = ({
             value={selectedLanguage}
             options={selectOptions}
             triggerProps={{ 'aria-label': 'Language' }}
+            valueProps={{ className: s.languageValue }}
+            iconProps={{ className: s.languageIcon }}
             triggerIcon={<ArrowIosDownOutline size={24} />}
             onValueChange={handleLanguageChange}
           />
@@ -110,6 +116,18 @@ export const Header = ({
                 {signUpLabel}
               </Button>
             </div>
+          )}
+
+          {!isAuthenticated && (
+            <Button
+              type={'button'}
+              variant={'text'}
+              className={s.mobileMenuButton}
+              aria-label={mobileMenuLabel}
+              onClick={onMobileMenuClick}
+            >
+              <MoreHorizontalOutline size={24} />
+            </Button>
           )}
         </div>
       </div>
