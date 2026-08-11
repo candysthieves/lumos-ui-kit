@@ -1,7 +1,7 @@
 {
   "name": "@candy.thieves/ui-kit-lumos",
   "private": false,
-  "version": "0.0.16",
+  "version": "0.0.17",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
@@ -39,8 +39,6 @@
     "clsx": "^2.1.1",
     "eslint-plugin-perfectionist": "^5.10.0",
     "radix-ui": "^1.6.2",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
     "react-google-recaptcha": "^3.1.0"
   },
   "devDependencies": {
@@ -89,6 +87,10 @@
     "vite": "^8.1.1",
     "vitest": "^4.1.10"
   },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
   "lint-staged": {
     "**/*.{jsx,js,tsx,ts}": [
       "eslint --quiet --fix"
@@ -99,8 +101,5 @@
     "**/*": [
       "prettier --write --ignore-unknown"
     ]
-  },
-  "peerDependencies": {
-    "react-hook-form": "^7.82.0"
   }
 }
