@@ -79,6 +79,8 @@
 @include media-mobile {
   .container {
     gap: 0.75rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
 
   .actions {
