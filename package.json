@@ -1,22 +1,15 @@
 {
   "name": "@candy.thieves/ui-kit-lumos",
   "private": false,
-  "version": "0.0.19",
+  "version": "0.0.20",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    },
-    "./dist/index.css": "./dist/index.css"
-  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "dist/index.css"
   ],
   "scripts": {
     "dev": "vite",
