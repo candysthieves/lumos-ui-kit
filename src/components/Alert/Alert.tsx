@@ -7,11 +7,13 @@ import s from './Alert.module.scss'
 export type FieldError = { field: string; message: string }
 export type AlertMessage = FieldError[] | string
 
-export interface AlertProps extends Omit<ComponentPropsWithoutRef<'div'>, 'children'> {
+export type AlertVariant = 'error' | 'success' | 'warning'
+
+export type AlertProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'> & {
   children?: AlertMessage
   onClose?: () => void
   title?: string
-  variant?: 'error' | 'success' | 'warning'
+  variant?: AlertVariant
 }
 
 export const Alert = ({
