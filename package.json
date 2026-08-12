@@ -4,12 +4,19 @@
   "version": "0.0.17",
   "license": "MIT",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./dist/index.css": "./dist/index.css"
+  },
   "files": [
-    "dist",
-    "dist/index.css"
+    "dist"
   ],
   "scripts": {
     "dev": "vite",
@@ -35,7 +42,9 @@
     "@radix-ui/react-tabs": "^1.1.18",
     "@radix-ui/react-tooltip": "^1.2.16",
     "@radix-ui/themes": "^3.3.0",
+    "@storybook/addon-actions": "^9.0.8",
     "@storybook/react": "^10.5.7",
+    "@storybook/test": "^8.6.15",
     "clsx": "^2.1.1",
     "eslint-plugin-perfectionist": "^5.10.0",
     "radix-ui": "^1.6.2",
