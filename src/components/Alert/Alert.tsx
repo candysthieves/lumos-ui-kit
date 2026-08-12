@@ -1,14 +1,17 @@
 import type { ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
 import { CloseOutline } from '@/assets'
-import { Typography } from '@/components'
+import { Button, Typography } from '@/components'
 import s from './Alert.module.scss'
 
-export type FieldError = { field: string; message: string }
-export type AlertMessage = FieldError[] | string
+export type FieldError = {
+  field: string
+  message: string
+}
 
 export interface AlertProps extends Omit<ComponentPropsWithoutRef<'div'>, 'children'> {
-  children?: AlertMessage
+  children?: string
+  errors?: FieldError[]
   onClose?: () => void
   title?: string
   variant?: 'error' | 'success' | 'warning'
@@ -19,10 +22,11 @@ export const Alert = ({
   onClose,
   title,
   children,
+  errors,
   variant = 'success',
   ...props
 }: AlertProps) => {
-  const isFieldErrors = Array.isArray(children) && children.length > 0
+  const isFieldErrors = Array.isArray(errors) && errors.length > 0
   const isStringContent = typeof children === 'string' && children.trim().length > 0
 
   if (!title && !isStringContent && !isFieldErrors) return null
@@ -44,10 +48,10 @@ export const Alert = ({
 
         {isFieldErrors && (
           <ul className={s.errorList}>
-            {children.map((err, index) => (
+            {errors.map((err, index) => (
               <li key={`${err.field}-${index}`}>
                 <Typography variant={'subtitle1'}>
-                  <b className={s.errorField}>{err.field}:</b> {err.message}
+                  <b className={s.errorField}>{err.field}:</b> <span>{err.message}</span>
                 </Typography>
               </li>
             ))}
@@ -56,9 +60,15 @@ export const Alert = ({
       </div>
 
       {onClose && (
-        <button type={'button'} aria-label={'Close'} className={s.closeBtn} onClick={onClose}>
+        <Button
+          as={'button'}
+          type={'button'}
+          aria-label={'Close'}
+          className={s.closeBtn}
+          onClick={onClose}
+        >
           <CloseOutline />
-        </button>
+        </Button>
       )}
     </div>
   )

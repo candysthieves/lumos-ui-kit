@@ -1,7 +1,7 @@
 @use '@/styles/mixins' as *;
 
 .root {
-  @include flex(flex, space-between, center);
+  @include flex(flex, space-between, flex-start);
 
   gap: 1.5rem;
 
