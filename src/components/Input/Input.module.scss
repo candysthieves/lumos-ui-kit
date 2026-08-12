@@ -1,6 +1,7 @@
-@use '../../styles/mixins' as *;
+@use '@/styles/mixins' as *;
 
 .wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -57,6 +58,14 @@
 
 .endAdornment {
   margin-left: 0.5rem;
+}
+
+.errorMessage {
+  position: absolute;
+
+  @include top-left(calc(100% + 0.25rem), 0);
+
+  z-index: 1;
 }
 
 .error {

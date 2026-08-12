@@ -9,12 +9,14 @@ export type FieldError = {
   message: string
 }
 
+export type AlertVariant = 'error' | 'success' | 'warning'
+
 export interface AlertProps extends Omit<ComponentPropsWithoutRef<'div'>, 'children'> {
   children?: string
   errors?: FieldError[]
   onClose?: () => void
   title?: string
-  variant?: 'error' | 'success' | 'warning'
+  variant?: AlertVariant
 }
 
 export const Alert = ({

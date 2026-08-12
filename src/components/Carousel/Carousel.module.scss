@@ -2,10 +2,9 @@
 
 .root {
   position: relative;
-
-  @include width-height(30.5rem, 31.5rem);
-
   overflow: hidden;
+  aspect-ratio: 30.5 / 31.5;
+  width: 100%;
 }
 
 .slideWrapper {

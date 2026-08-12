@@ -1,14 +1,11 @@
-@use '../../styles/mixins' as *;
+@use '@/styles/mixins' as *;
 
 .navBar {
   @include flex(flex, none, none);
+  @include width-height(13.75rem, 100%);
 
   position: relative;
-
   flex-direction: column;
-
-  width: 220px;
-  height: 100%;
   padding-top: 4.5rem;
   padding-bottom: 2.25rem;
 }
@@ -94,11 +91,10 @@
 
 .line {
   position: absolute;
-  top: 0;
-  right: 0;
+
+  @include top-right(0);
+
   bottom: 0;
-
   width: 1px;
-
   background-color: var(--color-dark-300);
 }

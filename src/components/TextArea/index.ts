@@ -1,2 +1,1 @@
-export { TextArea } from './TextArea'
-export { FormTextArea } from './FormTextArea'
+export * from './TextArea'
