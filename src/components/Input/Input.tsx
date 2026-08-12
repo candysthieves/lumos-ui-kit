@@ -1,3 +1,5 @@
+'use client'
+
 import clsx from 'clsx'
 import { type ComponentPropsWithoutRef, forwardRef, type ReactNode, useId } from 'react'
 import { Typography } from '@/components'

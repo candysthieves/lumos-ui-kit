@@ -1,3 +1,5 @@
+'use client'
+
 import type { ComponentPropsWithRef, CSSProperties, ElementType, ReactNode } from 'react'
 import clsx from 'clsx'
 import s from './Typography.module.scss'

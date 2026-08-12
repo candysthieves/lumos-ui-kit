@@ -1,3 +1,5 @@
+'use client'
+
 import type { InputProps } from '@/components'
 import { SearchOutline } from '@/assets'
 import { Input } from '@/components'

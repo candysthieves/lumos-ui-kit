@@ -1,3 +1,5 @@
+'use client'
+
 import clsx from 'clsx'
 import type { MessageProps } from '@/components/Message/types'
 import { Typography } from '@/components'
