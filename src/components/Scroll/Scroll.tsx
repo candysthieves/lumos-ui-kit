@@ -3,12 +3,12 @@ import { useRef } from 'react'
 import { useScrollThumbs, useThumbDrag } from '@/hooks'
 import s from './Scroll.module.scss'
 
-type Props = {
+type ScrollProps = {
   orientation?: 'both' | 'horizontal' | 'vertical'
   children?: React.ReactNode
 }
 
-export const Scroll = ({ orientation = 'both', children }: Props) => {
+export const Scroll = ({ orientation = 'both', children }: ScrollProps) => {
   const viewportRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const verticalThumbRef = useRef<HTMLDivElement>(null)

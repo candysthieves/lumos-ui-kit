@@ -1,13 +1,9 @@
 import type { ReactNode } from 'react'
 import clsx from 'clsx'
 import { Button, Typography } from '@/components'
+import { TAB_INDEX } from '@/constants'
 import { getNavItemClickHandler } from '@/utils/getNavItemClickHandler'
 import s from './Sidebar.module.scss'
-
-const TAB_INDEX = {
-  ENABLED: 0,
-  DISABLED: -1,
-} as const
 
 export type SidebarItem = {
   activeIcon?: ReactNode
@@ -18,7 +14,7 @@ export type SidebarItem = {
   label: string
 }
 
-type Props = {
+type SidebarProps = {
   activeId: string
   items: SidebarItem[]
   logOutIcon: ReactNode
@@ -26,7 +22,7 @@ type Props = {
   onValueChange?: (id: string) => void
 }
 
-export const Sidebar = ({ items, activeId, onValueChange, onLogout, logOutIcon }: Props) => {
+export const Sidebar = ({ items, activeId, onValueChange, onLogout, logOutIcon }: SidebarProps) => {
   return (
     <nav className={s.navBar}>
       <ul>

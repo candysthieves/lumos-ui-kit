@@ -1,4 +1,4 @@
-@use '../../styles/mixins' as *; // путь поправь под свой проект
+@use '@/styles/mixins' as *;
 
 .root {
   @include flex(flex, none, center);
