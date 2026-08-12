@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, within, fn } from '@storybook/test'
+import { expect, within } from '@storybook/test'
 import { Alert } from '@/components/Alert'
 
 const meta = {
@@ -10,18 +10,23 @@ const meta = {
     variant: {
       control: { type: 'radio' },
       options: ['success', 'error', 'warning'],
-      description: 'Вариант стиля алерта',
+      description: 'Alert style variant',
     },
     title: {
       control: 'text',
-      description: 'Заголовок уведомления (жирный текст)',
+      description: 'Notification title (bold text)',
     },
     children: {
+      control: 'text',
+      description: 'Main message text (string)',
+    },
+    errors: {
       control: 'object',
-      description: 'Основной текст сообщения (строка) или массив ошибок вида { field, message }',
+      description: 'List of validation errors in the form of { field, message }',
     },
     onClose: {
-      description: 'Колбэк при клике на крестик. Если не передан — кнопка закрытия не отображается',
+      description:
+        'Callback fired on close icon click. If not provided, the close button is not rendered',
     },
   },
 } satisfies Meta<typeof Alert>
@@ -34,7 +39,7 @@ export const ErrorWithTitle: Story = {
     variant: 'error',
     title: 'Error!',
     children: 'Server is not available',
-    onClose: fn(),
+    onClose: () => window.alert('Close button clicked!'),
   },
 }
 
@@ -42,7 +47,7 @@ export const SuccessSimple: Story = {
   args: {
     variant: 'success',
     children: 'Your settings are saved',
-    onClose: fn(),
+    onClose: () => window.alert('Close button clicked!'),
   },
 }
 
@@ -51,7 +56,7 @@ export const WarningSimple: Story = {
     variant: 'warning',
     title: 'Warning!',
     children: 'This action cannot be undone',
-    onClose: fn(),
+    onClose: () => window.alert('Close button clicked!'),
   },
 }
 
@@ -67,26 +72,23 @@ export const WithFieldErrors: Story = {
   args: {
     variant: 'error',
     title: 'Validation error',
-    children: [
-      { field: 'email', message: 'Неверный формат email' },
-      { field: 'password', message: 'Пароль слишком короткий' },
+    errors: [
+      { field: 'email', message: 'Invalid email format' },
+      { field: 'password', message: 'Password is too short' },
     ],
-    onClose: fn(),
+    onClose: () => window.alert('Close button clicked!'),
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    // Проверяем наличие заголовка
     await expect(canvas.getByText('Validation error')).toBeInTheDocument()
 
-    // Проверяем наличие списка ошибок <ul> и ровно 2 элементов <li>
     const listItems = canvas.getAllByRole('listitem')
     await expect(listItems).toHaveLength(2)
 
-    // Проверяем текст ошибок
     await expect(canvas.getByText('email:')).toBeInTheDocument()
-    await expect(canvas.getByText('Неверный формат email')).toBeInTheDocument()
+    await expect(canvas.getByText('Invalid email format')).toBeInTheDocument()
     await expect(canvas.getByText('password:')).toBeInTheDocument()
-    await expect(canvas.getByText('Пароль слишком короткий')).toBeInTheDocument()
+    await expect(canvas.getByText('Password is too short')).toBeInTheDocument()
   },
 }
