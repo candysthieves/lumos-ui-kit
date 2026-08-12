@@ -14,7 +14,7 @@ const dirname =
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(dirname, 'src/index.ts'),
+      entry: resolve(__dirname, 'src/index.ts'),
       name: 'ui-kit-lumos',
       formats: ['es'],
       fileName: 'index',
@@ -38,7 +38,7 @@ export default defineConfig({
     alias: [
       {
         find: '@',
-        replacement: path.resolve(dirname, 'src'),
+        replacement: path.resolve(__dirname, 'src'),
       },
     ],
   },
