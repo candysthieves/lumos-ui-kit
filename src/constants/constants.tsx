@@ -30,3 +30,8 @@ export const DEFAULT_HEADER_LANGUAGE_OPTIONS: HeaderLanguageOption[] = [
     icon: <FlagRus size={20} />,
   },
 ]
+
+export const TAB_INDEX = {
+  ENABLED: 0,
+  DISABLED: -1,
+} as const

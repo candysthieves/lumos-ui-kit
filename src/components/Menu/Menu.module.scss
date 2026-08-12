@@ -1,0 +1,48 @@
+@use '@/styles/mixins' as *;
+
+.navBar {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-dark-700);
+}
+
+.list {
+  @include flex(flex, space-around, center);
+
+  width: 100%;
+  padding: 0.75rem 1rem;
+  list-style: none;
+}
+
+.navItem {
+  @include flex(flex, center, center);
+  @include width-height(2.5rem);
+  @include transition-basic(opacity);
+
+  cursor: pointer;
+
+  border: none;
+
+  color: var(--color-light-100);
+  text-decoration: none;
+
+  background: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent-100);
+    outline-offset: 2px;
+  }
+}
+
+.activeItem {
+  color: var(--color-accent-300);
+}
+
+.line {
+  position: absolute;
+
+  @include width-height(100%, 1px);
+  @include top-left(0);
+
+  background-color: var(--color-dark-300);
+}

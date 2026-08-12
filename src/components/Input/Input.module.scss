@@ -1,6 +1,7 @@
 @use '@/styles/mixins' as *;
 
 .wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -59,6 +60,14 @@
   margin-left: 0.5rem;
 }
 
+.errorMessage {
+  position: absolute;
+
+  @include top-left(calc(100% + 0.25rem), 0);
+
+  z-index: 1;
+}
+
 .error {
   border-color: var(--color-danger-500);
 
@@ -68,6 +77,7 @@
 
   &:focus-within {
     border-color: var(--color-danger-500);
+    outline: 1px solid var(--color-danger-500);
   }
 }
 
