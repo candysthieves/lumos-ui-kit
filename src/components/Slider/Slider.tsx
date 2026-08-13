@@ -1,3 +1,5 @@
+'use client'
+
 import type { ComponentPropsWithoutRef, ComponentRef } from 'react'
 import * as SliderPrimitive from '@radix-ui/react-slider'
 import clsx from 'clsx'

@@ -1,22 +1,15 @@
 {
   "name": "@candy.thieves/ui-kit-lumos",
   "private": false,
-  "version": "0.0.17",
+  "version": "0.0.27",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    },
-    "./dist/index.css": "./dist/index.css"
-  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "dist/index.css"
   ],
   "scripts": {
     "dev": "vite",
@@ -47,8 +40,7 @@
     "@storybook/test": "^8.6.15",
     "clsx": "^2.1.1",
     "eslint-plugin-perfectionist": "^5.10.0",
-    "radix-ui": "^1.6.2",
-    "react-google-recaptcha": "^3.1.0"
+    "radix-ui": "^1.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
@@ -69,7 +61,6 @@
     "@types/node": "^24.13.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@types/react-google-recaptcha": "^2.1.9",
     "@vitejs/plugin-react": "^6.0.3",
     "@vitejs/plugin-react-swc": "^4.3.1",
     "@vitest/browser-playwright": "^4.1.10",
@@ -87,7 +78,6 @@
     "lint-staged": "^17.1.0",
     "playwright": "^1.61.1",
     "prettier": "3.9.5",
-    "react-hook-form": "^7.82.0",
     "sass": "^1.101.0",
     "storybook": "^10.5.2",
     "stylelint": "^17.14.0",

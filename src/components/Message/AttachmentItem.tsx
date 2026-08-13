@@ -1,3 +1,5 @@
+'use client'
+
 import type { AttachmentProps } from '@/components/Message/types'
 import { isAudioAttachment } from '@/utils'
 import s from './Message.module.scss'

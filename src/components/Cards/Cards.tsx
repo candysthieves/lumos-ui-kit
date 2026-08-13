@@ -1,3 +1,5 @@
+'use client'
+
 import clsx from 'clsx'
 import { type ComponentPropsWithoutRef, type ComponentRef, forwardRef, type ReactNode } from 'react'
 import s from './Cards.module.scss'
