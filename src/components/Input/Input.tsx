@@ -1,3 +1,5 @@
+'use client'
+
 import clsx from 'clsx'
 import { type ComponentPropsWithoutRef, forwardRef, type ReactNode, useId } from 'react'
 import { Typography } from '@/components'
@@ -61,7 +63,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {error && (
-          <Typography variant={'body1'} color={'var(--color-danger-500)'}>
+          <Typography
+            className={s.errorMessage}
+            variant={'caution-error'}
+            color={'var(--color-danger-500)'}
+          >
             {error}
           </Typography>
         )}

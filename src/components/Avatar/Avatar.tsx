@@ -1,3 +1,5 @@
+'use client'
+
 import clsx from 'clsx'
 import { Avatar as AvatarItem } from 'radix-ui'
 import { type ComponentPropsWithoutRef, type ComponentRef, forwardRef } from 'react'

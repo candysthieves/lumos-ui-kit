@@ -13,6 +13,7 @@ $modal-width-l: 644px;
 $modal-width-xl: 972px;
 $container-padding-tablet: 30px;
 $container-padding-mobile: 15px;
+$container-carousel: 490px;
 
 @mixin flex($display, $justify-content: none, $align-items: none) {
   display: $display;

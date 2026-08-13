@@ -9,8 +9,6 @@ The project is built on _React_ and _TypeScript_, using _Storybook_ for componen
 
 👥 Team:
 
-**PM** - _Yana Korotenko_
-
 **Team-lead** - _Vladislav Kravchenko_
 
 **Front-end:**

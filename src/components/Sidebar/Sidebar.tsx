@@ -1,13 +1,11 @@
+'use client'
+
 import type { ReactNode } from 'react'
 import clsx from 'clsx'
 import { Button, Typography } from '@/components'
+import { TAB_INDEX } from '@/constants'
+import { getNavItemClickHandler } from '@/utils/getNavItemClickHandler'
 import s from './Sidebar.module.scss'
-
-const NON_NAVIGABLE_HREF = '#'
-const TAB_INDEX = {
-  ENABLED: 0,
-  DISABLED: -1,
-} as const
 
 export type SidebarItem = {
   activeIcon?: ReactNode
@@ -18,7 +16,7 @@ export type SidebarItem = {
   label: string
 }
 
-type Props = {
+type SidebarProps = {
   activeId: string
   items: SidebarItem[]
   logOutIcon: ReactNode
@@ -26,30 +24,33 @@ type Props = {
   onValueChange?: (id: string) => void
 }
 
-export const Sidebar = ({ items, activeId, onValueChange, onLogout, logOutIcon }: Props) => {
+export const Sidebar = ({ items, activeId, onValueChange, onLogout, logOutIcon }: SidebarProps) => {
   return (
     <nav className={s.navBar}>
       <ul>
         {items.map(item => {
           const isActive = activeId === item.id
           const isDisabled = Boolean(item.disabled)
-          const hasRealHref = Boolean(item.href) && item.href !== NON_NAVIGABLE_HREF
+          const { handleClick: baseHandleClick, resolvedHref } = getNavItemClickHandler(
+            item.href,
+            () => onValueChange?.(item.id)
+          )
 
           const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-            if (isDisabled || !hasRealHref) {
+            if (isDisabled) {
               event.preventDefault()
+
+              return
             }
 
-            if (!isDisabled) {
-              onValueChange?.(item.id)
-            }
+            baseHandleClick(event)
           }
 
           return (
             <li key={item.id}>
               <Button
                 as={'a'}
-                href={isDisabled ? undefined : (item.href ?? NON_NAVIGABLE_HREF)}
+                href={isDisabled ? undefined : resolvedHref}
                 className={clsx(s.navItem, isActive && s.activeItem, isDisabled && s.disabled)}
                 onClick={handleClick}
                 tabIndex={isDisabled ? TAB_INDEX.DISABLED : TAB_INDEX.ENABLED}

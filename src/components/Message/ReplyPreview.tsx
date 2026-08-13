@@ -1,3 +1,5 @@
+'use client'
+
 import type { ReplyPreviewProps } from '@/components/Message/types'
 import { Typography } from '@/components'
 import s from './Message.module.scss'

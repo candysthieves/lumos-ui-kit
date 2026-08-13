@@ -1,3 +1,5 @@
+'use client'
+
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import clsx from 'clsx'
 import { Select as SelectPrimitive } from 'radix-ui'
@@ -128,7 +130,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
           value={option.value}
           disabled={option.disabled}
           textValue={option.textValue}
-          className={clsx(s.item, itemClassName, optionClassName)}
+          className={clsx(s.item, 'typography-subtitle1', itemClassName, optionClassName)}
           {...restItemProps}
         >
           {option.icon && (
@@ -159,7 +161,11 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
         onValueChange={handleValueChange}
       >
         {label && (
-          <label htmlFor={triggerId} className={clsx(s.label, labelClassName)} {...restLabelProps}>
+          <label
+            htmlFor={triggerId}
+            className={clsx(s.label, 'typography-body1', labelClassName)}
+            {...restLabelProps}
+          >
             {label}
           </label>
         )}
@@ -167,7 +173,13 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
         <SelectPrimitive.Trigger
           ref={ref}
           id={triggerId}
-          className={clsx(s.trigger, label && s.hasLabel, className, triggerClassName)}
+          className={clsx(
+            s.trigger,
+            'typography-subtitle1',
+            label && s.hasLabel,
+            className,
+            triggerClassName
+          )}
           {...restTriggerProps}
         >
           <span className={s.textBlock}>
@@ -224,6 +236,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                       <SelectPrimitive.Label
                         className={clsx(
                           s.groupLabel,
+                          'typography-body1',
                           groupLabelClassName,
                           groupLabelPropsClassName
                         )}
