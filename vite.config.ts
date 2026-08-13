@@ -6,7 +6,7 @@ import { resolve } from 'path'
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import pkg from './package.json' with { type: 'json' }
-const { dependencies, devDependencies } = pkg
+const { dependencies } = pkg
 
 const dirname =
   typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
@@ -14,7 +14,7 @@ const dirname =
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(dirname, 'src/index.ts'),
+      entry: resolve(__dirname, 'src/index.ts'),
       name: 'ui-kit-lumos',
       formats: ['es'],
       fileName: 'index',
@@ -25,9 +25,11 @@ export default defineConfig({
       // make sure to externalize deps that shouldn't be bundled
       // into your library
       external: [
+        'react',
+        'react-dom',
         'react/jsx-runtime',
+        'react/jsx-dev-runtime',
         ...Object.keys(dependencies),
-        ...Object.keys(devDependencies),
       ],
     },
     sourcemap: true,
@@ -38,7 +40,7 @@ export default defineConfig({
     alias: [
       {
         find: '@',
-        replacement: path.resolve(dirname, 'src'),
+        replacement: path.resolve(__dirname, 'src'),
       },
     ],
   },

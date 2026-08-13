@@ -1,3 +1,5 @@
+'use client'
+
 import clsx from 'clsx'
 import { Avatar } from 'radix-ui'
 import { type ComponentPropsWithoutRef, forwardRef } from 'react'

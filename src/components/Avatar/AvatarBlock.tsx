@@ -1,3 +1,5 @@
+'use client'
+
 import clsx from 'clsx'
 import { type ComponentPropsWithoutRef, forwardRef } from 'react'
 import { Avatar } from '@/components/Avatar'

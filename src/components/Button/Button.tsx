@@ -1,3 +1,5 @@
+'use client'
+
 import type { ComponentPropsWithRef, ElementType, ReactNode } from 'react'
 import clsx from 'clsx'
 import type { Variant } from '@/components/Button'

@@ -1,3 +1,5 @@
+'use client'
+
 import type { ReactNode } from 'react'
 import type { MessageStatusProps } from '@/components/Message'
 import { CheckmarkOutline, DoneAllOutline, ErrorIcon, Sending } from '@/assets'

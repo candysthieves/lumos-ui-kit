@@ -1,3 +1,5 @@
+'use client'
+
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import clsx from 'clsx'
