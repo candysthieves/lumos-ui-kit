@@ -84,7 +84,7 @@ export const Default: Story = {
     const [activeId, setActiveId] = useState('feed')
 
     return (
-      <div style={{ width: 240, height: 600, background: '#000', border: '1px solid #333' }}>
+      <div style={{ width: 160, height: 650, background: '#000' }}>
         <Sidebar
           {...args}
           items={items}
