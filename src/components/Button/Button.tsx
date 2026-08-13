@@ -32,6 +32,7 @@ export const Button = <C extends ElementType = 'button'>(
     variant = 'primary',
     disabled = false,
     fullWidth,
+    className,
     ...rest
   } = props
 
@@ -40,7 +41,7 @@ export const Button = <C extends ElementType = 'button'>(
   return (
     <Component
       ref={ref}
-      className={clsx(s.button, 'typography-h3', s[variant], fullWidth && s.fullWidth)}
+      className={clsx(s.button, 'typography-h3', s[variant], fullWidth && s.fullWidth, className)}
       {...(isLink ? { 'aria-disabled': disabled } : { disabled })}
       {...rest}
     />
