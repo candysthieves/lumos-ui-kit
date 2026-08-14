@@ -6,7 +6,7 @@ on:
    - develop
    - SCRUM-49-set-config-to-publish-project-to-npmjs
    - SCRUM-60-refactor-input-component
-   - SCRUM-76-add-sidebar-component
+   - SCRUM-53-fix-adaptive-header
 jobs:
   build:
     runs-on: ubuntu-latest
