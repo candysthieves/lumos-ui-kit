@@ -1,0 +1,178 @@
+@use '@/styles/mixins' as *;
+
+.header {
+  width: 100%;
+  min-height: 3.75rem;
+  border-bottom: 1px solid var(--color-dark-300);
+
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-700);
+}
+
+.container {
+  @include container;
+  @include flex(flex, space-between, center);
+
+  min-height: 3.75rem;
+}
+
+.logo {
+  color: var(--color-light-100);
+}
+
+.actions {
+  @include flex(flex, flex-end, center);
+
+  gap: 2.25rem;
+}
+
+.notificationButton {
+  @include width-height(1.5rem);
+
+  min-width: 1.5rem;
+  padding: 0;
+  border: 0;
+  color: var(--color-light-100);
+
+  @include transition-basic(color);
+
+  &:hover {
+    color: var(--color-light-900);
+  }
+
+  &:focus-visible {
+    border-radius: 2px;
+    outline: 2px solid var(--color-accent-700);
+    outline-offset: 2px;
+  }
+}
+
+.mobileMenuButton {
+  @include width-height(1.5rem);
+
+  display: none;
+
+  min-width: 1.5rem;
+  padding: 0;
+  border: 0;
+
+  color: var(--color-light-100);
+
+  @include transition-basic(color);
+
+  &:hover {
+    color: var(--color-light-900);
+  }
+
+  &:focus-visible {
+    border-radius: 2px;
+    outline: 2px solid var(--color-accent-700);
+    outline-offset: 2px;
+  }
+}
+
+.mobileMenu {
+  display: none;
+}
+
+.mobileMenuItem {
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 2.25rem;
+  padding: 0.375rem 0.7rem;
+}
+
+.languageSelect {
+  width: 10.2rem;
+  min-height: 2.25rem;
+  padding: 0.375rem 0.7rem;
+}
+
+.authActions {
+  @include flex(flex, flex-end, center);
+
+  gap: 1.5rem;
+}
+
+@include media-tablet {
+  .container {
+    flex-wrap: wrap;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .authActions {
+    gap: 0.5rem;
+  }
+}
+
+@include media-mobile {
+  .container {
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+
+    min-height: 3.75rem;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .actions {
+    position: relative;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+    width: auto;
+  }
+
+  .notificationButton,
+  .authActions {
+    display: none;
+  }
+
+  .mobileMenuButton {
+    @include flex(inline-flex, center, center);
+  }
+
+  .mobileMenu {
+    position: absolute;
+    z-index: 20;
+    top: calc(100% + 0.5rem);
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 8.5rem;
+    border: 1px solid var(--color-dark-100);
+    border-radius: 2px;
+
+    background-color: var(--color-dark-500);
+  }
+
+  .languageSelect {
+    width: 2.625rem;
+    min-height: 1.5rem;
+    padding: 0;
+    border: 0;
+  }
+
+  .languageSelectContent {
+    min-width: 10.2rem;
+  }
+
+  .languageValue {
+    display: none;
+  }
+
+  .languageIcon {
+    margin-left: 0.125rem;
+
+    svg {
+      @include width-height(1rem);
+    }
+  }
+}
