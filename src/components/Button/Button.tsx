@@ -29,10 +29,10 @@ export const Button = <C extends ElementType = 'button'>(
   const {
     ref,
     as: Component = 'button',
-    className,
     variant = 'primary',
     disabled = false,
     fullWidth,
+    className,
     ...rest
   } = props
 

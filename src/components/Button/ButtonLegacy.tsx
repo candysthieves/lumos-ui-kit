@@ -76,13 +76,14 @@ export const ButtonLegacy = forwardRef(
       fullWidth,
       as: Component = 'button',
       disabled = false,
+      className,
       ...rest
     } = props
     const isLink = Component === 'a'
 
     return (
       <Component
-        className={clsx(s.button, 'typography-h3', s[variant], fullWidth && s.fullWidth)}
+        className={clsx(s.button, 'typography-h3', s[variant], fullWidth && s.fullWidth, className)}
         ref={ref}
         {...(isLink ? { 'aria-disabled': disabled } : { disabled })}
         {...rest}

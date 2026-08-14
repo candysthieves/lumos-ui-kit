@@ -53,7 +53,7 @@ export const Text: Story = {
   },
 }
 
-export const PrimaryFullWidth: Story = {
+export const PrimaryFullWidthDisabled: Story = {
   args: {
     children: 'Button',
     disabled: true,
