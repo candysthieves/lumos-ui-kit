@@ -29,6 +29,7 @@ export const Button = <C extends ElementType = 'button'>(
   const {
     ref,
     as: Component = 'button',
+    className,
     variant = 'primary',
     disabled = false,
     fullWidth,
@@ -36,11 +37,10 @@ export const Button = <C extends ElementType = 'button'>(
   } = props
 
   const isLink = typeof Component === 'string' && Component.toLowerCase() === 'a'
-
   return (
     <Component
       ref={ref}
-      className={clsx(s.button, 'typography-h3', s[variant], fullWidth && s.fullWidth)}
+      className={clsx(s.button, 'typography-h3', s[variant], fullWidth && s.fullWidth, className)}
       {...(isLink ? { 'aria-disabled': disabled } : { disabled })}
       {...rest}
     />

@@ -131,6 +131,9 @@ export const Language: Story = {
   args: {
     className: s.languageTrigger,
     defaultValue: 'russian',
+    triggerProps: {
+      'aria-label': 'Language',
+    },
     options: [
       {
         value: 'russian',
