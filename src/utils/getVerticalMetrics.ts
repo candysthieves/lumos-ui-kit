@@ -1,4 +1,4 @@
-import type { VerticalMetrics } from '@/components/types'
+import type { VerticalMetrics } from '@/types'
 
 export const getVerticalMetrics = (viewport: HTMLDivElement): null | VerticalMetrics => {
   const { clientHeight, scrollHeight } = viewport

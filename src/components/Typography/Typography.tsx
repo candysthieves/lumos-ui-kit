@@ -12,6 +12,7 @@ export type TypographyVariant =
   | 'caption2'
   | 'caution'
   | 'caution-error'
+  | 'form-error'
   | 'h1'
   | 'h2'
   | 'h3'
@@ -51,6 +52,7 @@ const tagMapping: Record<TypographyVariant, ElementType> = {
   // The following is used in reCAPTCHA
   caution: 'div',
   'caution-error': 'div',
+  'form-error': 'div',
   signature: 'span',
   'signature-legal': 'span',
 }
