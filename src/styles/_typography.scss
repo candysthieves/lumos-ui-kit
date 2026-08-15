@@ -131,6 +131,18 @@
   color: var(--color-danger-500) !important; // in Figma FF0000
 }
 
+// Form - error
+.typography-form-error {
+  @include typography(
+    var(--font-size-xs),
+    var(--line-height-xxs),
+    var(--font-weight-regular),
+    var(--font-family-secondary)
+  );
+
+  color: var(--color-danger-500) !important;
+}
+
 // Recaptcha - signature
 .typography-signature {
   @include typography(
