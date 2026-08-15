@@ -32,6 +32,7 @@ const meta = {
         'subtitle-link',
         'caution',
         'caution-error',
+        'form-error',
         'signature',
         'signature-legal',
       ],
@@ -52,6 +53,7 @@ const meta = {
   - \`variant="subtitle-link"\` - renders "small_link" typography as Anchor link
   - \`variant="caution"\` - renders "caution" typography used in reCAPTCHA
   - \`variant="caution-error"\` - renders "caution-error" typography used in reCAPTCHA
+  - \`variant="form-error"\` - renders "form-error" typography used in form error messages
   - \`variant="signature"\` - renders "signature" typography used in reCAPTCHA
   - \`variant="signature-legal"\` - renders "signature-legal" typography used in reCAPTCHA`,
       table: {
@@ -248,6 +250,9 @@ export const AllTypography: Story = {
       <Typography {...args} variant={'caution-error'}>
         Caution Error (used only in reCAPTCHA)
       </Typography>
+      <Typography {...args} variant={'form-error'}>
+        Form Error (used in form error messages)
+      </Typography>
       <Typography {...args} variant={'signature'}>
         Signature
       </Typography>
@@ -310,5 +315,12 @@ export const TypographyCautionError: Story = {
   args: {
     variant: 'caution-error',
     children: 'Typography with caution error',
+  },
+}
+
+export const TypographyFormError: Story = {
+  args: {
+    variant: 'form-error',
+    children: 'Typography with form message error',
   },
 }

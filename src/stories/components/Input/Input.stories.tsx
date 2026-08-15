@@ -75,7 +75,8 @@ export const Error: Story = {
   args: {
     label: 'Email',
     placeholder: 'Enter email',
-    error: 'Invalid email',
+    error:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut l...',
     type: 'email',
   },
 }
