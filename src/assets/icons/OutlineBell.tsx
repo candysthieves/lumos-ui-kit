@@ -1,3 +1,5 @@
+'use client'
+
 import { forwardRef, memo, type Ref } from 'react'
 import type { IconProps } from '@/utils'
 

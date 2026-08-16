@@ -73,11 +73,6 @@
   @include typography(var(--font-size-s), var(--line-height-l), var(--font-weight-regular));
 }
 
-// error (based on regular_text 14)
-.typography-body1 {
-  @include typography(var(--font-size-s), var(--line-height-l), var(--font-weight-regular));
-}
-
 // medium_text 14
 .typography-body2 {
   @include typography(var(--font-size-s), var(--line-height-l), var(--font-weight-medium));
@@ -120,7 +115,7 @@
     var(--font-size-xs),
     var(--line-height-xxs),
     var(--font-weight-medium),
-    var(--second-family)
+    var(--font-family-secondary)
   );
 }
 
@@ -130,10 +125,22 @@
     var(--font-size-xxs),
     var(--line-height-xxs),
     var(--font-weight-regular),
-    var(--second-family)
+    var(--font-family-secondary)
   );
 
   color: var(--color-danger-500) !important; // in Figma FF0000
+}
+
+// Form - error
+.typography-form-error {
+  @include typography(
+    var(--font-size-xs),
+    var(--line-height-xxs),
+    var(--font-weight-regular),
+    var(--font-family-secondary)
+  );
+
+  color: var(--color-danger-500) !important;
 }
 
 // Recaptcha - signature
@@ -142,7 +149,7 @@
     var(--font-size-3xs),
     var(--line-height-3xs),
     var(--font-weight-medium),
-    var(--second-family)
+    var(--font-family-secondary)
   );
 }
 
@@ -152,6 +159,6 @@
     var(--font-size-4xs),
     var(--line-height-xxs),
     var(--font-weight-medium),
-    var(--second-family)
+    var(--font-family-secondary)
   );
 }

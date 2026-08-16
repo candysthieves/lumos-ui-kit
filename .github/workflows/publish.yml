@@ -1,0 +1,33 @@
+name: Publish to NPM
+on:
+  push:
+   branches:
+   - main
+   - develop
+   - SCRUM-49-set-config-to-publish-project-to-npmjs
+   - SCRUM-60-refactor-input-component
+   - SCRUM-60-refactor-input-component-part3
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [24]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 10
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+      - name: Build lib
+        run: pnpm run build
+      - uses: JS-DevTools/npm-publish@v4
+        with:
+          token: ${{ secrets.NPM_PUBLISH_TOKEN }}
+          access: 'public'

@@ -1,6 +1,8 @@
-import { SearchOutline } from '@/assets/icons'
-import type { InputProps } from '../Input/Input'
-import { Input } from '../Input'
+'use client'
+
+import type { InputProps } from '@/components'
+import { SearchOutline } from '@/assets'
+import { Input } from '@/components'
 
 export type SearchInputProps = Omit<InputProps, 'startAdornment'>
 

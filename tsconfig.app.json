@@ -12,7 +12,9 @@
     "allowImportingTsExtensions": false,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-    "noEmit": true,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+
     "jsx": "react-jsx",
     "noImplicitAny": true,
 
@@ -26,5 +28,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", ".storybook/**/*", "vite-env.d.ts"]
+  "include": ["src/**/*", "vite-env.d.ts"]
 }
