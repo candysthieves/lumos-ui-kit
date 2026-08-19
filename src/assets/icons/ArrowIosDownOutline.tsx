@@ -8,7 +8,7 @@ const ArrowIosDownOutlineSvg = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg xmlns={'http://www.w3.org/2000/svg'} viewBox={'0 0 24 24'} fill={'none'} {...props}>
       <svg xmlns={'http://www.w3.org/2000/svg'} width={'24'} height={'24'} fill={'none'}>
-        <g clip-path={'url(#arrow-ios-down-outline)'}>
+        <g clipPath={'url(#arrow-ios-down-outline)'}>
           <path
             fill={fill}
             d={
