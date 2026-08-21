@@ -1,3 +1,5 @@
+'use client'
+
 import { type InputHTMLAttributes, useState } from 'react'
 import { EyeOffOutline, EyeOutline } from '@/assets'
 import { Input } from '@/components'

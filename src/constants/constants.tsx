@@ -1,4 +1,6 @@
-import type { ProgressThemeColor } from '@/types'
+import type { HeaderLanguageOption, ProgressThemeColor } from '@/types'
+import { FlagEng } from '@/assets/icons/FlagEng'
+import { FlagRus } from '@/assets/icons/FlagRus'
 
 export const COLOR_MAP: Record<ProgressThemeColor, string> = {
   error: 'var(--color-danger-500)',
@@ -15,3 +17,21 @@ export const WAVE_FORM = [
   13, 19, 26, 22, 16, 12, 10, 15, 21, 25, 18, 14, 11, 17, 23, 20, 15, 12, 10, 14, 19, 24, 21, 16,
   13, 11, 16, 20, 17, 13, 10,
 ]
+
+export const DEFAULT_HEADER_LANGUAGE_OPTIONS: HeaderLanguageOption[] = [
+  {
+    value: 'english',
+    label: 'English',
+    icon: <FlagEng size={20} />,
+  },
+  {
+    value: 'russian',
+    label: 'Russian',
+    icon: <FlagRus size={20} />,
+  },
+]
+
+export const TAB_INDEX = {
+  ENABLED: 0,
+  DISABLED: -1,
+} as const

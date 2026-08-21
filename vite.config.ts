@@ -6,7 +6,7 @@ import { resolve } from 'path'
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import pkg from './package.json' with { type: 'json' }
-const { dependencies, devDependencies } = pkg
+const { dependencies } = pkg
 
 const dirname =
   typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
@@ -25,9 +25,11 @@ export default defineConfig({
       // make sure to externalize deps that shouldn't be bundled
       // into your library
       external: [
+        'react',
+        'react-dom',
         'react/jsx-runtime',
+        'react/jsx-dev-runtime',
         ...Object.keys(dependencies),
-        ...Object.keys(devDependencies),
       ],
     },
     sourcemap: true,
