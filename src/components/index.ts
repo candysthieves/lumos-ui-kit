@@ -1,4 +1,5 @@
 export * from './Alert'
+export * from './ActionMenu'
 export * from './AudioPlayer'
 export * from './Avatar'
 export * from './Button'

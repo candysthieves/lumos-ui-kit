@@ -1,8 +1,9 @@
-import type { ComponentPropsWithoutRef, KeyboardEvent } from 'react'
+import type { ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
-import { useId, useRef, useState } from 'react'
+import { useState } from 'react'
 import type { HeaderLanguage, HeaderLanguageOption } from '@/types'
-import { ArrowIosDownOutline, MoreHorizontalOutline, OutlineBell } from '@/assets'
+import { ArrowIosDownOutline, OutlineBell } from '@/assets'
+import { ActionMenu, type ActionMenuItem } from '@/components/ActionMenu'
 import { Button } from '@/components/Button'
 import { Select, type SelectItem } from '@/components/Select'
 import { Typography } from '@/components/Typography'
@@ -45,9 +46,6 @@ export const Header = ({
   ...props
 }: HeaderProps) => {
   const [internalLanguage, setInternalLanguage] = useState<HeaderLanguage>(defaultLanguage)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const mobileMenuId = useId()
-  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null)
   const selectedLanguage = language ?? internalLanguage
   const notificationAccessibleLabel =
     notificationCount > 0 ? `${notificationLabel}, ${notificationCount} unread` : notificationLabel
@@ -67,27 +65,18 @@ export const Header = ({
     onLanguageChange?.(nextLanguage)
   }
 
-  const handleMobileNotificationClick = () => {
-    setIsMobileMenuOpen(false)
-    onNotificationClick?.()
-  }
-
-  const handleMobileLogInClick = () => {
-    setIsMobileMenuOpen(false)
-    onLogInClick?.()
-  }
-
-  const handleMobileSignUpClick = () => {
-    setIsMobileMenuOpen(false)
-    onSignUpClick?.()
-  }
-
-  const handleMobileMenuKeyDown = (event: KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => {
-    if (event.key === 'Escape') {
-      setIsMobileMenuOpen(false)
-      mobileMenuButtonRef.current?.focus()
-    }
-  }
+  const mobileAuthMenuItems: ActionMenuItem[] = [
+    {
+      id: 'log-in',
+      label: logInLabel,
+      onSelect: onLogInClick,
+    },
+    {
+      id: 'sign-up',
+      label: signUpLabel,
+      onSelect: onSignUpClick,
+    },
+  ]
 
   return (
     <header className={clsx(s.header, className)} {...props}>
@@ -142,54 +131,13 @@ export const Header = ({
             </div>
           )}
 
-          <Button
-            ref={mobileMenuButtonRef}
-            type={'button'}
-            variant={'text'}
-            className={s.mobileMenuButton}
-            aria-controls={mobileMenuId}
-            aria-expanded={isMobileMenuOpen}
-            aria-label={mobileMenuLabel}
-            onClick={() => setIsMobileMenuOpen(isOpen => !isOpen)}
-            onKeyDown={handleMobileMenuKeyDown}
-          >
-            <MoreHorizontalOutline size={24} />
-          </Button>
-
-          {isMobileMenuOpen && (
-            <div id={mobileMenuId} className={s.mobileMenu} onKeyDown={handleMobileMenuKeyDown}>
-              {isAuthenticated ? (
-                <Button
-                  type={'button'}
-                  variant={'text'}
-                  className={s.mobileMenuItem}
-                  onClick={handleMobileNotificationClick}
-                >
-                  {notificationCount > 0
-                    ? `${notificationLabel} (${notificationCount})`
-                    : notificationLabel}
-                </Button>
-              ) : (
-                <>
-                  <Button
-                    type={'button'}
-                    variant={'text'}
-                    className={s.mobileMenuItem}
-                    onClick={handleMobileLogInClick}
-                  >
-                    {logInLabel}
-                  </Button>
-                  <Button
-                    type={'button'}
-                    variant={'text'}
-                    className={s.mobileMenuItem}
-                    onClick={handleMobileSignUpClick}
-                  >
-                    {signUpLabel}
-                  </Button>
-                </>
-              )}
-            </div>
+          {!isAuthenticated && (
+            <ActionMenu
+              ariaLabel={mobileMenuLabel}
+              items={mobileAuthMenuItems}
+              triggerClassName={s.mobileMenuButton}
+              contentClassName={s.mobileMenu}
+            />
           )}
         </div>
       </div>
