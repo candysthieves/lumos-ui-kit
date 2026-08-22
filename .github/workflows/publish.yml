@@ -6,7 +6,7 @@ on:
    - develop
    - SCRUM-49-set-config-to-publish-project-to-npmjs
    - SCRUM-60-refactor-input-component
-   - SCRUM-58-add-icons-component
+   - SCRUM-59-add-modal-component
 jobs:
   build:
     runs-on: ubuntu-latest
