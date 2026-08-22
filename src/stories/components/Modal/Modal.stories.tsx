@@ -512,3 +512,96 @@ export const NestedModals: Story = {
     },
   },
 }
+
+export const ConfirmOnOutsideClick: Story = {
+  render: () => {
+    const [isCreationOpen, setIsCreationOpen] = useState(false)
+    const [isConfirmOpen, setIsConfirmOpen] = useState(false)
+
+    const openCreation = () => setIsCreationOpen(true)
+
+    const closeCreation = () => {
+      setIsCreationOpen(false)
+      setIsConfirmOpen(false)
+    }
+
+    const openConfirm = () => setIsConfirmOpen(true)
+
+    const closeConfirm = () => setIsConfirmOpen(false)
+
+    /**
+     * It is important to add event.preventDefault() to handleOutsideClick function to avoid closing modal by modal Outside Click
+     */
+    const handleOutsideClick = (event: Event) => {
+      event.preventDefault()
+      openConfirm()
+    }
+
+    const handleConfirm = () => {
+      closeCreation()
+    }
+
+    return (
+      <div className={s.wrapper}>
+        <Button variant={'primary'} onClick={openCreation}>
+          Create Publication
+        </Button>
+
+        <Modal
+          open={isCreationOpen}
+          onClose={closeCreation}
+          modalTitle={'Create Publication'}
+          showHeader
+          size={'l'}
+          onInteractOutside={handleOutsideClick}
+        >
+          <div className={s.modalContent}>
+            <Typography variant={'subtitle1'}>
+              Fill in the information to create a new publication.
+            </Typography>
+
+            <div className={s.modalControls}>
+              <Button variant={'secondary'} onClick={closeCreation}>
+                Close
+              </Button>
+            </div>
+          </div>
+        </Modal>
+
+        <Modal
+          open={isConfirmOpen}
+          onClose={closeConfirm}
+          modalTitle={'Close publication creation?'}
+          showHeader
+          size={'xs'}
+        >
+          <div className={s.modalContent}>
+            <Typography variant={'subtitle1'}>
+              Do you really want to close the creation of a publication? If you close everything
+              will be deleted.
+            </Typography>
+
+            <div className={s.modalControls}>
+              <Button variant={'secondary'} onClick={closeConfirm}>
+                Cancel
+              </Button>
+
+              <Button variant={'primary'} onClick={handleConfirm}>
+                Confirm
+              </Button>
+            </div>
+          </div>
+        </Modal>
+      </div>
+    )
+  },
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Clicking outside the creation modal prevents it from closing and opens a confirmation modal instead.',
+      },
+    },
+  },
+}

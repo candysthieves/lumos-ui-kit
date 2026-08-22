@@ -85,7 +85,9 @@
 // WithPostContent
 .postContainer {
   display: grid;
-  grid-template-columns: 1fr 26.25rem;
+
+  // grid-template-columns: 1fr 26.25rem;
+  grid-template-columns: 1fr 40%;
   height: 80vh;
 }
 
