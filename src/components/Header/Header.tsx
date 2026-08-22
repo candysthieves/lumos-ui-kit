@@ -17,6 +17,7 @@ export type HeaderProps = {
   language?: HeaderLanguage
   languageOptions?: HeaderLanguageOption[]
   logInLabel?: string
+  mobileAuthenticatedMenuItems?: ActionMenuItem[]
   mobileMenuLabel?: string
   notificationCount?: number
   notificationLabel?: string
@@ -35,6 +36,7 @@ export const Header = ({
   language,
   languageOptions = DEFAULT_HEADER_LANGUAGE_OPTIONS,
   logInLabel = 'Log in',
+  mobileAuthenticatedMenuItems,
   mobileMenuLabel = 'Open menu',
   notificationCount = 0,
   notificationLabel = 'Notifications',
@@ -77,6 +79,17 @@ export const Header = ({
       onSelect: onSignUpClick,
     },
   ]
+  const mobileAuthenticatedFallbackItems: ActionMenuItem[] = [
+    {
+      id: 'notifications',
+      label:
+        notificationCount > 0 ? `${notificationLabel} (${notificationCount})` : notificationLabel,
+      onSelect: onNotificationClick,
+    },
+  ]
+  const mobileMenuItems = isAuthenticated
+    ? (mobileAuthenticatedMenuItems ?? mobileAuthenticatedFallbackItems)
+    : mobileAuthMenuItems
 
   return (
     <header className={clsx(s.header, className)} {...props}>
@@ -131,14 +144,12 @@ export const Header = ({
             </div>
           )}
 
-          {!isAuthenticated && (
-            <ActionMenu
-              ariaLabel={mobileMenuLabel}
-              items={mobileAuthMenuItems}
-              triggerClassName={s.mobileMenuButton}
-              contentClassName={s.mobileMenu}
-            />
-          )}
+          <ActionMenu
+            ariaLabel={mobileMenuLabel}
+            items={mobileMenuItems}
+            triggerClassName={s.mobileMenuButton}
+            contentClassName={s.mobileMenu}
+          />
         </div>
       </div>
     </header>
