@@ -3,6 +3,8 @@
 .trigger {
   @include width-height(1.5rem);
 
+  cursor: pointer;
+
   min-width: 1.5rem;
   padding: 0;
   border: 0;
