@@ -18,6 +18,19 @@ Follow the confirmed pattern from `Typography` and `RadioGroup`:
 - Use `src/demo` for visual test stands, Storybook-only demo components, responsive playgrounds, showcase components, temporary playground components, and demo-only helpers or mock data.
 - Do not put reusable UI Kit components, public props/types, shared tokens, shared mixins or runtime application code in `src/demo`.
 
+## Project Structure
+
+Follow the existing source structure when placing frontend code:
+
+- `src/components/<ComponentName>/` contains reusable UI Kit components, their SCSS Modules and local public `index.ts` exports.
+- `src/stories/components/<ComponentName>/` contains Storybook stories and story-only helpers for that component.
+- `src/demo/<DemoName>/` contains demo-only visual stands and temporary playground code.
+- `src/constants/` contains shared constants exported through `src/constants/index.ts`.
+- `src/types/` contains shared public types exported through `src/types/index.ts`.
+- `src/utils/` contains reusable framework-agnostic helpers.
+- `src/hooks/` contains reusable React hooks.
+- `src/styles/` contains global tokens, mixins and global stylesheet entry points.
+
 ## TypeScript, Props, Refs and Exports
 
 - Do not use `any`; `tsconfig.app.json` enables `noImplicitAny`.
@@ -76,6 +89,25 @@ Confirmed project naming:
 - Story exports: `PascalCase`, for example `Default`, `DisabledItem`, `AllTypography`.
 - Props and types: `PascalCase` with meaningful suffixes, for example `RadioGroupProps`, `RadioOption`, `TypographyVariant`.
 - SCSS module classes are mostly camelCase; hyphenated classes exist for variants such as `align-left`.
+
+Follow the team Google Style Guide naming rules:
+
+- Use descriptive names; avoid one-letter variables outside short loop counters, avoid unclear abbreviations, placeholder names such as `foo`, leading underscores, and numeric suffixes such as `book1` unless the number is part of the domain name.
+- Variables, arrays, objects and functions use `camelCase`, for example `users`, `getRandomNumber`, `startOfWeek`.
+- Constants use `CONSTANT_CASE`, for example `MAX_LENGTH`, `COLOR_MAP`, `DEFAULT_HEADER_LANGUAGE_OPTIONS`.
+- Functions should do one thing and be named for that operation. Prefer established verbs consistently, for example `getProfile`, `getNews`, `getPosts`.
+- Use common operation names where they exist, for example `trimPath` or `truncatePath`.
+- Enums use `PascalCase`, for example `Direction`; do not use `DIRECTION` or `direction` for enum names.
+- Exported component props use `<ComponentName>Props`, for example `ButtonProps` or `HeaderProps`.
+- Local, non-exported component props may use `Props`.
+- Do not add `Type` suffixes to type names, for example use `User`, not `UserType`.
+
+File naming rules:
+
+- Component files use `PascalCase`, for example `ImagePreview.tsx`.
+- Non-component files use `camelCase`, for example `appSlice.ts`, `appSelectors.ts`, `handleServerAppError.ts`, `useDebounce.ts`, `authApi.ts`.
+- Use dot-separated suffixes for typed companion files, stories and tests, for example `authApi.types.ts`, `SignIn.stories.tsx`, `authSlice.test.ts`.
+- Put tests in a `__tests__` directory when adding colocated test suites.
 
 ## Storybook
 
