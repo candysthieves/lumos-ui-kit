@@ -78,3 +78,7 @@ Specific procedures and documentation for concrete task types live in `./agent-d
 - [./agent-docs/execplans.md](./agent-docs/execplans.md) - use for planning large, multi-step or risky tasks.
 - [./agent-docs/frontend.md](./agent-docs/frontend.md) - use for creating or changing UI components, SCSS Modules, Storybook stories and frontend code.
 - [./agent-docs/architecture.md](./agent-docs/architecture.md) - use only for work that requires substantial architectural changes.
+
+## Storybook Content Rules
+
+- Header stories must use `Lumos` as the default `brandName`; do not use third-party product names as stand-ins for the Lumos brand.
