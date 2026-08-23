@@ -1,4 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { fn } from 'storybook/test'
+import type { ActionMenuItem } from '@/components/ActionMenu'
+import { BookmarkOutline, LogOutOutline, SettingsOutline, TrendingUpOutline } from '@/assets'
 import { Header } from '@/components/Header'
 
 const meta = {
@@ -35,6 +38,9 @@ const meta = {
     logInLabel: {
       control: 'text',
     },
+    mobileAuthenticatedMenuItems: {
+      control: false,
+    },
     mobileMenuLabel: {
       control: 'text',
     },
@@ -63,11 +69,39 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
+const profileMenuItems: ActionMenuItem[] = [
+  {
+    icon: <SettingsOutline size={24} />,
+    id: 'profile-settings',
+    label: 'Profile Settings',
+    onSelect: fn(),
+  },
+  {
+    icon: <TrendingUpOutline size={24} />,
+    id: 'statistics',
+    label: 'Statistics',
+    onSelect: fn(),
+  },
+  {
+    icon: <BookmarkOutline size={24} />,
+    id: 'favorites',
+    label: 'Favorites',
+    onSelect: fn(),
+  },
+  {
+    icon: <LogOutOutline size={24} />,
+    id: 'log-out',
+    label: 'Log Out',
+    onSelect: fn(),
+  },
+]
+
 export const Authorized: Story = {
   args: {
     brandName: 'Lumos',
     defaultLanguage: 'english',
     isAuthenticated: true,
+    mobileAuthenticatedMenuItems: profileMenuItems,
     mobileMenuLabel: 'Open menu',
     notificationCount: 3,
     notificationLabel: 'Notifications',
