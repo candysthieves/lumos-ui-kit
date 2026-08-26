@@ -102,14 +102,7 @@ export const ControlsSizes: Story = {
       </div>
 
       <div>
-        <p style={{ color: '#fff', marginBottom: 8 }}>m</p>
-        <div style={{ width: 400, height: 400 }}>
-          <Carousel {...args} controlsSize={'m'} />
-        </div>
-      </div>
-
-      <div>
-        <p style={{ color: '#fff', marginBottom: 8 }}>l (default)</p>
+        <p style={{ color: '#fff', marginBottom: 8 }}>l (default, post detail)</p>
         <div style={{ width: 600, height: 600 }}>
           <Carousel {...args} controlsSize={'l'} />
         </div>

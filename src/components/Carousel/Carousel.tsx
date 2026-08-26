@@ -9,7 +9,7 @@ import s from './Carousel.module.scss'
 
 export type CarouselProps = {
   slides: ReactNode[]
-  controlsSize?: 'l' | 'm' | 's'
+  controlsSize?: 'l' | 's'
 }
 
 // must match .slide { width: 100% } in Carousel.module.scss

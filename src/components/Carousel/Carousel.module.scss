@@ -96,27 +96,10 @@
   background: var(--color-accent-500);
 }
 
-@mixin carousel-controls-size($arrow-size, $dot-size) {
-  .arrowButton {
-    @include width-height($arrow-size);
-  }
-
-  .dots {
-    gap: $dot-size;
-    padding: $dot-size;
-  }
-
-  .dot {
-    @include width-height($dot-size);
-  }
-}
-
-.m {
-  @include carousel-controls-size(2.25rem, 0.35rem);
-}
-
 .s {
-  @include carousel-controls-size(1.5rem, 0.25rem);
+  .arrowButton {
+    @include width-height(1.5rem);
+  }
 
   .prev {
     left: 0.5rem;
@@ -124,5 +107,14 @@
 
   .next {
     right: 0.5rem;
+  }
+
+  .dots {
+    gap: 0.25rem;
+    padding: 0.25rem;
+  }
+
+  .dot {
+    @include width-height(0.375rem);
   }
 }
