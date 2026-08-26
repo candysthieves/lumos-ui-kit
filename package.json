@@ -1,7 +1,7 @@
 {
   "name": "@candy.thieves/ui-kit-lumos",
   "private": false,
-  "version": "0.0.35",
+  "version": "0.0.36",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
