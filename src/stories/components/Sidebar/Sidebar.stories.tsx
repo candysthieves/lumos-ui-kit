@@ -18,6 +18,7 @@ import {
   TrendingUpOutline,
 } from '@/assets'
 import { Sidebar, type SidebarItem } from '@/components/Sidebar'
+import { CURRENT_USER_ID } from '@/stories/constants'
 
 const meta: Meta<typeof Sidebar> = {
   title: 'Components/Sidebar',
@@ -37,7 +38,7 @@ const items: SidebarItem[] = [
   { id: 'feed', href: '/feed', icon: <HomeOutline />, activeIcon: <Home />, label: 'Feed' },
   {
     id: 'create',
-    href: '/create',
+    href: (userId: string) => `/profile/${userId}?action=create`,
     icon: <PlusSquareOutline />,
     activeIcon: <PlusSquare />,
     label: 'Create',
@@ -88,6 +89,7 @@ export const Default: Story = {
         <Sidebar
           {...args}
           items={items}
+          userId={CURRENT_USER_ID}
           activeId={activeId}
           onValueChange={id => {
             setActiveId(id)
@@ -113,6 +115,7 @@ export const WithDisabledItem: Story = {
         <Sidebar
           {...args}
           items={itemsWithDisabled}
+          userId={CURRENT_USER_ID}
           activeId={activeId}
           onValueChange={id => {
             setActiveId(id)
