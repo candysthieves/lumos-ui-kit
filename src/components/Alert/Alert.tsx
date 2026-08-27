@@ -48,14 +48,19 @@ export const Alert = ({
           </Typography>
         )}
 
-        {isStringContent && <Typography variant={'subtitle1'}>{children}</Typography>}
+        {isStringContent && (
+          <Typography className={s.body} variant={'subtitle1'}>
+            {children}
+          </Typography>
+        )}
 
         {isFieldErrors && (
           <ul className={s.errorList}>
             {errors.map((err, index) => (
               <li key={`${err.field}-${index}`}>
                 <Typography variant={'subtitle1'}>
-                  <b className={s.errorField}>{err.field}:</b> <span>{err.message}</span>
+                  <b className={s.errorField}>{err.field}:</b>{' '}
+                  <span className={s.errorMessage}>{err.message}</span>
                 </Typography>
               </li>
             ))}
