@@ -35,10 +35,20 @@
 
   flex-wrap: wrap;
   gap: 0.25rem;
+  min-width: 0;
 }
 
-.title {
-  white-space: nowrap;
+.title,
+.body,
+.errorField,
+.errorMessage {
+  overflow-wrap: break-word;
+}
+
+.title,
+.body,
+.errorList {
+  min-width: 0;
 }
 
 .closeBtn {
