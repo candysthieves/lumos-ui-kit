@@ -1,0 +1,123 @@
+@use '@/styles/mixins' as *;
+
+%max-width {
+  max-width: 22.5rem;
+}
+
+.message {
+  @extend %max-width;
+
+  gap: 0.75rem;
+
+  &:not(.outgoing) {
+    align-self: flex-start;
+    margin-right: auto;
+  }
+
+  & + & {
+    margin-top: 1.5rem;
+  }
+
+  @include flex(flex, none, flex-end);
+}
+
+.outgoing {
+  flex-direction: row-reverse;
+  align-self: flex-end;
+  margin-left: auto;
+
+  .content {
+    align-items: flex-end;
+  }
+
+  .bubble {
+    background: var(--color-accent-900);
+  }
+}
+
+.avatar {
+  flex-shrink: 0;
+}
+
+.content {
+  @extend %max-width;
+
+  @include flex(flex, none, none);
+
+  flex-direction: column;
+  gap: 0.375rem;
+
+  @include media-tablet {
+    max-width: calc(100% - 3.25rem);
+  }
+}
+
+.messageInfo {
+  @include flex(flex, flex-end, center);
+
+  gap: 0.125rem;
+}
+
+.time {
+  align-self: flex-end;
+}
+
+.bubble {
+  @include flex(flex, flex-start, none);
+
+  flex-direction: column;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: var(--color-dark-300);
+}
+
+.card {
+  padding: 0;
+  border-radius: unset;
+  background: unset;
+}
+
+.text {
+  white-space: pre-wrap;
+}
+
+// Reply
+.reply {
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-left: 3px solid var(--color-success-500);
+  border-radius: 0.5rem;
+
+  background: var(--color-dark-300);
+}
+
+.replyText {
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Message Status
+.status {
+  @include flex(flex, flex-end, center);
+
+  margin-top: 0.125rem;
+}
+
+// Attachment
+.attachment {
+  margin-bottom: 0.5rem;
+}
+
+.image {
+  @extend %max-width;
+
+  display: block;
+  width: 100%;
+  object-fit: cover;
+
+  @include media-tablet {
+    max-width: 100%;
+  }
+}

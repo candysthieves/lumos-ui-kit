@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist/types"
+  },
+  "exclude": [
+    "src/**/*.stories.ts",
+    "src/**/*.stories.tsx",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/stories/**/*",
+    "src/storybook-utils/**/*",
+    "node_modules"
+  ]
+}

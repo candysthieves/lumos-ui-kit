@@ -1,8 +1,10 @@
+'use client'
+
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import clsx from 'clsx'
 import { forwardRef, useId } from 'react'
-import { CheckmarkOutline } from '@/assets/icons'
+import { CheckmarkOutline } from '@/assets'
 import s from './Checkbox.module.scss'
 
 export type CheckboxProps = Omit<

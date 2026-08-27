@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { FlagEng, FlagRus } from '@/assets/icons'
+import { FlagEng, FlagRus } from '@/assets'
 import { Button } from '@/components/Button'
 import { buttonMeta } from '@/storybook-utils'
 
@@ -53,7 +53,7 @@ export const Text: Story = {
   },
 }
 
-export const PrimaryFullWidth: Story = {
+export const PrimaryFullWidthDisabled: Story = {
   args: {
     children: 'Button',
     disabled: true,

@@ -1,4 +1,4 @@
-# Lumos UI Kit
+# Lumos UI-kit
 
 🎨 **Component library for **Lumos app** — a unified design system and interface elements.**
 
@@ -8,8 +8,6 @@ UI Kit is a centralized library of reusable components created to ensure interfa
 The project is built on _React_ and _TypeScript_, using _Storybook_ for component documentation and visual testing. Build is optimized with _Vite_.
 
 👥 Team:
-
-**PM** - _Yana Korotenko_
 
 **Team-lead** - _Vladislav Kravchenko_
 
@@ -21,17 +19,119 @@ The project is built on _React_ and _TypeScript_, using _Storybook_ for componen
 - [VladSkij](https://github.com/VladSkij) - Vladislav Skalskij
 - [tymanskaya](https://github.com/tymanskaya) - Ekaterina Tymanskaya
 
-## 🌐 Deploy
+## 🔄 Deploy
 
-- [Deploy link](https://vercel.com/)
+- [UI-kit Storybook deploy link](https://lumos-ui-kit-storybook.vercel.app/)
 
 ## 🔗 Related Projects
 
-[Lumos app](https://github.com/candysthieves/lumos-ui-kit) — main application using the UI Kit
+[UI-kit Lumos npm-package](https://www.npmjs.com/package/@candy.thieves/ui-kit-lumos) — a UI component library (UI-kit) for the **Lumos** application
+
+[UI-kit Lumos repository](https://github.com/candysthieves/lumos-ui-kit) — UI-kit library repository for the **Lumos** application
+
+[Lumos app repository](https://github.com/candysthieves/client) — main application using the UI-kit
+
+[Lumos app deploy link](https://lumosapp.net/) — deployment link for the application using the UI-kit
 
 [Figma Design](https://www.figma.com/design/UehOuThHVruUR8jcC22FXS/Inctagram?m=auto&t=DixPh2DJFl4iZtwB-6) — mockups and design system
 
-## 🚀Getting Started locally
+## 📋 Instructions for Integrating UI-kit with the app
+
+### 📦 UI-kit library installation
+
+```bash
+npm install @candy.thieves/ui-kit-lumos@latest
+# or
+yarn add @candy.thieves/ui-kit-lumos@latest
+# or
+pnpm add @candy.thieves/ui-kit-lumos@latest
+```
+
+### ⚙️ Basic Setup
+
+🌐 **Global Style import for _React app (Vite, CRA)_**
+
+🎨 _Add the styles to main.tsx:_
+
+```tsx
+// my-vite-app/src/main.tsx
+
+import '@candy.thieves/ui-kit-lumos/dist/index.css'
+```
+
+💻 **Using Components**
+
+```tsx
+// my-vite-app/src/components/MyComponent.tsx
+
+import { Button } from '@candy.thieves/ui-kit-lumos'
+import { Typography } from '@candy.thieves/ui-kit-lumos'
+
+export const MyComponent = () => {
+  return (
+    <div>
+      <Typography variant={'h2'} color={'green'}>
+        How to use UI-kit components
+      </Typography>
+
+      <Button variant="primary" fullWidth onClick={() => console.log('clicked')}>
+        Click me!
+      </Button>
+    </div>
+  )
+}
+```
+
+<hr>
+
+🌐 **Global Style import for _Next.js_ (App Router)**
+
+🎨 _Add the styles to your root layout file:_
+
+```tsx
+// my-next-app/app/layout.tsx
+
+import '@candy.thieves/ui-kit-lumos/dist/index.css'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'My Next.js App',
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+💻 **Using Components**
+
+```tsx
+// my-next-app/components/MyComponent.tsx
+
+'use client'
+
+import { Button, Typography } from '@candy.thieves/ui-kit-lumos'
+
+export const MyComponent = () => {
+  return (
+    <div>
+      <Typography variant={'h2'} color={'green'}>
+        How to use UI-kit components
+      </Typography>
+
+      <Button variant="primary" fullWidth onClick={() => console.log('clicked')}>
+        Click me!
+      </Button>
+    </div>
+  )
+}
+```
+
+## 🚀 Getting started locally with the UI-kit library
 
 Follow these steps to run the application locally:
 
@@ -74,25 +174,6 @@ Follow these steps to run the application locally:
 6.  **Access the application:**
 
     Open your browser and navigate to the link provided in the CLI.*
-
-## Style Guidelines
-
-- Use `rem` for component sizing, spacing, and typography-related values so components respect the root font size.
-- Avoid long decimal values from raw px-to-rem conversion. Round `rem` values to a `0.025rem` step and keep up to 3 decimal places.
-
-  ```scss
-  .trigger {
-    // Good
-    padding: 0.325rem 0.7rem;
-    width: 10.2rem;
-
-    // Avoid
-    padding: 0.3125rem 0.6875rem;
-    width: 10.1875rem;
-  }
-  ```
-
-- Use `px` for values that should stay visually fixed, such as 1px borders, icon strokes, shadows, and breakpoint constants.
 
 ## ⚙️Available Scripts
 

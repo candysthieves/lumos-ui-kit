@@ -1,3 +1,5 @@
+'use client'
+
 import { forwardRef, memo, type Ref, type SVGProps } from 'react'
 
 type LogoSize = 'l' | 'm' | 's' | 'xl' | 'xs'

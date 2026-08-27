@@ -1,3 +1,5 @@
+'use client'
+
 import { forwardRef, type SVGProps } from 'react'
 import { IconBase, type IconProps } from '@/utils'
 

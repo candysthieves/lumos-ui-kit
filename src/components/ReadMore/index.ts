@@ -1,1 +1,1 @@
-export { ReadMore } from './ReadMore'
+export * from './ReadMore'

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { HeartOutline } from '@/assets/icons'
+import { HeartOutline } from '@/assets'
 import { iconMeta } from '@/storybook-utils'
 import s from './Icon.module.scss'
 const meta = {

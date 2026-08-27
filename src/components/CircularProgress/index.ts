@@ -1,1 +1,1 @@
-export { CircularProgress } from './CircularProgress'
+export * from './CircularProgress'

@@ -1,0 +1,78 @@
+@use '@/styles/mixins' as *;
+
+.trigger {
+  @include width-height(1.5rem);
+
+  cursor: pointer;
+
+  min-width: 1.5rem;
+  padding: 0;
+  border: 0;
+
+  color: var(--color-light-100);
+
+  background-color: transparent;
+
+  @include transition-basic(color);
+
+  &:hover {
+    color: var(--color-light-900);
+  }
+
+  &:focus-visible {
+    border-radius: 2px;
+    outline: 2px solid var(--color-accent-700);
+    outline-offset: 2px;
+  }
+}
+
+.content {
+  z-index: 50;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 9rem;
+  padding: 0.75rem 0;
+  border: 1px solid var(--color-dark-100);
+  border-radius: 2px;
+
+  background-color: var(--color-dark-900);
+}
+
+.item {
+  cursor: pointer;
+  user-select: none;
+
+  @include flex(flex, flex-start, center);
+
+  min-height: 2.25rem;
+  padding: 0.375rem 0.75rem;
+
+  color: var(--color-light-100);
+
+  outline: none;
+
+  @include transition-basic(background-color, color);
+
+  &[data-highlighted] {
+    color: var(--color-accent-500);
+    background-color: rgb(51 51 51 / 60%);
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    color: var(--color-dark-100);
+  }
+}
+
+.itemIcon {
+  @include flex(inline-flex, center, center);
+
+  flex: 0 0 auto;
+  margin-right: 0.75rem;
+}
+
+.itemLabel {
+  white-space: nowrap;
+}

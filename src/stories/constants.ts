@@ -43,3 +43,5 @@ export const COLORS = {
     '--color-light-900': '#8d9094',
   },
 } as const
+
+export const CURRENT_USER_ID = '123'
