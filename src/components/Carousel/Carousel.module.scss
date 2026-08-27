@@ -95,3 +95,26 @@
 .dotActive {
   background: var(--color-accent-500);
 }
+
+.s {
+  .arrowButton {
+    @include width-height(1.5rem);
+  }
+
+  .prev {
+    left: 0.5rem;
+  }
+
+  .next {
+    right: 0.5rem;
+  }
+
+  .dots {
+    gap: 0.25rem;
+    padding: 0.25rem;
+  }
+
+  .dot {
+    @include width-height(0.375rem);
+  }
+}

@@ -66,6 +66,17 @@ export const Default: Story = {
   ),
 }
 
+export const SingleSlide: Story = {
+  args: {
+    slides: placeholderSlides.slice(0, 1),
+  },
+  render: args => (
+    <div style={{ width: 400, height: 400 }}>
+      <Carousel {...args} />
+    </div>
+  ),
+}
+
 export const FewSlides: Story = {
   args: {
     slides: placeholderSlides.slice(0, 2),
@@ -73,6 +84,29 @@ export const FewSlides: Story = {
   render: args => (
     <div style={{ width: 400, height: 400 }}>
       <Carousel {...args} />
+    </div>
+  ),
+}
+
+export const ControlsSizes: Story = {
+  args: {
+    slides: placeholderSlides.slice(0, 3),
+  },
+  render: args => (
+    <div style={{ display: 'flex', gap: 16 }}>
+      <div>
+        <p style={{ color: '#fff', marginBottom: 8 }}>s (234px card)</p>
+        <div style={{ width: 234, height: 240 }}>
+          <Carousel {...args} controlsSize={'s'} />
+        </div>
+      </div>
+
+      <div>
+        <p style={{ color: '#fff', marginBottom: 8 }}>l (default, post detail)</p>
+        <div style={{ width: 600, height: 600 }}>
+          <Carousel {...args} controlsSize={'l'} />
+        </div>
+      </div>
     </div>
   ),
 }
