@@ -10,13 +10,14 @@ import s from './Sidebar.module.scss'
 export type SidebarItem = {
   activeIcon?: ReactNode
   disabled?: boolean
-  href?: string
+  href?: ((userId: string) => string) | string
   icon: ReactNode
   id: string
   label: string
 }
 
 type SidebarProps = {
+  userId?: string
   activeId: string
   items: SidebarItem[]
   logOutIcon: ReactNode
@@ -24,15 +25,26 @@ type SidebarProps = {
   onValueChange?: (id: string) => void
 }
 
-export const Sidebar = ({ items, activeId, onValueChange, onLogout, logOutIcon }: SidebarProps) => {
+export const Sidebar = ({
+  items,
+  userId,
+  activeId,
+  onValueChange,
+  onLogout,
+  logOutIcon,
+}: SidebarProps) => {
   return (
     <nav className={s.navBar}>
       <ul>
         {items.map(item => {
           const isActive = activeId === item.id
           const isDisabled = Boolean(item.disabled)
+
+          const hrefLinkedToCurrentUserId =
+            typeof item.href === 'function' ? (userId ? item.href(userId) : undefined) : item.href
+
           const { handleClick: baseHandleClick, resolvedHref } = getNavItemClickHandler(
-            item.href,
+            hrefLinkedToCurrentUserId,
             () => onValueChange?.(item.id)
           )
 
