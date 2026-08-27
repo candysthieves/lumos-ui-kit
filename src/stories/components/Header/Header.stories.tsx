@@ -7,7 +7,7 @@ import { Header } from '@/components/Header'
 const meta = {
   title: 'Components/Header',
   component: Header,
-  render: args => <Header key={args.defaultLanguage} {...args} />,
+  render: args => <Header {...args} />,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
@@ -16,15 +16,8 @@ const meta = {
     brandName: {
       control: 'text',
     },
-    defaultLanguage: {
-      control: 'select',
-      options: ['english', 'russian'],
-    },
     isAuthenticated: {
       control: 'boolean',
-    },
-    language: {
-      control: false,
     },
     notificationCount: {
       control: {
@@ -32,8 +25,9 @@ const meta = {
         min: 0,
       },
     },
-    languageOptions: {
-      control: false,
+    logoHref: {
+      control: 'text',
+      description: 'Optional destination opened when the brand name is clicked',
     },
     logInLabel: {
       control: 'text',
@@ -46,9 +40,6 @@ const meta = {
     },
     notificationLabel: {
       control: 'text',
-    },
-    onLanguageChange: {
-      action: 'language changed',
     },
     onLogInClick: {
       action: 'log in clicked',
@@ -99,8 +90,8 @@ const profileMenuItems: ActionMenuItem[] = [
 export const Authorized: Story = {
   args: {
     brandName: 'Lumos',
-    defaultLanguage: 'english',
     isAuthenticated: true,
+    logoHref: '/',
     mobileAuthenticatedMenuItems: profileMenuItems,
     mobileMenuLabel: 'Open menu',
     notificationCount: 3,
@@ -111,8 +102,8 @@ export const Authorized: Story = {
 export const NotAuthorized: Story = {
   args: {
     brandName: 'Lumos',
-    defaultLanguage: 'english',
     isAuthenticated: false,
+    logoHref: '/',
     logInLabel: 'Log in',
     mobileMenuLabel: 'Open menu',
     notificationCount: 0,
