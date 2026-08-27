@@ -1,0 +1,61 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/typography' as *;
+
+.palette {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  border-radius: 0.75rem;
+
+  background-color: var(--color-light-100);
+}
+
+.title {
+  margin-bottom: 0.5rem;
+  color: var(--color-dark-900);
+}
+
+.subtitle {
+  margin-bottom: 1.5rem;
+  color: var(--color-dark-300);
+}
+
+.deck {
+  @include flex('flex', 'center', 'center');
+
+  flex-direction: column;
+  width: 7.5rem;
+  margin: 0.5rem;
+}
+
+.card {
+  width: 100%;
+  height: 5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+}
+
+.name {
+  margin-top: 0.5rem;
+  color: var(--color-dark-300);
+  text-align: center;
+}
+
+.hash {
+  font-weight: bold;
+}
+
+.collection {
+  margin-bottom: 2rem;
+}
+
+.colors {
+  margin-bottom: 1rem;
+  color: var(--color-dark-500);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
