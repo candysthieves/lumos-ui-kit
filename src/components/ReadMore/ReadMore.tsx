@@ -11,6 +11,7 @@ export type ReadMoreProps = {
   expandLabel?: string
   collapseLabel?: string
   className?: string
+  onExpandedChange?: (expanded: boolean) => void
 }
 
 export const ReadMore = ({
@@ -19,6 +20,7 @@ export const ReadMore = ({
   expandLabel = 'Show more',
   collapseLabel = 'Hide',
   className,
+  onExpandedChange,
 }: ReadMoreProps) => {
   const [expanded, setExpanded] = useState(false)
 
@@ -34,12 +36,17 @@ export const ReadMore = ({
 
   const displayedText = expanded ? text : truncateText(text, maxLength)
 
-  const handleToggle = () => setExpanded(prev => !prev)
+  const handleToggle = () => {
+    const nextExpanded = !expanded
+
+    setExpanded(nextExpanded)
+    onExpandedChange?.(nextExpanded)
+  }
 
   return (
     <Typography className={className} variant={'body1'}>
       {displayedText}{' '}
-      <Button as={"a"} className={clsx('typography-link', s.button)} onClick={handleToggle}>
+      <Button as={'a'} className={clsx('typography-link', s.button)} onClick={handleToggle}>
         {expanded ? collapseLabel : expandLabel}
       </Button>
     </Typography>
