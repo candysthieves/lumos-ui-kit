@@ -1,6 +1,6 @@
 'use client'
 
-import type { ReactNode } from 'react'
+import type { ElementType, ReactNode } from 'react'
 import clsx from 'clsx'
 import { Button, Typography } from '@/components'
 import { TAB_INDEX } from '@/constants'
@@ -22,9 +22,17 @@ type SidebarProps = {
   logOutIcon: ReactNode
   onLogout: () => void
   onValueChange?: (id: string) => void
+  linkTag?: ElementType
 }
 
-export const Sidebar = ({ items, activeId, onValueChange, onLogout, logOutIcon }: SidebarProps) => {
+export const Sidebar = ({
+  items,
+  activeId,
+  onValueChange,
+  onLogout,
+  logOutIcon,
+  linkTag: LinkTag = 'a',
+}: SidebarProps) => {
   return (
     <nav className={s.navBar}>
       <ul>
@@ -49,7 +57,7 @@ export const Sidebar = ({ items, activeId, onValueChange, onLogout, logOutIcon }
           return (
             <li key={item.id}>
               <Button
-                as={'a'}
+                as={LinkTag}
                 href={isDisabled ? undefined : resolvedHref}
                 className={clsx(s.navItem, isActive && s.activeItem, isDisabled && s.disabled)}
                 onClick={handleClick}
