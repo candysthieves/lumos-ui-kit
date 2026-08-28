@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef } from 'react'
+import type { ComponentPropsWithoutRef, ElementType } from 'react'
 import clsx from 'clsx'
 import { OutlineBell } from '@/assets'
 import { ActionMenu, type ActionMenuItem } from '@/components/ActionMenu'
@@ -19,13 +19,14 @@ export type HeaderProps = {
   onNotificationClick?: () => void
   onSignUpClick?: () => void
   signUpLabel?: string
+  linkTag?: ElementType
 } & Omit<ComponentPropsWithoutRef<'header'>, 'children'>
 
 export const Header = ({
   brandName = 'Lumos',
   className,
   isAuthenticated = true,
-  logoHref,
+  logoHref = '/',
   logInLabel = 'Log in',
   mobileAuthenticatedMenuItems,
   mobileMenuLabel = 'Open menu',
@@ -35,6 +36,7 @@ export const Header = ({
   onNotificationClick,
   onSignUpClick,
   signUpLabel = 'Sign up',
+  linkTag: LinkTag = 'a',
   ...props
 }: HeaderProps) => {
   const notificationAccessibleLabel =
@@ -68,13 +70,9 @@ export const Header = ({
     <header className={clsx(s.header, className)} {...props}>
       <div className={s.container}>
         <Typography variant={'large'} className={s.logo}>
-          {logoHref ? (
-            <a href={logoHref} className={s.logoLink}>
-              {brandName}
-            </a>
-          ) : (
-            brandName
-          )}
+          <LinkTag href={logoHref} className={s.logoLink}>
+            {brandName}
+          </LinkTag>
         </Typography>
 
         <div className={s.actions}>
