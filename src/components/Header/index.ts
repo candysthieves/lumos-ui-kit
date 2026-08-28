@@ -1,3 +1,2 @@
-export { Header } from './Header'
-export type { HeaderProps } from './Header'
+export * from './Header'
 export type { HeaderLanguage, HeaderLanguageOption } from '@/types'
