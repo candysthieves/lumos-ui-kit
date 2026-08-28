@@ -24,6 +24,10 @@ const meta = {
       control: 'text',
       description: 'Button text when the text is expanded',
     },
+    onExpandedChange: {
+      action: 'expanded changed',
+      description: 'Called with the new expanded state when the toggle button is clicked',
+    },
   },
 } satisfies Meta<typeof ReadMore>
 
