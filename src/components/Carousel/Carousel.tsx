@@ -46,7 +46,12 @@ export const Carousel = ({ slides, controlsSize = 'l' }: CarouselProps) => {
         >
           {slides.map((slide, index) => (
             <div key={index} className={s.slide}>
-              <img key={index} src={slide} alt={`Slide-${index + 1}`} className={s.slideItem} />
+              <img
+                key={index}
+                src={slide}
+                alt={`Slide-${index + 1}`}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
             </div>
           ))}
         </div>
