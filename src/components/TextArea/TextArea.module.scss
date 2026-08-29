@@ -1,6 +1,7 @@
 @use '@/styles/mixins' as *;
 
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -101,7 +102,11 @@
   }
 
   .errorMessage {
-    margin-top: 0.25rem;
+    position: absolute;
+
+    @include top-left(calc(100% + 0.25rem), 0);
+
+    z-index: 1;
     color: var(--color-danger-500);
   }
 }
