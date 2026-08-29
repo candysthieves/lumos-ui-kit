@@ -1,6 +1,5 @@
 'use client'
 
-import type { ReactNode } from 'react'
 import clsx from 'clsx'
 import { useState } from 'react'
 import { ArrowIosBack, ArrowIosForward } from '@/assets'
@@ -8,7 +7,7 @@ import { Button } from '@/components/Button'
 import s from './Carousel.module.scss'
 
 export type CarouselProps = {
-  slides: ReactNode[]
+  slides: string[]
   controlsSize?: 'l' | 's'
 }
 
@@ -47,7 +46,7 @@ export const Carousel = ({ slides, controlsSize = 'l' }: CarouselProps) => {
         >
           {slides.map((slide, index) => (
             <div key={index} className={s.slide}>
-              {slide}
+              <img key={index} src={slide} alt={`Slide-${index + 1}`} className={s.slideItem} />
             </div>
           ))}
         </div>
