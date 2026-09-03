@@ -100,5 +100,8 @@ export { Yandex } from './icons/Yandex'
 export { Sending } from './icons/Sending'
 export { ErrorIcon } from './icons/ErrorIcon'
 export { FileIcon } from './icons/FileIcon'
+export { List } from './icons/List'
+export { RecycleBin } from './icons/RecycleBin'
+export { Clock } from './icons/Clock'
 // Logo asset
 export { Logo } from './logo/Logo'
