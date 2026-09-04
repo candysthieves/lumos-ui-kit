@@ -6,7 +6,7 @@ on:
    - develop
    - SCRUM-49-set-config-to-publish-project-to-npmjs
    - SCRUM-60-refactor-input-component
-   - SCRUM-151-change-carousel-slides-props
+   - SCRUM-58-add-extra-icons
 jobs:
   build:
     runs-on: ubuntu-latest
