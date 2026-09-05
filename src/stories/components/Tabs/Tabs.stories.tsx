@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { CreditCardOutline, HomeOutline, PersonOutline } from '@/assets'
 import { Tabs } from '@/components/Tabs'
 
 const meta = {
@@ -57,6 +58,17 @@ export const SecondActive: Story = {
   args: {
     tabs: createTabs(),
     defaultValue: 'tab2',
+  },
+}
+
+export const WithIcons: Story = {
+  args: {
+    tabs: [
+      { ...baseTabs[0], icon: <HomeOutline size={20} /> },
+      { ...baseTabs[1], icon: <PersonOutline size={20} /> },
+      { ...baseTabs[2], icon: <CreditCardOutline size={20} /> },
+    ],
+    defaultValue: 'tab1',
   },
 }
 
