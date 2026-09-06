@@ -10,6 +10,7 @@ export type Tab = {
   label: string
   content: ReactNode
   disabled?: boolean
+  icon?: ReactNode
 }
 
 export type TabsProps = Omit<
@@ -39,6 +40,7 @@ export const Tabs = forwardRef<ComponentRef<typeof TabsPrimitive.Root>, TabsProp
               disabled={tab.disabled}
               className={clsx(s.trigger, 'typography-h3')}
             >
+              {tab.icon && <span className={s.icon}>{tab.icon}</span>}
               {tab.label}
             </TabsPrimitive.Trigger>
           ))}
