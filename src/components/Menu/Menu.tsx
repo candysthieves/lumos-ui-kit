@@ -14,7 +14,7 @@ export type MenuItem = {
 }
 
 type MenuProps = {
-  userId: string
+  userId?: string
   activeId: string
   items: MenuItem[]
   onValueChange?: (id: string) => void
