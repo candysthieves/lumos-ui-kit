@@ -13,6 +13,7 @@ import {
   SearchOutline,
 } from '@/assets'
 import { Menu, type MenuItem } from '@/components/Menu'
+import { CURRENT_USER_ID } from '@/stories/constants'
 
 const meta: Meta<typeof Menu> = {
   title: 'Components/Menu',
@@ -31,7 +32,7 @@ const items: MenuItem[] = [
   { id: 'feed', href: '/feed', icon: <HomeOutline />, activeIcon: <Home /> },
   {
     id: 'create',
-    href: '/create',
+    href: (userId: string) => `/profile/${userId}?action=create`,
     icon: <PlusSquareOutline />,
     activeIcon: <PlusSquare />,
   },
@@ -64,6 +65,7 @@ const renderMenu = (initialActiveId: string) => {
         <Menu
           {...args}
           items={items}
+          userId={CURRENT_USER_ID}
           activeId={activeId}
           onValueChange={id => {
             setActiveId(id)
