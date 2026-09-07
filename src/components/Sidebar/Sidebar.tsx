@@ -1,6 +1,6 @@
 'use client'
 
-import type { ElementType, ReactNode } from 'react'
+import type { ElementType, ReactNode, MouseEvent } from 'react'
 import clsx from 'clsx'
 import { Button, Typography } from '@/components'
 import { TAB_INDEX } from '@/constants'
@@ -50,7 +50,7 @@ export const Sidebar = ({
             () => onValueChange?.(item.id)
           )
 
-          const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+          const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
             if (isDisabled) {
               event.preventDefault()
 

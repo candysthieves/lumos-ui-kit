@@ -6,7 +6,7 @@ on:
    - develop
    - SCRUM-49-set-config-to-publish-project-to-npmjs
    - SCRUM-60-refactor-input-component
-   - SCRUM-72-add-readmore-component
+   - SCRUM-78-add-userId-to-link-in-menu-component
 jobs:
   build:
     runs-on: ubuntu-latest
