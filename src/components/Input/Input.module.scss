@@ -44,6 +44,16 @@
   &::placeholder {
     color: var(--color-light-900);
   }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    box-shadow: 0 0 0 1000px var(--color-dark-500) inset;
+    caret-color: var(--color-light-100);
+    transition: background-color 999999s ease-in-out 0s;
+
+    -webkit-text-fill-color: var(--color-light-100);
+  }
 }
 
 .adornment {
