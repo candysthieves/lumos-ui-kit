@@ -1,12 +1,15 @@
 name: Publish to NPM
 on:
   push:
-   branches:
-   - main
-   - develop
-   - SCRUM-49-set-config-to-publish-project-to-npmjs
-   - SCRUM-60-refactor-input-component
-   - SCRUM-78-add-userId-to-link-in-menu-component
+    branches:
+      - dev
+
+  pull_request:
+    branches:
+      - dev
+
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
