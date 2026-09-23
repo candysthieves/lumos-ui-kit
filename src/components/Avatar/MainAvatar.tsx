@@ -2,9 +2,16 @@
 
 import clsx from 'clsx'
 import { Avatar } from 'radix-ui'
-import { type ComponentPropsWithoutRef, forwardRef } from 'react'
+import {
+  type ComponentPropsWithoutRef,
+  type KeyboardEvent,
+  type MouseEvent,
+  forwardRef,
+  useState,
+} from 'react'
 import type { MainAvatarSize } from '@/types'
 import { CloseOutline, ImageOutline } from '@/assets'
+import { Modal } from '@/components'
 import { Button } from '@/components/Button'
 import s from './Avatar.module.scss'
 
@@ -14,6 +21,7 @@ export type MainAvatarProps = {
   userName: string
   delayMs?: number
   showCloseButton?: boolean
+  isScalable?: boolean
   onClose?: () => void
   size?: MainAvatarSize
 } & Omit<ComponentPropsWithoutRef<'div'>, 'children'>
@@ -28,14 +36,50 @@ export const MainAvatar = forwardRef<HTMLDivElement, MainAvatarProps>(
       size = 'xl',
       className,
       showCloseButton = false,
+      isScalable = false,
       onClose,
       ...props
     },
     ref
   ) => {
+    const [isOpen, setIsOpen] = useState(false)
+
+    const openModal = () => setIsOpen(true)
+    const closeModal = () => setIsOpen(false)
+
+    const handleAvatarClick = () => {
+      if (isScalable) {
+        openModal()
+      }
+    }
+
+    const handleAvatarKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+      if (!isScalable) return
+
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault()
+        openModal()
+      }
+    }
+
+    // Protects from opening the modal window by click on avatar cross button
+    const handleCloseButtonClick = (event: MouseEvent<HTMLSpanElement>) => {
+      event.stopPropagation()
+      onClose?.()
+    }
+
     return (
       <div ref={ref} className={s.wrapper}>
-        <Avatar.Root className={clsx(s.root, s[size], className)} {...props}>
+        <Avatar.Root
+          className={clsx(s.root, s[size], isScalable && s.scalable, className)}
+          onClick={handleAvatarClick}
+          onKeyDown={handleAvatarKeyDown}
+          role={isScalable ? 'button' : undefined}
+          tabIndex={isScalable ? 0 : undefined}
+          aria-label={isScalable ? `View ${alt || userName} avatar` : undefined}
+
+          {...props}
+        >
           {src && <Avatar.Image className={s.image} src={src} alt={alt || userName} />}
           <Avatar.Fallback className={s.fallback} delayMs={delayMs}>
             <ImageOutline size={48} />
@@ -44,8 +88,12 @@ export const MainAvatar = forwardRef<HTMLDivElement, MainAvatarProps>(
           {showCloseButton && (
             <Button
               as={'span'}
-              onClick={onClose}
-              className={clsx(s.closeButton, s[`closeButton-${size}`])}
+              onClick={handleCloseButtonClick}
+              className={clsx(
+                s.closeButton,
+                isScalable && s.closeButtonScalable,
+                s[`closeButton-${size}`]
+              )}
             >
               <CloseOutline
                 color={'var(--color-light-100)'}
@@ -57,6 +105,14 @@ export const MainAvatar = forwardRef<HTMLDivElement, MainAvatarProps>(
             </Button>
           )}
         </Avatar.Root>
+
+        {isScalable && (
+          <Modal open={isOpen} onClose={closeModal} size={'m'} closeButtonOutside fullSize>
+            <div className={s.imageContent}>
+              <img src={src} alt={alt || userName} className={s.imageItem} />
+            </div>
+          </Modal>
+        )}
       </div>
     )
   }
