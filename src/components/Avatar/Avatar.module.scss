@@ -88,6 +88,10 @@
   }
 }
 
+.closeButtonScalable {
+  z-index: 0;
+}
+
 .closeButton-xl {
   @include top-right(8px);
 }
@@ -141,6 +145,29 @@
 
 .blockImage {
   @extend %image;
+}
+
+// Main avatar scalable modal window
+.scalable {
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-light-100);
+    outline-offset: 2px;
+  }
+}
+
+.imageContent {
+  @include flex(flex, center, center);
+
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.imageItem {
+  @include width-height(100%, auto);
+
+  object-fit: contain;
 }
 
 //// Add if we will need
