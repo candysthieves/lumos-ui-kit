@@ -16,7 +16,7 @@ import { Button } from '@/components/Button'
 import s from './Avatar.module.scss'
 
 export type MainAvatarProps = {
-  src?: string
+  src: null | string
   alt?: string
   userName: string
   delayMs?: number
@@ -29,7 +29,7 @@ export type MainAvatarProps = {
 export const MainAvatar = forwardRef<HTMLDivElement, MainAvatarProps>(
   (
     {
-      src,
+      src = null,
       alt,
       userName,
       delayMs = 600,
@@ -109,7 +109,7 @@ export const MainAvatar = forwardRef<HTMLDivElement, MainAvatarProps>(
         {isScalable && (
           <Modal open={isOpen} onClose={closeModal} size={'m'} closeButtonOutside fullSize>
             <div className={s.imageContent}>
-              <img src={src} alt={alt || userName} className={s.imageItem} />
+              <img src={src ?? undefined} alt={alt || userName} className={s.imageItem} />
             </div>
           </Modal>
         )}
