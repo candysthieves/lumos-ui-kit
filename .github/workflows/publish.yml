@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - dev
+      - SCRUM-66-add-scallable-view-to-main-avatar
 
   pull_request:
     branches:
