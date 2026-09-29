@@ -170,6 +170,19 @@
   object-fit: contain;
 }
 
+// Modal window
+.modal {
+  overflow: hidden;
+}
+
+.modal-m {
+  width: min($modal-width-m, calc(100vw - 2rem));
+}
+
+.modal-xl {
+  width: min($modal-width-xl, calc(100vw - 2rem));
+}
+
 //// Add if we will need
 // .rootBlock:hover {
 //  z-index: 4;
