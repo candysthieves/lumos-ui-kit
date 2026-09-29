@@ -16,7 +16,7 @@ import { Button } from '@/components/Button'
 import s from './Avatar.module.scss'
 
 export type MainAvatarProps = {
-  src: null | string
+  src?: null | string
   alt?: string
   userName: string
   delayMs?: number
