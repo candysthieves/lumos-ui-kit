@@ -171,16 +171,12 @@
 }
 
 // Modal window
-.modal {
-  overflow: hidden;
-}
-
 .modal-m {
-  width: min($modal-width-m, calc(100vw - 2rem));
+  width: min($modal-width-m, calc(100vw - 4.5rem));
 }
 
 .modal-xl {
-  width: min($modal-width-xl, calc(100vw - 2rem));
+  width: min($modal-width-xl, calc(100vw - 4.5rem));
 }
 
 //// Add if we will need

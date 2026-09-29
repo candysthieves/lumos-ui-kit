@@ -114,7 +114,7 @@ export const MainAvatar = forwardRef<HTMLDivElement, MainAvatarProps>(
             size={modalSize}
             closeButtonOutside
             fullSize
-            className={clsx(s.modal, s[`modal-${modalSize}`])}
+            className={s[`modal-${modalSize}`]}
           >
             <div className={s.imageContent}>
               <img src={src ?? undefined} alt={alt || userName} className={s.imageItem} />
