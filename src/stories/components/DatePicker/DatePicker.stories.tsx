@@ -23,6 +23,12 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
+const SELECTED_DATE = new Date(2026, 9, 1)
+const SELECTED_RANGE = {
+  end: new Date(2026, 9, 8),
+  start: new Date(2026, 9, 2),
+}
+
 export const Default: Story = {
   args: {
     label: 'Date select',
@@ -31,17 +37,14 @@ export const Default: Story = {
 
 export const SelectedDate: Story = {
   args: {
-    defaultValue: new Date(2026, 9, 1),
+    defaultValue: SELECTED_DATE,
     label: 'Date',
   },
 }
 
 export const DateRange: Story = {
   args: {
-    defaultValue: {
-      end: new Date(2026, 9, 8),
-      start: new Date(2026, 9, 2),
-    },
+    defaultValue: SELECTED_RANGE,
     label: 'Date range',
     mode: 'range',
   },
@@ -60,7 +63,7 @@ export const DateRange: Story = {
 
 export const Error: Story = {
   args: {
-    defaultValue: new Date(2022, 11, 22),
+    defaultValue: SELECTED_DATE,
     error: 'Error!',
     label: 'Date',
   },
@@ -68,8 +71,48 @@ export const Error: Story = {
 
 export const Disabled: Story = {
   args: {
-    defaultValue: new Date(2022, 11, 22),
+    defaultValue: SELECTED_DATE,
     disabled: true,
     label: 'Date',
+  },
+}
+
+export const RangeError: Story = {
+  args: {
+    defaultValue: SELECTED_RANGE,
+    error: 'Select the current month or last month',
+    label: 'Date range',
+    mode: 'range',
+  },
+}
+
+export const RangeDisabled: Story = {
+  args: {
+    defaultValue: SELECTED_RANGE,
+    disabled: true,
+    label: 'Date range',
+    mode: 'range',
+  },
+}
+
+export const RangeHover: Story = {
+  args: {
+    defaultValue: SELECTED_RANGE,
+    label: 'Date range',
+    mode: 'range',
+  },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.hover(canvas.getByRole('button'))
+  },
+}
+
+export const RangeFocus: Story = {
+  args: {
+    defaultValue: SELECTED_RANGE,
+    label: 'Date range',
+    mode: 'range',
+  },
+  play: ({ canvas }) => {
+    canvas.getByRole('button').focus()
   },
 }
