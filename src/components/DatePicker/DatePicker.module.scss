@@ -1,0 +1,212 @@
+@use '@/styles/mixins' as *;
+
+.wrapper {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  width: fit-content;
+}
+
+.label {
+  color: var(--color-light-900);
+}
+
+.trigger {
+  @include flex(inline-flex, space-between, center);
+  @include transition-basic(border-color, color);
+
+  cursor: pointer;
+
+  min-width: 9.875rem;
+  min-height: 2rem;
+  padding: 0.25rem 0.625rem 0.25rem 0.5rem;
+  border: 1px solid var(--color-dark-100);
+  border-radius: 2px;
+
+  color: var(--color-light-100);
+  text-align: left;
+
+  background-color: var(--color-dark-500);
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-dark-100);
+    background-color: var(--color-dark-300);
+  }
+
+  &:focus-visible {
+    border-color: var(--color-accent-700);
+    outline: 1px solid var(--color-accent-700);
+  }
+}
+
+.value {
+  overflow: hidden;
+  margin-right: 1.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.placeholder {
+  color: var(--color-light-900);
+}
+
+.error {
+  border-color: var(--color-danger-500);
+  color: var(--color-danger-500);
+
+  &:hover:not(:disabled),
+  &:focus-visible {
+    border-color: var(--color-danger-500);
+    outline-color: var(--color-danger-500);
+  }
+}
+
+.disabled {
+  cursor: not-allowed;
+  border-color: var(--color-dark-300);
+  color: var(--color-dark-100);
+}
+
+.errorMessage {
+  position: absolute;
+  top: calc(100% + 0.125rem);
+  left: 0;
+}
+
+.popup {
+  position: absolute;
+  z-index: 10;
+  top: 100%;
+  left: 0;
+
+  width: 18.75rem;
+  margin-top: 0.25rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
+
+  background-color: var(--color-dark-500);
+}
+
+.header {
+  @include flex(flex, space-between, center);
+
+  padding-left: 0.5rem;
+}
+
+.navigation {
+  @include flex(flex, none, center);
+
+  gap: 0.25rem;
+}
+
+.navigationButton {
+  @include flex(flex, center, center);
+  @include width-height(2.25rem);
+  @include transition-basic(background-color);
+
+  cursor: pointer;
+
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-100);
+
+  &:hover {
+    background-color: var(--color-dark-300);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent-700);
+  }
+}
+
+.weekdays,
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.weekdays {
+  margin-top: 1rem;
+  color: var(--color-light-900);
+  text-align: center;
+}
+
+.days {
+  margin-top: 0.5rem;
+}
+
+.day {
+  @include flex(flex, center, center);
+  @include width-height(100%, 2.25rem);
+  @include transition-basic(background-color, color);
+
+  cursor: pointer;
+
+  position: relative;
+
+  padding: 0.25rem;
+  border: 0;
+
+  color: var(--color-light-100);
+
+  background-color: transparent;
+
+  &:hover:not(:disabled) span {
+    background-color: var(--color-accent-500);
+  }
+
+  &:focus-visible {
+    outline: 0;
+
+    span {
+      outline: 2px solid var(--color-accent-300);
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: var(--color-dark-100);
+  }
+
+  span {
+    @include flex(flex, center, center);
+    @include width-height(1.75rem);
+
+    z-index: 1;
+    border-radius: 50%;
+  }
+}
+
+.otherMonth {
+  color: var(--color-light-900);
+}
+
+.weekend {
+  color: var(--color-danger-300);
+}
+
+.inRange {
+  color: var(--color-light-100);
+  background-color: var(--color-accent-700);
+}
+
+.selected span {
+  color: var(--color-light-100);
+  background-color: var(--color-accent-700);
+}
+
+.rangeStart {
+  background: linear-gradient(to right, transparent 50%, var(--color-accent-700) 50%);
+}
+
+.rangeEnd {
+  background: linear-gradient(to right, var(--color-accent-700) 50%, transparent 50%);
+}
