@@ -178,7 +178,6 @@
 }
 
 .monthYearSelect {
-  width: auto;
   min-width: 4.25rem;
   min-height: 2rem;
   padding: 0.125rem 0.375rem;
@@ -194,6 +193,14 @@
     border-color: var(--color-light-100);
     outline: 2px solid var(--color-accent-700);
   }
+}
+
+.monthSelect {
+  width: 6.25rem;
+}
+
+.yearSelect {
+  width: 4.25rem;
 }
 
 .monthYearContent {
