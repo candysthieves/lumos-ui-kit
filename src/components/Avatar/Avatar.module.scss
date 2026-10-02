@@ -172,11 +172,11 @@
 
 // Modal window
 .modal-m {
-  width: min($modal-width-m, calc(100vw - 4.5rem));
+  max-width: min($modal-width-m, calc(100vw - 4.5rem)) !important;
 }
 
 .modal-xl {
-  width: min($modal-width-xl, calc(100vw - 4.5rem));
+  max-width: min($modal-width-m, calc(100vw - 4.5rem)) !important;
 }
 
 //// Add if we will need
