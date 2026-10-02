@@ -32,6 +32,8 @@ export type DatePickerProps = Omit<
 
 const DAYS_IN_WEEK = 7
 const WEEKS_IN_CALENDAR = 6
+const MIN_YEAR = 1900
+const MAX_YEAR = 2100
 const WEEKDAY_LABELS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
 const MONTH_FORMATTER = new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric' })
 const DATE_FORMATTER = new Intl.DateTimeFormat('en-GB')
@@ -43,10 +45,12 @@ const DAY_FORMATTER = new Intl.DateTimeFormat('en', {
 const MONTH_LABELS = Array.from({ length: 12 }, (_, month) =>
   new Intl.DateTimeFormat('en', { month: 'long' }).format(new Date(2026, month, 1))
 )
-const YEARS = Array.from({ length: 201 }, (_, index) => 1900 + index)
+const YEARS = Array.from({ length: MAX_YEAR - MIN_YEAR + 1 }, (_, index) => MIN_YEAR + index)
 
 const getStartOfDay = (date: Date) => new Date(date.getFullYear(), date.getMonth(), date.getDate())
 const getStartOfMonth = (date: Date) => new Date(date.getFullYear(), date.getMonth(), 1)
+const isYearSelectable = (date: Date) =>
+  date.getFullYear() >= MIN_YEAR && date.getFullYear() <= MAX_YEAR
 const getClosestEnabledDate = (date: Date, minDate?: Date, maxDate?: Date) => {
   const startOfDay = getStartOfDay(date)
 
@@ -178,7 +182,7 @@ export const DatePicker = ({
     const calendarDates = getCalendarDates(displayedMonth)
     const focusedIndex = calendarDates.findIndex(date => getDatesEqual(date, focusedDate))
     const goToDate = (date: Date) => {
-      if (isDateDisabled(date)) return
+      if (!isYearSelectable(date) || isDateDisabled(date)) return
 
       event.preventDefault()
       setFocusedCalendarDate(date)
@@ -241,6 +245,8 @@ export const DatePicker = ({
   }
   const calendarDates = getCalendarDates(displayedMonth)
   const displayValue = formatValue(selectedValue, mode)
+  const previousMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() - 1, 1)
+  const nextMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() + 1, 1)
 
   return (
     <div ref={rootRef} className={clsx(s.wrapper, className)}>
@@ -350,9 +356,8 @@ export const DatePicker = ({
                 type={'button'}
                 className={s.navigationButton}
                 aria-label={'Previous month'}
-                onClick={() =>
-                  setDisplayedMonth(month => new Date(month.getFullYear(), month.getMonth() - 1, 1))
-                }
+                disabled={!isYearSelectable(previousMonth)}
+                onClick={() => setDisplayedMonth(previousMonth)}
               >
                 <ArrowIosBack autoSize={false} size={20} />
               </button>
@@ -360,9 +365,8 @@ export const DatePicker = ({
                 type={'button'}
                 className={s.navigationButton}
                 aria-label={'Next month'}
-                onClick={() =>
-                  setDisplayedMonth(month => new Date(month.getFullYear(), month.getMonth() + 1, 1))
-                }
+                disabled={!isYearSelectable(nextMonth)}
+                onClick={() => setDisplayedMonth(nextMonth)}
               >
                 <ArrowIosForward autoSize={false} size={20} />
               </button>
