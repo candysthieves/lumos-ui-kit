@@ -12,8 +12,6 @@ const meta: Meta<typeof DatePicker> = {
   argTypes: {
     className: { control: false },
     defaultValue: { control: false },
-    maxDate: { control: false },
-    minDate: { control: false },
     onChange: { action: 'date changed' },
     value: { control: false },
   },
