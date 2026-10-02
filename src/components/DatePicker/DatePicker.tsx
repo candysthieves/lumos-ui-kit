@@ -14,8 +14,6 @@ import {
 import { ArrowIosBack, ArrowIosForward, CalendarOutline, CloseOutline } from '@/assets'
 import { Button } from '@/components/Button'
 import { Select } from '@/components/Select'
-import s from './DatePicker.module.scss'
-import { DatePickerDateCell } from './DatePickerDateCell'
 import {
   formatValue,
   DAYS_IN_WEEK,
@@ -30,9 +28,11 @@ import {
   type DatePickerMode,
   type DatePickerValue,
   YEAR_OPTIONS,
-} from './dateUtils'
+} from '@/utils'
+import s from './DatePicker.module.scss'
+import { DatePickerDateCell } from './DatePickerDateCell'
 
-export type { DatePickerMode, DatePickerValue, DateRange } from './dateUtils'
+export type { DatePickerMode, DatePickerValue, DateRange } from '@/utils'
 export type DatePickerProps = Omit<
   ComponentPropsWithoutRef<'button'>,
   'defaultValue' | 'onChange' | 'value'
@@ -118,6 +118,7 @@ export const DatePicker = ({
   }
   const isDateDisabled = (date: Date) =>
     disabled ||
+    !isYearSelectable(date) ||
     (!!minDate && date < getStartOfDay(minDate)) ||
     (!!maxDate && date > getStartOfDay(maxDate))
   const setFocusedCalendarDate = (date: Date) => {
@@ -297,7 +298,7 @@ export const DatePicker = ({
           <div className={s.header}>
             <div className={s.monthYearControls}>
               <Select
-                className={s.monthYearSelect}
+                className={clsx(s.monthYearSelect, s.monthSelect)}
                 contentClassName={s.monthYearContent}
                 options={MONTH_OPTIONS}
                 portalProps={portalContainer ? { container: portalContainer } : undefined}
@@ -311,7 +312,7 @@ export const DatePicker = ({
                 triggerProps={{ 'aria-label': 'Month' }}
               />
               <Select
-                className={s.monthYearSelect}
+                className={clsx(s.monthYearSelect, s.yearSelect)}
                 contentClassName={s.monthYearContent}
                 options={YEAR_OPTIONS}
                 portalProps={portalContainer ? { container: portalContainer } : undefined}

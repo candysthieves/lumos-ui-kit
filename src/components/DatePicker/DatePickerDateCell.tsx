@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import { Button } from '@/components/Button'
-import s from './DatePicker.module.scss'
 import {
   getDateBetween,
   getDatesEqual,
@@ -8,7 +7,8 @@ import {
   type DatePickerMode,
   type DatePickerValue,
   type DateRange,
-} from './dateUtils'
+} from '@/utils'
+import s from './DatePicker.module.scss'
 
 type DatePickerDateCellProps = {
   date: Date

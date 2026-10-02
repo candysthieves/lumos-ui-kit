@@ -9,6 +9,9 @@ const meta: Meta<typeof DatePicker> = {
   parameters: {
     layout: 'centered',
   },
+  render: args => (
+    <DatePicker {...args} maxDate={toDate(args.maxDate)} minDate={toDate(args.minDate)} />
+  ),
   argTypes: {
     className: { control: false },
     defaultValue: { control: false },
@@ -24,8 +27,9 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-const toDate = (value: Date | number | undefined) =>
-  typeof value === 'number' ? new Date(value) : value
+function toDate(value: Date | number | undefined) {
+  return typeof value === 'number' ? new Date(value) : value
+}
 
 const SELECTED_DATE = new Date(2026, 9, 1)
 const SELECTED_RANGE = {
@@ -48,9 +52,6 @@ export const DateLimits: Story = {
     maxDate: MAX_DATE,
     minDate: MIN_DATE,
   },
-  render: args => (
-    <DatePicker {...args} maxDate={toDate(args.maxDate)} minDate={toDate(args.minDate)} />
-  ),
 }
 
 export const SelectedDate: Story = {
@@ -88,6 +89,8 @@ export const DateRange: Story = {
     return (
       <DatePicker
         {...args}
+        maxDate={toDate(args.maxDate)}
+        minDate={toDate(args.minDate)}
         value={value}
         onChange={nextValue => setValue(nextValue as DateRangeValue)}
       />

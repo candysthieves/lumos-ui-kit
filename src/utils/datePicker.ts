@@ -3,9 +3,12 @@ export type DatePickerMode = 'range' | 'single'
 export type DatePickerValue = Date | DateRange | undefined
 
 export const DAYS_IN_WEEK = 7
+
 const WEEKS_IN_CALENDAR = 6
 const MIN_YEAR = 1900
 const MAX_YEAR = 2100
+const MIN_SELECTABLE_DATE = new Date(MIN_YEAR, 0, 1)
+const MAX_SELECTABLE_DATE = new Date(MAX_YEAR, 11, 31)
 const DATE_FORMATTER = new Intl.DateTimeFormat('en-GB')
 
 export const getStartOfDay = (date: Date) =>
@@ -15,9 +18,24 @@ export const getStartOfMonth = (date: Date) => new Date(date.getFullYear(), date
 
 export const getClosestEnabledDate = (date: Date, minDate?: Date, maxDate?: Date) => {
   const startOfDay = getStartOfDay(date)
+  const minimumDate = minDate
+    ? new Date(Math.max(getStartOfDay(minDate).getTime(), MIN_SELECTABLE_DATE.getTime()))
+    : MIN_SELECTABLE_DATE
+  const maximumDate = maxDate
+    ? new Date(Math.min(getStartOfDay(maxDate).getTime(), MAX_SELECTABLE_DATE.getTime()))
+    : MAX_SELECTABLE_DATE
 
-  if (minDate && startOfDay < getStartOfDay(minDate)) return getStartOfDay(minDate)
-  if (maxDate && startOfDay > getStartOfDay(maxDate)) return getStartOfDay(maxDate)
+  if (minimumDate > maximumDate) {
+    return new Date(
+      Math.min(
+        Math.max(startOfDay.getTime(), MIN_SELECTABLE_DATE.getTime()),
+        MAX_SELECTABLE_DATE.getTime()
+      )
+    )
+  }
+
+  if (startOfDay < minimumDate) return minimumDate
+  if (startOfDay > maximumDate) return maximumDate
 
   return startOfDay
 }
