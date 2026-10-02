@@ -10,7 +10,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import { ArrowIosBack, ArrowIosForward, CalendarOutline } from '@/assets'
+import { ArrowIosBack, ArrowIosForward, CalendarOutline, CloseOutline } from '@/assets'
 import s from './DatePicker.module.scss'
 
 export type DateRange = { end?: Date; start?: Date }
@@ -20,6 +20,7 @@ export type DatePickerProps = Omit<
   ComponentPropsWithoutRef<'button'>,
   'defaultValue' | 'onChange' | 'value'
 > & {
+  clearable?: boolean
   defaultValue?: DatePickerValue
   error?: ReactNode
   label?: string
@@ -98,6 +99,7 @@ const formatValue = (value: DatePickerValue, mode: DatePickerMode) => {
 
 export const DatePicker = ({
   className,
+  clearable = false,
   defaultValue,
   disabled,
   error,
@@ -170,12 +172,18 @@ export const DatePicker = ({
       return
     }
     const { end, start } = selectedRange
+    const selectedDate = getStartOfDay(date)
     if (!start || end) {
-      setSelectedValue({ start: date })
-      setFocusedDate(getStartOfDay(date))
+      setSelectedValue({ start: selectedDate })
+      setFocusedDate(selectedDate)
       return
     }
-    setSelectedValue(date < start ? { end: start, start: date } : { end: date, start })
+    const startDate = getStartOfDay(start)
+    setSelectedValue(
+      selectedDate < startDate
+        ? { end: startDate, start: selectedDate }
+        : { end: selectedDate, start: startDate }
+    )
     closeCalendar(true)
   }
   const handleCalendarKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -291,6 +299,20 @@ export const DatePicker = ({
           </span>
           <CalendarOutline autoSize={false} size={24} />
         </button>
+        {clearable && displayValue && (
+          <button
+            type={'button'}
+            className={s.clearButton}
+            disabled={disabled}
+            aria-label={mode === 'range' ? 'Clear date range' : 'Clear date'}
+            onClick={() => {
+              setSelectedValue(undefined)
+              closeCalendar(true)
+            }}
+          >
+            <CloseOutline autoSize={false} size={20} />
+          </button>
+        )}
       </div>
       {error && (
         <span id={errorId} className={clsx('typography-form-error', s.errorMessage)}>

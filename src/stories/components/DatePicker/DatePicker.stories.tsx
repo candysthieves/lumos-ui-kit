@@ -48,7 +48,7 @@ export const SelectedDate: Story = {
 export const MinAndMaxDates: Story = {
   args: {
     defaultValue: LIMITED_DATE,
-    label: 'Date (available 5–20 October 2026)',
+    label: 'Date (available 5-20 October 2026)',
     maxDate: MAX_DATE,
     minDate: MIN_DATE,
   },
@@ -92,6 +92,14 @@ export const Disabled: Story = {
   args: {
     defaultValue: SELECTED_DATE,
     disabled: true,
+    label: 'Date',
+  },
+}
+
+export const Clearable: Story = {
+  args: {
+    clearable: true,
+    defaultValue: SELECTED_DATE,
     label: 'Date',
   },
 }

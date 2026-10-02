@@ -63,6 +63,39 @@
   }
 }
 
+.clearButton {
+  @include flex(flex, center, center);
+  @include width-height(2rem);
+  @include transition-basic(border-color, background-color);
+
+  cursor: pointer;
+
+  flex: 0 0 auto;
+
+  padding: 0;
+  border: 1px solid var(--color-dark-100);
+  border-radius: 2px;
+
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-500);
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-dark-300);
+  }
+
+  &:focus-visible {
+    border-color: var(--color-accent-700);
+    outline: 1px solid var(--color-accent-700);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border-color: var(--color-dark-300);
+    color: var(--color-dark-100);
+  }
+}
+
 .navigationButton {
   @include flex(flex, center, center);
 
