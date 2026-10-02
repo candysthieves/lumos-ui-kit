@@ -12,6 +12,8 @@ const meta: Meta<typeof DatePicker> = {
   argTypes: {
     className: { control: false },
     defaultValue: { control: false },
+    maxDate: { control: false },
+    minDate: { control: false },
     onChange: { action: 'date changed' },
     value: { control: false },
   },
@@ -26,6 +28,9 @@ const SELECTED_RANGE = {
   end: new Date(2026, 9, 8),
   start: new Date(2026, 9, 2),
 }
+const MIN_DATE = new Date(2026, 9, 5)
+const MAX_DATE = new Date(2026, 9, 20)
+const LIMITED_DATE = new Date(2026, 9, 10)
 
 export const Default: Story = {
   args: {
@@ -37,6 +42,22 @@ export const SelectedDate: Story = {
   args: {
     defaultValue: SELECTED_DATE,
     label: 'Date',
+  },
+}
+
+export const MinAndMaxDates: Story = {
+  args: {
+    defaultValue: LIMITED_DATE,
+    label: 'Date (available 5–20 October 2026)',
+    maxDate: MAX_DATE,
+    minDate: MIN_DATE,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Only dates from 5 to 20 October 2026 can be selected.',
+      },
+    },
   },
 }
 
@@ -110,7 +131,7 @@ export const RangeFocus: Story = {
     label: 'Date range',
     mode: 'range',
   },
-  play: ({ canvas }) => {
-    canvas.getByRole('button').focus()
+  play: async ({ userEvent }) => {
+    await userEvent.tab()
   },
 }

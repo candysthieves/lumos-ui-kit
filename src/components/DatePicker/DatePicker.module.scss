@@ -208,6 +208,11 @@
     }
   }
 
+  &:disabled {
+    cursor: not-allowed;
+    color: var(--color-dark-100);
+  }
+
   span {
     @include flex(flex, center, center);
     @include width-height(1.75rem);

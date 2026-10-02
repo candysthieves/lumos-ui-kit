@@ -23,6 +23,8 @@ export type DatePickerProps = Omit<
   defaultValue?: DatePickerValue
   error?: ReactNode
   label?: string
+  maxDate?: Date
+  minDate?: Date
   mode?: DatePickerMode
   onChange?: (value: DatePickerValue) => void
   value?: DatePickerValue
@@ -45,6 +47,14 @@ const YEARS = Array.from({ length: 201 }, (_, index) => 1900 + index)
 
 const getStartOfDay = (date: Date) => new Date(date.getFullYear(), date.getMonth(), date.getDate())
 const getStartOfMonth = (date: Date) => new Date(date.getFullYear(), date.getMonth(), 1)
+const getClosestEnabledDate = (date: Date, minDate?: Date, maxDate?: Date) => {
+  const startOfDay = getStartOfDay(date)
+
+  if (minDate && startOfDay < getStartOfDay(minDate)) return getStartOfDay(minDate)
+  if (maxDate && startOfDay > getStartOfDay(maxDate)) return getStartOfDay(maxDate)
+
+  return startOfDay
+}
 const getDatesEqual = (firstDate: Date, secondDate: Date) =>
   getStartOfDay(firstDate).getTime() === getStartOfDay(secondDate).getTime()
 const getDateBetween = (date: Date, startDate: Date, endDate: Date) => {
@@ -88,6 +98,8 @@ export const DatePicker = ({
   disabled,
   error,
   label,
+  maxDate,
+  minDate,
   mode = 'single',
   onChange,
   onClick,
@@ -112,7 +124,9 @@ export const DatePicker = ({
   const [displayedMonth, setDisplayedMonth] = useState(() =>
     getStartOfMonth(activeDate ?? new Date())
   )
-  const [focusedDate, setFocusedDate] = useState(() => getStartOfDay(activeDate ?? new Date()))
+  const [focusedDate, setFocusedDate] = useState(() =>
+    getClosestEnabledDate(activeDate ?? new Date(), minDate, maxDate)
+  )
 
   const closeCalendar = (shouldRestoreFocus = false) => {
     setIsOpen(false)
@@ -136,6 +150,10 @@ export const DatePicker = ({
     if (value === undefined) setInternalValue(nextValue)
     onChange?.(nextValue)
   }
+  const isDateDisabled = (date: Date) =>
+    disabled ||
+    (!!minDate && date < getStartOfDay(minDate)) ||
+    (!!maxDate && date > getStartOfDay(maxDate))
   const setFocusedCalendarDate = (date: Date) => {
     const nextDate = getStartOfDay(date)
     setFocusedDate(nextDate)
@@ -160,6 +178,8 @@ export const DatePicker = ({
     const calendarDates = getCalendarDates(displayedMonth)
     const focusedIndex = calendarDates.findIndex(date => getDatesEqual(date, focusedDate))
     const goToDate = (date: Date) => {
+      if (isDateDisabled(date)) return
+
       event.preventDefault()
       setFocusedCalendarDate(date)
     }
@@ -249,7 +269,11 @@ export const DatePicker = ({
           onClick={event => {
             onClick?.(event)
             if (!isOpen) {
-              const nextFocusedDate = getStartOfDay(activeDate ?? new Date())
+              const nextFocusedDate = getClosestEnabledDate(
+                activeDate ?? new Date(),
+                minDate,
+                maxDate
+              )
               setDisplayedMonth(getStartOfMonth(nextFocusedDate))
               setFocusedDate(nextFocusedDate)
             }
@@ -390,6 +414,7 @@ export const DatePicker = ({
                         <button
                           type={'button'}
                           data-date={getStartOfDay(date).getTime()}
+                          disabled={isDateDisabled(date)}
                           tabIndex={getDatesEqual(date, focusedDate) ? 0 : -1}
                           aria-label={DAY_FORMATTER.format(date)}
                           className={clsx(
