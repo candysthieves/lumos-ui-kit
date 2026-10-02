@@ -5,17 +5,34 @@ import {
   type ComponentPropsWithoutRef,
   type KeyboardEvent,
   type ReactNode,
+  useCallback,
   useEffect,
   useId,
   useRef,
   useState,
 } from 'react'
 import { ArrowIosBack, ArrowIosForward, CalendarOutline, CloseOutline } from '@/assets'
+import { Button } from '@/components/Button'
+import { Select } from '@/components/Select'
 import s from './DatePicker.module.scss'
+import { DatePickerDateCell } from './DatePickerDateCell'
+import {
+  formatValue,
+  DAYS_IN_WEEK,
+  getCalendarDates,
+  getClosestEnabledDate,
+  getDateRange,
+  getDatesEqual,
+  getStartOfDay,
+  getStartOfMonth,
+  isYearSelectable,
+  MONTH_OPTIONS,
+  type DatePickerMode,
+  type DatePickerValue,
+  YEAR_OPTIONS,
+} from './dateUtils'
 
-export type DateRange = { end?: Date; start?: Date }
-export type DatePickerMode = 'range' | 'single'
-export type DatePickerValue = Date | DateRange | undefined
+export type { DatePickerMode, DatePickerValue, DateRange } from './dateUtils'
 export type DatePickerProps = Omit<
   ComponentPropsWithoutRef<'button'>,
   'defaultValue' | 'onChange' | 'value'
@@ -31,71 +48,9 @@ export type DatePickerProps = Omit<
   value?: DatePickerValue
 }
 
-const DAYS_IN_WEEK = 7
 const WEEKS_IN_CALENDAR = 6
-const MIN_YEAR = 1900
-const MAX_YEAR = 2100
 const WEEKDAY_LABELS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
 const MONTH_FORMATTER = new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric' })
-const DATE_FORMATTER = new Intl.DateTimeFormat('en-GB')
-const DAY_FORMATTER = new Intl.DateTimeFormat('en', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-})
-const MONTH_LABELS = Array.from({ length: 12 }, (_, month) =>
-  new Intl.DateTimeFormat('en', { month: 'long' }).format(new Date(2026, month, 1))
-)
-const YEARS = Array.from({ length: MAX_YEAR - MIN_YEAR + 1 }, (_, index) => MIN_YEAR + index)
-
-const getStartOfDay = (date: Date) => new Date(date.getFullYear(), date.getMonth(), date.getDate())
-const getStartOfMonth = (date: Date) => new Date(date.getFullYear(), date.getMonth(), 1)
-const isYearSelectable = (date: Date) =>
-  date.getFullYear() >= MIN_YEAR && date.getFullYear() <= MAX_YEAR
-const getClosestEnabledDate = (date: Date, minDate?: Date, maxDate?: Date) => {
-  const startOfDay = getStartOfDay(date)
-
-  if (minDate && startOfDay < getStartOfDay(minDate)) return getStartOfDay(minDate)
-  if (maxDate && startOfDay > getStartOfDay(maxDate)) return getStartOfDay(maxDate)
-
-  return startOfDay
-}
-const getDatesEqual = (firstDate: Date, secondDate: Date) =>
-  getStartOfDay(firstDate).getTime() === getStartOfDay(secondDate).getTime()
-const getDateBetween = (date: Date, startDate: Date, endDate: Date) => {
-  const timestamp = getStartOfDay(date).getTime()
-  return (
-    timestamp > getStartOfDay(startDate).getTime() && timestamp < getStartOfDay(endDate).getTime()
-  )
-}
-const getCalendarDates = (month: Date) => {
-  const firstDayOfMonth = getStartOfMonth(month)
-  const mondayOffset = (firstDayOfMonth.getDay() + DAYS_IN_WEEK - 1) % DAYS_IN_WEEK
-  const firstCalendarDate = new Date(firstDayOfMonth)
-  firstCalendarDate.setDate(firstDayOfMonth.getDate() - mondayOffset)
-  return Array.from({ length: DAYS_IN_WEEK * WEEKS_IN_CALENDAR }, (_, index) => {
-    const date = new Date(firstCalendarDate)
-    date.setDate(firstCalendarDate.getDate() + index)
-    return date
-  })
-}
-const getDateRange = (value: DatePickerValue): DateRange =>
-  value instanceof Date ? { start: value } : (value ?? {})
-const formatValue = (value: DatePickerValue, mode: DatePickerMode) => {
-  if (!value) return ''
-  if (mode === 'single')
-    return value instanceof Date
-      ? DATE_FORMATTER.format(value)
-      : value.start
-        ? DATE_FORMATTER.format(value.start)
-        : ''
-  const { end, start } = getDateRange(value)
-  return start
-    ? end
-      ? `${DATE_FORMATTER.format(start)} - ${DATE_FORMATTER.format(end)}`
-      : DATE_FORMATTER.format(start)
-    : ''
-}
 
 export const DatePicker = ({
   className,
@@ -117,6 +72,7 @@ export const DatePicker = ({
   const errorId = `${popupId}-error`
   const rootRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)
+  const [portalContainer, setPortalContainer] = useState<HTMLDivElement | null>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [internalValue, setInternalValue] = useState<DatePickerValue>(defaultValue)
   const selectedValue = value ?? internalValue
@@ -133,6 +89,10 @@ export const DatePicker = ({
   const [focusedDate, setFocusedDate] = useState(() =>
     getClosestEnabledDate(activeDate ?? new Date(), minDate, maxDate)
   )
+  const setRootRef = useCallback((node: HTMLDivElement | null) => {
+    rootRef.current = node
+    setPortalContainer(node)
+  }, [])
 
   const closeCalendar = (shouldRestoreFocus = false) => {
     setIsOpen(false)
@@ -257,14 +217,14 @@ export const DatePicker = ({
   const nextMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() + 1, 1)
 
   return (
-    <div ref={rootRef} className={clsx(s.wrapper, className)}>
+    <div ref={setRootRef} className={clsx(s.wrapper, className)}>
       {label && (
         <label htmlFor={popupId} className={clsx('typography-body1', s.label)}>
           {label}
         </label>
       )}
       <div className={s.controls}>
-        <button
+        <Button
           {...buttonProps}
           ref={triggerRef}
           id={popupId}
@@ -274,6 +234,7 @@ export const DatePicker = ({
           aria-describedby={error ? errorId : undefined}
           aria-expanded={isOpen}
           aria-haspopup={'dialog'}
+          variant={'text'}
           className={clsx(
             s.trigger,
             'typography-subtitle1',
@@ -298,20 +259,21 @@ export const DatePicker = ({
             {displayValue || (mode === 'range' ? 'Select date range' : 'Select date')}
           </span>
           <CalendarOutline autoSize={false} size={24} />
-        </button>
+        </Button>
         {clearable && displayValue && (
-          <button
+          <Button
             type={'button'}
             className={s.clearButton}
             disabled={disabled}
             aria-label={mode === 'range' ? 'Clear date range' : 'Clear date'}
+            variant={'text'}
             onClick={() => {
               setSelectedValue(undefined)
               closeCalendar(true)
             }}
           >
             <CloseOutline autoSize={false} size={20} />
-          </button>
+          </Button>
         )}
       </div>
       {error && (
@@ -334,64 +296,56 @@ export const DatePicker = ({
         >
           <div className={s.header}>
             <div className={s.monthYearControls}>
-              <label className={s.visuallyHidden} htmlFor={`${popupId}-month`}>
-                Month
-              </label>
-              <select
-                id={`${popupId}-month`}
-                className={clsx(s.monthYearSelect, 'typography-subtitle2')}
-                value={displayedMonth.getMonth()}
-                onChange={event =>
+              <Select
+                className={s.monthYearSelect}
+                contentClassName={s.monthYearContent}
+                options={MONTH_OPTIONS}
+                portalProps={portalContainer ? { container: portalContainer } : undefined}
+                value={String(displayedMonth.getMonth())}
+                viewportProps={{ className: s.monthViewport }}
+                onValueChange={month =>
                   setDisplayedMonth(
-                    month => new Date(month.getFullYear(), Number(event.target.value), 1)
+                    currentMonth => new Date(currentMonth.getFullYear(), Number(month), 1)
                   )
                 }
-              >
-                {MONTH_LABELS.map((month, index) => (
-                  <option key={month} value={index}>
-                    {month}
-                  </option>
-                ))}
-              </select>
-              <label className={s.visuallyHidden} htmlFor={`${popupId}-year`}>
-                Year
-              </label>
-              <select
-                id={`${popupId}-year`}
-                className={clsx(s.monthYearSelect, 'typography-subtitle2')}
-                value={displayedMonth.getFullYear()}
-                onChange={event =>
+                triggerProps={{ 'aria-label': 'Month' }}
+              />
+              <Select
+                className={s.monthYearSelect}
+                contentClassName={s.monthYearContent}
+                options={YEAR_OPTIONS}
+                portalProps={portalContainer ? { container: portalContainer } : undefined}
+                value={String(displayedMonth.getFullYear())}
+                viewportProps={{ className: s.yearViewport }}
+                onValueChange={year =>
                   setDisplayedMonth(
-                    month => new Date(Number(event.target.value), month.getMonth(), 1)
+                    currentMonth => new Date(Number(year), currentMonth.getMonth(), 1)
                   )
                 }
-              >
-                {YEARS.map(year => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
+                triggerProps={{ 'aria-label': 'Year' }}
+              />
             </div>
             <div className={s.navigation}>
-              <button
+              <Button
                 type={'button'}
                 className={s.navigationButton}
                 aria-label={'Previous month'}
                 disabled={!isYearSelectable(previousMonth)}
                 onClick={() => setDisplayedMonth(previousMonth)}
+                variant={'text'}
               >
                 <ArrowIosBack autoSize={false} size={20} />
-              </button>
-              <button
+              </Button>
+              <Button
                 type={'button'}
                 className={s.navigationButton}
                 aria-label={'Next month'}
                 disabled={!isYearSelectable(nextMonth)}
                 onClick={() => setDisplayedMonth(nextMonth)}
+                variant={'text'}
               >
                 <ArrowIosForward autoSize={false} size={20} />
-              </button>
+              </Button>
             </div>
           </div>
           <div
@@ -411,56 +365,20 @@ export const DatePicker = ({
               <div key={weekIndex} role={'row'} className={s.week}>
                 {calendarDates
                   .slice(weekIndex * DAYS_IN_WEEK, (weekIndex + 1) * DAYS_IN_WEEK)
-                  .map(date => {
-                    const isCurrentMonth = date.getMonth() === displayedMonth.getMonth()
-                    const isWeekend = date.getDay() === 0 || date.getDay() === 6
-                    const isSelected =
-                      mode === 'single' &&
-                      selectedValue instanceof Date &&
-                      getDatesEqual(date, selectedValue)
-                    const isRangeStart =
-                      mode === 'range' &&
-                      !!selectedRange.start &&
-                      getDatesEqual(date, selectedRange.start)
-                    const isRangeEnd =
-                      mode === 'range' &&
-                      !!selectedRange.end &&
-                      getDatesEqual(date, selectedRange.end)
-                    const isInRange =
-                      mode === 'range' &&
-                      !!selectedRange.start &&
-                      !!selectedRange.end &&
-                      getDateBetween(date, selectedRange.start, selectedRange.end)
-                    return (
-                      <div
-                        key={date.toISOString()}
-                        role={'gridcell'}
-                        aria-selected={isSelected || isRangeStart || isRangeEnd}
-                      >
-                        <button
-                          type={'button'}
-                          data-date={getStartOfDay(date).getTime()}
-                          disabled={isDateDisabled(date)}
-                          tabIndex={getDatesEqual(date, focusedDate) ? 0 : -1}
-                          aria-label={DAY_FORMATTER.format(date)}
-                          className={clsx(
-                            s.day,
-                            'typography-subtitle1',
-                            !isCurrentMonth && s.otherMonth,
-                            isWeekend && s.weekend,
-                            (isSelected || isRangeStart || isRangeEnd) && s.selected,
-                            isInRange && s.inRange,
-                            isRangeStart && s.rangeStart,
-                            isRangeEnd && s.rangeEnd
-                          )}
-                          onClick={() => handleDateSelect(date)}
-                          onFocus={() => setFocusedDate(getStartOfDay(date))}
-                        >
-                          <span>{date.getDate()}</span>
-                        </button>
-                      </div>
-                    )
-                  })}
+                  .map(date => (
+                    <DatePickerDateCell
+                      key={date.toISOString()}
+                      date={date}
+                      disabled={isDateDisabled(date)}
+                      displayedMonth={displayedMonth}
+                      focusedDate={focusedDate}
+                      mode={mode}
+                      selectedRange={selectedRange}
+                      selectedValue={selectedValue}
+                      onFocus={setFocusedDate}
+                      onSelect={handleDateSelect}
+                    />
+                  ))}
               </div>
             ))}
           </div>
