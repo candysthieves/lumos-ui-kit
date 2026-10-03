@@ -6,3 +6,18 @@ export { isThemeColor } from './isThemeColor'
 export { getFirstLetterCapitalized } from './getFirstLetterCapitalized'
 export { isAudioAttachment } from './isAudioAttachment'
 export { formatTime } from './formatTime'
+export {
+  DAYS_IN_WEEK,
+  formatValue,
+  getCalendarDates,
+  getClosestEnabledDate,
+  getDateBetween,
+  getDateRange,
+  getDatesEqual,
+  getStartOfDay,
+  getStartOfMonth,
+  isYearSelectable,
+  MONTH_OPTIONS,
+  YEAR_OPTIONS,
+} from './datePicker'
+export type { DatePickerMode, DatePickerValue, DateRange } from './datePicker'
