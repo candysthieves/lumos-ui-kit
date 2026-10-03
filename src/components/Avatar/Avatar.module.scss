@@ -170,6 +170,15 @@
   object-fit: contain;
 }
 
+// Modal window
+.modal-m {
+  max-width: min($modal-width-m, calc(100vw - 4.5rem)) !important;
+}
+
+.modal-xl {
+  max-width: min($modal-width-m, calc(100vw - 4.5rem)) !important;
+}
+
 //// Add if we will need
 // .rootBlock:hover {
 //  z-index: 4;

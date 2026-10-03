@@ -9,14 +9,14 @@ import {
   forwardRef,
   useState,
 } from 'react'
-import type { MainAvatarSize } from '@/types'
+import type { MainAvatarSize, ModalSize } from '@/types'
 import { CloseOutline, ImageOutline } from '@/assets'
 import { Modal } from '@/components'
 import { Button } from '@/components/Button'
 import s from './Avatar.module.scss'
 
 export type MainAvatarProps = {
-  src?: string
+  src?: null | string
   alt?: string
   userName: string
   delayMs?: number
@@ -29,7 +29,7 @@ export type MainAvatarProps = {
 export const MainAvatar = forwardRef<HTMLDivElement, MainAvatarProps>(
   (
     {
-      src,
+      src = null,
       alt,
       userName,
       delayMs = 600,
@@ -43,6 +43,7 @@ export const MainAvatar = forwardRef<HTMLDivElement, MainAvatarProps>(
     ref
   ) => {
     const [isOpen, setIsOpen] = useState(false)
+    const modalSize: ModalSize = 'm'
 
     const openModal = () => setIsOpen(true)
     const closeModal = () => setIsOpen(false)
@@ -107,9 +108,16 @@ export const MainAvatar = forwardRef<HTMLDivElement, MainAvatarProps>(
         </Avatar.Root>
 
         {isScalable && (
-          <Modal open={isOpen} onClose={closeModal} size={'m'} closeButtonOutside fullSize>
+          <Modal
+            open={isOpen}
+            onClose={closeModal}
+            size={modalSize}
+            closeButtonOutside
+            fullSize
+            className={s[`modal-${modalSize}`]}
+          >
             <div className={s.imageContent}>
-              <img src={src} alt={alt || userName} className={s.imageItem} />
+              <img src={src ?? undefined} alt={alt || userName} className={s.imageItem} />
             </div>
           </Modal>
         )}
