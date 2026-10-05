@@ -10,6 +10,7 @@ export type InputProps = {
   error?: string
   startAdornment?: ReactNode
   endAdornment?: ReactNode
+  containerClassName?: string
 } & ComponentPropsWithoutRef<'input'>
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -21,6 +22,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       startAdornment,
       endAdornment,
       className,
+      containerClassName,
       disabled,
       type = 'text',
       ...props
@@ -39,7 +41,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
 
         <div
-          className={clsx(s.container, {
+          className={clsx(s.container, containerClassName, {
             [s.error]: !!error,
             [s.disabled]: disabled,
           })}

@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - dev
+      - SCRUM-207-add-searchable-select
 
   pull_request:
     branches:
