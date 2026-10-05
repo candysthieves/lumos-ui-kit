@@ -12,42 +12,11 @@ import {
   useRef,
   useState,
 } from 'react'
-import { Input } from '@/components'
+import { Input, type SelectItem } from '@/components'
 import { DEBOUNCE_DELAY } from '@/constants'
 import { useDebounce } from '@/hooks'
 import { getOptions } from '@/utils'
 import s from './SearchableSelect.module.scss'
-
-export type SelectOption = {
-  disabled?: boolean
-  icon?: ReactNode
-  itemIndicator?: ReactNode
-  itemIndicatorProps?: ComponentPropsWithoutRef<typeof SelectPrimitive.ItemIndicator>
-  itemProps?: Omit<
-    ComponentPropsWithoutRef<typeof SelectPrimitive.Item>,
-    'children' | 'disabled' | 'textValue' | 'value'
-  >
-  itemTextProps?: ComponentPropsWithoutRef<typeof SelectPrimitive.ItemText>
-  label: ReactNode
-  textValue?: string
-  type?: 'item'
-  value: string
-}
-
-export type SelectOptionGroup = {
-  groupProps?: ComponentPropsWithoutRef<typeof SelectPrimitive.Group>
-  label: ReactNode
-  labelProps?: ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
-  options: SelectOption[]
-  type: 'group'
-}
-
-export type SelectOptionSeparator = {
-  separatorProps?: ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
-  type: 'separator'
-}
-
-export type SelectItem = SelectOption | SelectOptionGroup | SelectOptionSeparator
 
 export type SearchableSelectProps = Omit<
   ComponentPropsWithoutRef<typeof SelectPrimitive.Root>,
