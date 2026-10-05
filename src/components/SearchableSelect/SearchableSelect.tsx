@@ -12,7 +12,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import { Input, type SelectItem } from '@/components'
+import { Input, type SelectItem, type SelectOption } from '@/components'
 import { DEBOUNCE_DELAY } from '@/constants'
 import { useDebounce } from '@/hooks'
 import { getOptions } from '@/utils'
