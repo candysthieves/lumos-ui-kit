@@ -37,6 +37,12 @@
     cursor: not-allowed;
     color: var(--color-dark-100);
   }
+
+  @include media-desktop {
+    &[data-placeholder] {
+      font-size: 0.85em !important;
+    }
+  }
 }
 
 .trigger[data-placeholder]:not(.hasLabel) {
