@@ -133,6 +133,12 @@ export const SearchableSelect = forwardRef<HTMLButtonElement, SearchableSelectPr
     }, [debouncedSearchValue])
 
     const handleValueChange = (nextValue: string) => {
+      console.log('🔥 SearchableSelect handleValueChange', {
+        nextValue,
+        value,
+        internalValue,
+      })
+
       setInternalValue(nextValue)
       onValueChange?.(nextValue)
     }
@@ -198,7 +204,7 @@ export const SearchableSelect = forwardRef<HTMLButtonElement, SearchableSelectPr
       <SelectPrimitive.Root
         {...props}
         defaultValue={defaultValue}
-        value={value}
+        value={value ?? ''}
         onValueChange={handleValueChange}
         onOpenChange={handleOpenChange}
       >
