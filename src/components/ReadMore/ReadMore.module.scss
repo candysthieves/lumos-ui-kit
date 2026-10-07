@@ -1,6 +1,12 @@
 .button {
   cursor: pointer;
+
+  padding: 0;
+  border: none;
+
   color: var(--color-accent-500);
+
+  background-color: transparent;
 
   &:hover {
     color: var(--color-accent-700);

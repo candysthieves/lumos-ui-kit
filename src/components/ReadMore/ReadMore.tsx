@@ -48,7 +48,7 @@ export const ReadMore = ({
   return (
     <Typography className={className} variant={'body1'}>
       {displayedText}{' '}
-      <Button as={'a'} className={clsx('typography-link', s.button)} onClick={handleToggle}>
+      <Button className={clsx('typography-link', s.button)} onClick={handleToggle}>
         {expanded ? collapseLabel : expandLabel}
       </Button>
     </Typography>

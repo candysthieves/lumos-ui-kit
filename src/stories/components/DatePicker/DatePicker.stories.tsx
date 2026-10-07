@@ -1,0 +1,163 @@
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { useState } from 'react'
+import { DatePicker, type DateRange as DateRangeValue } from '@/components/DatePicker'
+
+const meta: Meta<typeof DatePicker> = {
+  title: 'Components/DatePicker',
+  component: DatePicker,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+  },
+  render: args => (
+    <DatePicker {...args} maxDate={toDate(args.maxDate)} minDate={toDate(args.minDate)} />
+  ),
+  argTypes: {
+    className: { control: false },
+    defaultValue: { control: false },
+    error: { control: 'text' },
+    maxDate: { control: 'date' },
+    minDate: { control: 'date' },
+    onChange: { action: 'date changed' },
+    value: { control: false },
+  },
+}
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+function toDate(value: Date | number | undefined) {
+  return typeof value === 'number' ? new Date(value) : value
+}
+
+const SELECTED_DATE = new Date(2026, 9, 1)
+const SELECTED_RANGE = {
+  end: new Date(2026, 9, 8),
+  start: new Date(2026, 9, 2),
+}
+const MIN_DATE = new Date(2026, 9, 5)
+const MAX_DATE = new Date(2026, 9, 20)
+const LIMITED_DATE = new Date(2026, 9, 10)
+
+export const Default: Story = {
+  args: {
+    label: 'Date select',
+  },
+}
+
+export const DateLimits: Story = {
+  args: {
+    label: 'Date',
+    maxDate: MAX_DATE,
+    minDate: MIN_DATE,
+  },
+}
+
+export const SelectedDate: Story = {
+  args: {
+    defaultValue: SELECTED_DATE,
+    label: 'Date',
+  },
+}
+
+export const MinAndMaxDates: Story = {
+  args: {
+    defaultValue: LIMITED_DATE,
+    label: 'Date (available 5-20 October 2026)',
+    maxDate: MAX_DATE,
+    minDate: MIN_DATE,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Only dates from 5 to 20 October 2026 can be selected.',
+      },
+    },
+  },
+}
+
+export const DateRange: Story = {
+  args: {
+    defaultValue: SELECTED_RANGE,
+    label: 'Date range',
+    mode: 'range',
+  },
+  render: args => {
+    const [value, setValue] = useState<DateRangeValue>(args.defaultValue as DateRangeValue)
+
+    return (
+      <DatePicker
+        {...args}
+        maxDate={toDate(args.maxDate)}
+        minDate={toDate(args.minDate)}
+        value={value}
+        onChange={nextValue => setValue(nextValue as DateRangeValue)}
+      />
+    )
+  },
+}
+
+export const Error: Story = {
+  args: {
+    defaultValue: SELECTED_DATE,
+    error: 'Error!',
+    label: 'Date',
+  },
+}
+
+export const Disabled: Story = {
+  args: {
+    defaultValue: SELECTED_DATE,
+    disabled: true,
+    label: 'Date',
+  },
+}
+
+export const Clearable: Story = {
+  args: {
+    clearable: true,
+    defaultValue: SELECTED_DATE,
+    label: 'Date',
+  },
+}
+
+export const RangeError: Story = {
+  args: {
+    defaultValue: SELECTED_RANGE,
+    error: 'Select the current month or last month',
+    label: 'Date range',
+    mode: 'range',
+  },
+}
+
+export const RangeDisabled: Story = {
+  args: {
+    defaultValue: SELECTED_RANGE,
+    disabled: true,
+    label: 'Date range',
+    mode: 'range',
+  },
+}
+
+export const RangeHover: Story = {
+  args: {
+    defaultValue: SELECTED_RANGE,
+    label: 'Date range',
+    mode: 'range',
+  },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.hover(canvas.getByRole('button'))
+  },
+}
+
+export const RangeFocus: Story = {
+  args: {
+    defaultValue: SELECTED_RANGE,
+    label: 'Date range',
+    mode: 'range',
+  },
+  play: async ({ userEvent }) => {
+    await userEvent.tab()
+  },
+}

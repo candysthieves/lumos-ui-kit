@@ -37,6 +37,10 @@ const meta = {
       control: 'boolean',
       description: 'Show close button',
     },
+    isScalable: {
+      control: 'boolean',
+      description: 'Display a scalable avatar in a modal window when clicking on the avatar',
+    },
     onClose: {
       action: 'onClose clicked',
       description: 'Callback when close button is clicked',
@@ -196,5 +200,21 @@ export const InteractiveDemo: Story = {
         )}
       </>
     )
+  },
+}
+
+export const Scalable: Story = {
+  args: {
+    src: 'https://images.unsplash.com/photo-1514984879728-be0aff75a6e8?q=80&w=2168&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    userName: 'John Doe',
+    isScalable: true,
+    size: 'xl',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Display a scalable avatar in a modal window when clicking on the avatar',
+      },
+    },
   },
 }
