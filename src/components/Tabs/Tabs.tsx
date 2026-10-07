@@ -41,7 +41,7 @@ export const Tabs = forwardRef<ComponentRef<typeof TabsPrimitive.Root>, TabsProp
               className={clsx(s.trigger, 'typography-h3')}
             >
               {tab.icon && <span className={s.icon}>{tab.icon}</span>}
-              {tab.label}
+              <span className={s.labelText}>{tab.label}</span>
             </TabsPrimitive.Trigger>
           ))}
         </TabsPrimitive.List>

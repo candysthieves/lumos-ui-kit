@@ -85,3 +85,26 @@ export const AllDisabled: Story = {
     defaultValue: 'tab1',
   },
 }
+
+export const WithLongText: Story = {
+  args: {
+    tabs: [
+      {
+        value: 'tab1',
+        label: 'Very Long General Information Text For Testing Ellipsis',
+        content: 'Content 1',
+      },
+      {
+        value: 'tab2',
+        label: 'Short Title',
+        content: 'Content 2',
+      },
+      {
+        value: 'tab3',
+        label: 'Another Terribly Long Tab Headline Description',
+        content: 'Content 3',
+      },
+    ],
+    defaultValue: 'tab1',
+  },
+}
