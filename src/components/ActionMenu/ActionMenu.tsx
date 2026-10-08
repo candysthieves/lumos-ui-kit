@@ -1,6 +1,6 @@
 'use client'
 
-import type { ComponentPropsWithoutRef, ReactNode } from 'react'
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 import clsx from 'clsx'
 import { DropdownMenu as DropdownMenuPrimitive } from 'radix-ui'
 import { MoreHorizontalOutline } from '@/assets'
@@ -9,6 +9,7 @@ import s from './ActionMenu.module.scss'
 
 export type ActionMenuItem = {
   disabled?: boolean
+  href?: string
   icon?: ReactNode
   id: string
   itemProps?: Omit<
@@ -30,6 +31,7 @@ export type ActionMenuProps = Omit<
   contentProps?: Omit<ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>, 'children'>
   itemClassName?: string
   items: ActionMenuItem[]
+  linkTag?: ElementType
   portalProps?: ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Portal>
   trigger?: ReactNode
   triggerClassName?: string
@@ -42,6 +44,7 @@ export const ActionMenu = ({
   contentProps,
   itemClassName,
   items,
+  linkTag: LinkTag = 'a',
   modal = true,
   portalProps,
   trigger,
@@ -81,22 +84,28 @@ export const ActionMenu = ({
         >
           {items.map(item => {
             const { className: itemPropsClassName, ...restItemProps } = item.itemProps ?? {}
-
-            return (
-              <DropdownMenuPrimitive.Item
-                key={item.id}
-                disabled={item.disabled}
-                textValue={item.textValue}
-                className={clsx(s.item, 'typography-body1', itemClassName, itemPropsClassName)}
-                onSelect={item.onSelect}
-                {...restItemProps}
-              >
+            const itemContent = (
+              <>
                 {item.icon && (
                   <span className={s.itemIcon} aria-hidden>
                     {item.icon}
                   </span>
                 )}
                 <span className={s.itemLabel}>{item.label}</span>
+              </>
+            )
+
+            return (
+              <DropdownMenuPrimitive.Item
+                key={item.id}
+                asChild={Boolean(item.href)}
+                disabled={item.disabled}
+                textValue={item.textValue}
+                className={clsx(s.item, 'typography-body1', itemClassName, itemPropsClassName)}
+                onSelect={item.onSelect}
+                {...restItemProps}
+              >
+                {item.href ? <LinkTag href={item.href}>{itemContent}</LinkTag> : itemContent}
               </DropdownMenuPrimitive.Item>
             )
           })}

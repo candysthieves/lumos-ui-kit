@@ -112,6 +112,7 @@ export const Header = ({
           <ActionMenu
             ariaLabel={mobileMenuLabel}
             items={mobileMenuItems}
+            linkTag={LinkTag}
             triggerClassName={s.mobileMenuButton}
             contentClassName={s.mobileMenu}
           />
