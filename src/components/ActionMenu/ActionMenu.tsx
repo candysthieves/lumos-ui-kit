@@ -21,6 +21,12 @@ export type ActionMenuItem = {
   textValue?: string
 }
 
+export type ActionMenuLinkTag = ElementType<{
+  children?: ReactNode
+  className?: string
+  href: string
+}>
+
 export type ActionMenuProps = Omit<
   ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Root>,
   'children'
@@ -31,7 +37,7 @@ export type ActionMenuProps = Omit<
   contentProps?: Omit<ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>, 'children'>
   itemClassName?: string
   items: ActionMenuItem[]
-  linkTag?: ElementType
+  linkTag?: ActionMenuLinkTag
   portalProps?: ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Portal>
   trigger?: ReactNode
   triggerClassName?: string
@@ -84,6 +90,7 @@ export const ActionMenu = ({
         >
           {items.map(item => {
             const { className: itemPropsClassName, ...restItemProps } = item.itemProps ?? {}
+            const href = item.disabled ? undefined : item.href
             const itemContent = (
               <>
                 {item.icon && (
@@ -98,14 +105,14 @@ export const ActionMenu = ({
             return (
               <DropdownMenuPrimitive.Item
                 key={item.id}
-                asChild={Boolean(item.href)}
+                asChild={Boolean(href)}
                 disabled={item.disabled}
                 textValue={item.textValue}
                 className={clsx(s.item, 'typography-body1', itemClassName, itemPropsClassName)}
                 onSelect={item.onSelect}
                 {...restItemProps}
               >
-                {item.href ? <LinkTag href={item.href}>{itemContent}</LinkTag> : itemContent}
+                {href ? <LinkTag href={href}>{itemContent}</LinkTag> : itemContent}
               </DropdownMenuPrimitive.Item>
             )
           })}

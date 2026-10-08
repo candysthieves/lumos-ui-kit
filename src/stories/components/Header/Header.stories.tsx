@@ -100,6 +100,19 @@ export const Authorized: Story = {
     notificationCount: 3,
     notificationLabel: 'Notifications',
   },
+  parameters: {
+    chromatic: {
+      viewports: [360, 768],
+    },
+    docs: {
+      description: {
+        story: 'Use the viewport toolbar at 768 px or below to view the profile menu.',
+      },
+    },
+    viewport: {
+      defaultViewport: 'tablet',
+    },
+  },
 }
 
 export const NotAuthorized: Story = {
