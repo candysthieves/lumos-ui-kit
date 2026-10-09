@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import { Select as SelectPrimitive } from 'radix-ui'
 import {
   type ComponentPropsWithoutRef,
+  type KeyboardEvent,
   type ReactNode,
   forwardRef,
   useEffect,
@@ -145,6 +146,15 @@ export const SearchableSelect = forwardRef<HTMLButtonElement, SearchableSelectPr
       props.onOpenChange?.(open)
     }
 
+    const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+      const isCharacterKey =
+        event.key.length === 1 && !event.ctrlKey && !event.altKey && !event.metaKey
+
+      if (isCharacterKey) {
+        event.stopPropagation()
+      }
+    }
+
     const { className: triggerClassName, ...restTriggerProps } = triggerProps ?? {}
 
     const { className: labelClassName, ...restLabelProps } = labelProps ?? {}
@@ -260,9 +270,7 @@ export const SearchableSelect = forwardRef<HTMLButtonElement, SearchableSelectPr
                 className={s.searchInput}
                 containerClassName={s.searchInputContainer}
                 onChange={event => setSearchValue(event.target.value)}
-                onKeyDown={event => {
-                  event.stopPropagation()
-                }}
+                onKeyDown={handleSearchKeyDown}
               />
             </div>
 
