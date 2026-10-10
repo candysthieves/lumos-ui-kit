@@ -1,58 +1,42 @@
 'use client'
 
-import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import clsx from 'clsx'
 import { Select as SelectPrimitive } from 'radix-ui'
-import { forwardRef, useId, useState } from 'react'
+import {
+  type ComponentPropsWithoutRef,
+  type KeyboardEvent,
+  type ReactNode,
+  forwardRef,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
+import { Input, type SelectItem, type SelectOption } from '@/components'
+import { DEBOUNCE_DELAY } from '@/constants'
+import { useDebounce } from '@/hooks'
 import { getOptions } from '@/utils'
-import s from './Select.module.scss'
+import s from './SearchableSelect.module.scss'
 
-export type SelectOption = {
-  disabled?: boolean
-  icon?: ReactNode
-  itemIndicator?: ReactNode
-  itemIndicatorProps?: ComponentPropsWithoutRef<typeof SelectPrimitive.ItemIndicator>
-  itemProps?: Omit<
-    ComponentPropsWithoutRef<typeof SelectPrimitive.Item>,
-    'children' | 'disabled' | 'textValue' | 'value'
-  >
-  itemTextProps?: ComponentPropsWithoutRef<typeof SelectPrimitive.ItemText>
-  label: ReactNode
-  textValue?: string
-  type?: 'item'
-  value: string
-}
-
-export type SelectOptionGroup = {
-  groupProps?: ComponentPropsWithoutRef<typeof SelectPrimitive.Group>
-  label: ReactNode
-  labelProps?: ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
-  options: SelectOption[]
-  type: 'group'
-}
-
-export type SelectOptionSeparator = {
-  separatorProps?: ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
-  type: 'separator'
-}
-
-export type SelectItem = SelectOption | SelectOptionGroup | SelectOptionSeparator
-
-export type SelectProps = Omit<
+export type SearchableSelectProps = Omit<
   ComponentPropsWithoutRef<typeof SelectPrimitive.Root>,
   'children'
 > & {
   className?: string
   contentProps?: ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
   contentClassName?: string
+  debounceDelay?: number
   groupLabelClassName?: string
   iconProps?: ComponentPropsWithoutRef<typeof SelectPrimitive.Icon>
   itemClassName?: string
   label?: ReactNode
   labelProps?: ComponentPropsWithoutRef<'label'>
+  onSearchChange?: (value: string) => void
   options: SelectItem[]
   placeholder?: ReactNode
   portalProps?: ComponentPropsWithoutRef<typeof SelectPrimitive.Portal>
+  searchPlaceholder?: string
   separatorClassName?: string
   triggerIcon?: ReactNode
   triggerProps?: Omit<ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>, 'children'>
@@ -60,22 +44,53 @@ export type SelectProps = Omit<
   viewportProps?: ComponentPropsWithoutRef<typeof SelectPrimitive.Viewport>
 }
 
-export const Select = forwardRef<HTMLButtonElement, SelectProps>(
+const filterItems = (items: SelectItem[], search: string): SelectItem[] => {
+  if (!search.trim()) {
+    return items
+  }
+
+  const normalizedSearch = search.toLowerCase().trim()
+
+  return items.flatMap<SelectItem>(item => {
+    if (item.type === 'separator') {
+      return []
+    }
+
+    if (item.type === 'group') {
+      const filteredOptions = item.options.filter(option =>
+        String(option.label).toLowerCase().includes(normalizedSearch)
+      )
+
+      if (filteredOptions.length === 0) {
+        return []
+      }
+
+      return [{ ...item, options: filteredOptions }]
+    }
+
+    return String(item.label).toLowerCase().includes(normalizedSearch) ? [item] : []
+  })
+}
+
+export const SearchableSelect = forwardRef<HTMLButtonElement, SearchableSelectProps>(
   (
     {
       className,
       contentClassName,
       contentProps,
       defaultValue,
+      debounceDelay = DEBOUNCE_DELAY,
       groupLabelClassName,
       iconProps,
       itemClassName,
       label,
       labelProps,
+      onSearchChange,
       onValueChange,
       options,
       placeholder = 'Select-box',
       portalProps,
+      searchPlaceholder = 'Search...',
       separatorClassName,
       triggerIcon,
       triggerProps,
@@ -87,26 +102,72 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
     ref
   ) => {
     const generatedId = useId()
+
     const [internalValue, setInternalValue] = useState(defaultValue)
+    const [searchValue, setSearchValue] = useState('')
+
+    // Debounce input for select value
+    const debouncedSearchValue = useDebounce(searchValue, debounceDelay)
+
     const selectedValue = value ?? internalValue
+
     const flatOptions = getOptions(options)
+
     const selectedOption = flatOptions.find(option => option.value === selectedValue)
-    const triggerId = triggerProps?.id ?? `select-${generatedId}`
+
+    // Filter by debounced entered value
+    const filteredOptions = useMemo(
+      () => filterItems(options, debouncedSearchValue),
+      [options, debouncedSearchValue]
+    )
+
+    const triggerId = triggerProps?.id ?? `searchable-select-${generatedId}`
+    const onSearchChangeRef = useRef(onSearchChange)
+
+    useEffect(() => {
+      onSearchChangeRef.current = onSearchChange
+    }, [onSearchChange])
+
+    // Уведомляем родителя, когда дебаунсенное значение изменилось.
+    useEffect(() => {
+      onSearchChangeRef.current?.(debouncedSearchValue)
+    }, [debouncedSearchValue])
 
     const handleValueChange = (nextValue: string) => {
       setInternalValue(nextValue)
       onValueChange?.(nextValue)
     }
 
+    const handleOpenChange = (open: boolean) => {
+      if (!open) {
+        setSearchValue('')
+      }
+
+      props.onOpenChange?.(open)
+    }
+
+    const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+      const isCharacterKey =
+        event.key.length === 1 && !event.ctrlKey && !event.altKey && !event.metaKey
+
+      if (isCharacterKey) {
+        event.stopPropagation()
+      }
+    }
+
     const { className: triggerClassName, ...restTriggerProps } = triggerProps ?? {}
+
     const { className: labelClassName, ...restLabelProps } = labelProps ?? {}
+
     const { children: iconChildren, className: iconClassName, ...restIconProps } = iconProps ?? {}
+
     const {
       className: contentPropsClassName,
       position = 'popper',
       sideOffset = -1,
       ...restContentProps
     } = contentProps ?? {}
+
     const { className: viewportClassName, ...restViewportProps } = viewportProps ?? {}
 
     const renderOption = (option: SelectOption) => {
@@ -126,9 +187,11 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
               {option.icon}
             </span>
           )}
+
           <SelectPrimitive.ItemText {...option.itemTextProps}>
             {option.label}
           </SelectPrimitive.ItemText>
+
           {option.itemIndicator && (
             <SelectPrimitive.ItemIndicator
               className={s.itemIndicator}
@@ -147,6 +210,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
         defaultValue={defaultValue}
         value={value}
         onValueChange={handleValueChange}
+        onOpenChange={handleOpenChange}
       >
         {label && (
           <label
@@ -177,6 +241,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                   {selectedOption.icon}
                 </span>
               )}
+
               <SelectPrimitive.Value placeholder={placeholder} {...valueProps} />
             </span>
           </span>
@@ -197,11 +262,23 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
             sideOffset={sideOffset}
             {...restContentProps}
           >
+            <div className={s.searchField}>
+              <Input
+                type={'text'}
+                value={searchValue}
+                placeholder={searchPlaceholder}
+                className={s.searchInput}
+                containerClassName={s.searchInputContainer}
+                onChange={event => setSearchValue(event.target.value)}
+                onKeyDown={handleSearchKeyDown}
+              />
+            </div>
+
             <SelectPrimitive.Viewport
               className={clsx(s.viewport, viewportClassName)}
               {...restViewportProps}
             >
-              {options.map((option, index) => {
+              {filteredOptions.map((option, index) => {
                 if (option.type === 'separator') {
                   const { className: separatorPropsClassName, ...restSeparatorProps } =
                     option.separatorProps ?? {}
@@ -232,6 +309,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                       >
                         {option.label}
                       </SelectPrimitive.Label>
+
                       {option.options.map(renderOption)}
                     </SelectPrimitive.Group>
                   )
@@ -239,6 +317,8 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
 
                 return renderOption(option)
               })}
+
+              {filteredOptions.length === 0 && <div className={s.noResults}>No results found</div>}
             </SelectPrimitive.Viewport>
           </SelectPrimitive.Content>
         </SelectPrimitive.Portal>
@@ -247,4 +327,4 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
   }
 )
 
-Select.displayName = 'Select'
+SearchableSelect.displayName = 'SearchableSelect'
