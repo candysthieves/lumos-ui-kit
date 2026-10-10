@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - dev
-      - refactor-tabs-component
+      - feature/SCRUM-214-header-refactoring
 
   pull_request:
     branches:
