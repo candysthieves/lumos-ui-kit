@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - dev
-      - SCRUM-207-add-searchable-select
+      - refactor-tabs-component
 
   pull_request:
     branches:
