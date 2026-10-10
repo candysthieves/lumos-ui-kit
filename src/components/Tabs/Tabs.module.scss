@@ -42,6 +42,13 @@
     @include transition-basic(background-color);
   }
 
+  .labelText {
+    overflow: hidden;
+    display: block;
+    max-width: 100%;
+    text-overflow: ellipsis;
+  }
+
   &:hover:not(:disabled) {
     background: var(--color-dark-500);
   }

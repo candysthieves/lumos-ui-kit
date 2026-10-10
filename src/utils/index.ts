@@ -6,6 +6,7 @@ export { isThemeColor } from './isThemeColor'
 export { getFirstLetterCapitalized } from './getFirstLetterCapitalized'
 export { isAudioAttachment } from './isAudioAttachment'
 export { formatTime } from './formatTime'
+export { getOptions } from './getOptions'
 export {
   DAYS_IN_WEEK,
   formatValue,
