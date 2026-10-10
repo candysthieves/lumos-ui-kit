@@ -20,3 +20,6 @@ export const TAB_INDEX = {
   ENABLED: 0,
   DISABLED: -1,
 } as const
+
+export const DEBOUNCE_DELAY = 500
+export const OPTIONS_QUANTITY = 50
