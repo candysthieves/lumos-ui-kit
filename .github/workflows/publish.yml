@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - dev
-      - SCRUM-207-add-searchable-select
+      - feature/SCRUM-214-header-refactoring
 
   pull_request:
     branches:

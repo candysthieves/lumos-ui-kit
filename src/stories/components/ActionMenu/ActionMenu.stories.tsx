@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { fn } from 'storybook/test'
+import { expect, fn, within } from 'storybook/test'
 import {
   CopyOutline,
   EditOutline,
@@ -152,5 +152,34 @@ export const DisabledItem: Story = {
         onSelect: fn(),
       },
     ],
+  },
+}
+
+export const NavigationItems: Story = {
+  args: {
+    ariaLabel: 'Open profile menu',
+    defaultOpen: true,
+    items: [
+      {
+        href: '/profile/settings',
+        id: 'profile-settings',
+        label: 'Profile Settings',
+      },
+      {
+        disabled: true,
+        href: '/statistics',
+        id: 'statistics',
+        label: 'Statistics',
+      },
+    ],
+  },
+  play: async ({ canvasElement }) => {
+    const menu = within(canvasElement.ownerDocument.body)
+
+    await expect(menu.getByRole('menuitem', { name: 'Profile Settings' })).toHaveAttribute(
+      'href',
+      '/profile/settings'
+    )
+    await expect(menu.getByRole('menuitem', { name: 'Statistics' })).not.toHaveAttribute('href')
   },
 }

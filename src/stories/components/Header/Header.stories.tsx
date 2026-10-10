@@ -63,18 +63,21 @@ type Story = StoryObj<typeof meta>
 const profileMenuItems: ActionMenuItem[] = [
   {
     icon: <SettingsOutline size={24} />,
+    href: '/profile/settings',
     id: 'profile-settings',
     label: 'Profile Settings',
     onSelect: fn(),
   },
   {
     icon: <TrendingUpOutline size={24} />,
+    href: '/statistics',
     id: 'statistics',
     label: 'Statistics',
     onSelect: fn(),
   },
   {
     icon: <BookmarkOutline size={24} />,
+    href: '/favorites',
     id: 'favorites',
     label: 'Favorites',
     onSelect: fn(),
@@ -96,6 +99,19 @@ export const Authorized: Story = {
     mobileMenuLabel: 'Open menu',
     notificationCount: 3,
     notificationLabel: 'Notifications',
+  },
+  parameters: {
+    chromatic: {
+      viewports: [360, 768],
+    },
+    docs: {
+      description: {
+        story: 'Use the viewport toolbar at 768 px or below to view the profile menu.',
+      },
+    },
+    viewport: {
+      defaultViewport: 'tablet',
+    },
   },
 }
 
