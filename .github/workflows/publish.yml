@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - dev
-      - feature/SCRUM-214-header-refactoring
+      - SCRUM-227-add-new-icons-for-payment-items
 
   pull_request:
     branches:
