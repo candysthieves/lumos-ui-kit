@@ -1,7 +1,7 @@
-import type { ComponentPropsWithoutRef, ElementType } from 'react'
+import type { ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
 import { OutlineBell } from '@/assets'
-import { ActionMenu, type ActionMenuItem } from '@/components/ActionMenu'
+import { ActionMenu, type ActionMenuItem, type ActionMenuLinkTag } from '@/components/ActionMenu'
 import { Button } from '@/components/Button'
 import { Typography } from '@/components/Typography'
 import s from './Header.module.scss'
@@ -19,7 +19,7 @@ export type HeaderProps = {
   onNotificationClick?: () => void
   onSignUpClick?: () => void
   signUpLabel?: string
-  linkTag?: ElementType
+  linkTag?: ActionMenuLinkTag
 } & Omit<ComponentPropsWithoutRef<'header'>, 'children'>
 
 export const Header = ({
@@ -112,6 +112,7 @@ export const Header = ({
           <ActionMenu
             ariaLabel={mobileMenuLabel}
             items={mobileMenuItems}
+            linkTag={LinkTag}
             triggerClassName={s.mobileMenuButton}
             contentClassName={s.mobileMenu}
           />
