@@ -85,10 +85,35 @@
   @include flex(flex, center, center);
 
   @include transition-basic(background-color, color);
+
+  @include media-tablet {
+    flex: 1;
+    gap: 0;
+    min-width: 0;
+    padding: 0 0.5rem;
+  }
+}
+
+.labelText {
+  overflow: hidden;
+  display: block;
+  max-width: 100%;
+  text-overflow: ellipsis;
+
+  @include media-tablet {
+    // Скрываем текст только если у таба ЕСТЬ иконка
+    &.withIcon {
+      display: none;
+    }
+  }
 }
 
 .icon {
   @include flex(inline-flex, center, center);
 
   flex-shrink: 0;
+
+  @include media-tablet {
+    display: flex;
+  }
 }

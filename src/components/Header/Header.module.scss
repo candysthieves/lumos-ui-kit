@@ -109,7 +109,7 @@
   gap: 1.5rem;
 }
 
-@media (width <= 37.5rem) {
+@include media-tablet {
   .container {
     flex-wrap: nowrap;
     gap: 1.5rem;
