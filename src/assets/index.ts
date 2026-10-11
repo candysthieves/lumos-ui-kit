@@ -110,5 +110,6 @@ export { Tablet } from './icons/Tablet'
 export { MoneyCheck } from './icons/MoneyCheck'
 export { Payment } from './icons/Payment'
 export { PaymentSettings } from './icons/PaymentSettings'
+export { YooKassa } from './icons/YooKassa'
 // Logo asset
 export { Logo } from './logo/Logo'
