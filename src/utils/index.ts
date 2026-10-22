@@ -18,6 +18,7 @@ export {
   getStartOfDay,
   getStartOfMonth,
   isYearSelectable,
+  moveDateToMonth,
   MONTH_OPTIONS,
   YEAR_OPTIONS,
 } from './datePicker'
