@@ -4,6 +4,7 @@ on:
     branches:
       - dev
       - feature/SCRUM-214-header-refactoring
+      - SCRUM-234-publish-to-npm
 
   pull_request:
     branches:
