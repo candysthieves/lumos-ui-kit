@@ -14,6 +14,7 @@ type PaginationItem = 'ellipsis' | number
 export type PaginationProps = Omit<ComponentPropsWithoutRef<'nav'>, 'children' | 'onChange'> & {
   currentPage?: number
   defaultCurrentPage?: number
+  defaultPageSize?: number
   onPageChange?: (page: number) => void
   onPageSizeChange?: (pageSize: number) => void
   pageCount: number
@@ -41,15 +42,18 @@ export const Pagination = ({
   className,
   currentPage,
   defaultCurrentPage = 1,
+  defaultPageSize = 100,
   onPageChange,
   onPageSizeChange,
   pageCount,
-  pageSize = 100,
+  pageSize,
   pageSizeOptions = DEFAULT_PAGE_SIZE_OPTIONS,
   ...props
 }: PaginationProps) => {
   const [internalPage, setInternalPage] = useState(defaultCurrentPage)
+  const [internalPageSize, setInternalPageSize] = useState(defaultPageSize)
   const activePage = Math.min(Math.max(currentPage ?? internalPage, 1), pageCount)
+  const selectedPageSize = pageSize ?? internalPageSize
   const pageItems = getPaginationItems(activePage, pageCount)
   const pageSizeOptionsAsSelectOptions: SelectOption[] = pageSizeOptions.map(option => ({
     label: option,
@@ -66,6 +70,16 @@ export const Pagination = ({
     }
 
     onPageChange?.(nextPage)
+  }
+
+  const selectPageSize = (nextPageSize: string) => {
+    const parsedPageSize = Number(nextPageSize)
+
+    if (pageSize === undefined) {
+      setInternalPageSize(parsedPageSize)
+    }
+
+    onPageSizeChange?.(parsedPageSize)
   }
 
   if (pageCount < 1) {
@@ -121,11 +135,11 @@ export const Pagination = ({
           className={s.pageSizeSelect}
           contentClassName={s.pageSizeContent}
           itemClassName={s.pageSizeOption}
-          value={String(pageSize)}
+          value={String(selectedPageSize)}
           options={pageSizeOptionsAsSelectOptions}
           triggerIcon={<ArrowIosDownOutline size={16} />}
           triggerProps={{ 'aria-label': 'Items per page' }}
-          onValueChange={value => onPageSizeChange?.(Number(value))}
+          onValueChange={selectPageSize}
         />
         <span>on page</span>
       </div>
