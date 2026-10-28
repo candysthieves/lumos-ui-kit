@@ -134,6 +134,7 @@ export const Pagination = ({
         <Select
           className={s.pageSizeSelect}
           contentClassName={s.pageSizeContent}
+          iconProps={{ className: s.pageSizeIcon }}
           itemClassName={s.pageSizeOption}
           value={String(selectedPageSize)}
           options={pageSizeOptionsAsSelectOptions}
