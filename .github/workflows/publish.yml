@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - dev
-      - feature/SCRUM-214-header-refactoring
+      - feature/SCRUM-55-create-pagination
 
   pull_request:
     branches:

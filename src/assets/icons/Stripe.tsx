@@ -8,8 +8,8 @@ const StripeSvg = (props: SVGProps<SVGSVGElement>) => {
     <svg xmlns={'http://www.w3.org/2000/svg'} viewBox={'0 0 24 16'} fill={'none'} {...props}>
       <g clipPath={'url(#stripe)'}>
         <path
-          fill={'#fff'}
-          stroke={'#f3f3f3'}
+          fill={'transparent'}
+          stroke={'transparent'}
           d={
             'M1.91.5H22.1c.79 0 1.41.62 1.41 1.37v12.26a1.4 1.4 0 0 1-1.41 1.37H1.9a1.4 1.4 0 0 1-1.4-1.37V1.87C.5 1.12 1.12.5 1.91.5Z'
           }
@@ -25,7 +25,7 @@ const StripeSvg = (props: SVGProps<SVGSVGElement>) => {
       </g>
       <defs>
         <clipPath id={'stripe'}>
-          <path fill={'#fff'} d={'M0 0h24v16H0z'} />
+          <path fill={'transparent'} d={'M0 0h24v16H0z'} />
         </clipPath>
       </defs>
     </svg>
