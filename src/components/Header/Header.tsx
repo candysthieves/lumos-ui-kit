@@ -54,16 +54,8 @@ export const Header = ({
       onSelect: onSignUpClick,
     },
   ]
-  const mobileAuthenticatedFallbackItems: ActionMenuItem[] = [
-    {
-      id: 'notifications',
-      label:
-        notificationCount > 0 ? `${notificationLabel} (${notificationCount})` : notificationLabel,
-      onSelect: onNotificationClick,
-    },
-  ]
   const mobileMenuItems = isAuthenticated
-    ? (mobileAuthenticatedMenuItems ?? mobileAuthenticatedFallbackItems)
+    ? (mobileAuthenticatedMenuItems ?? [])
     : mobileAuthMenuItems
 
   return (
@@ -109,13 +101,15 @@ export const Header = ({
             </div>
           )}
 
-          <ActionMenu
-            ariaLabel={mobileMenuLabel}
-            items={mobileMenuItems}
-            linkTag={LinkTag}
-            triggerClassName={s.mobileMenuButton}
-            contentClassName={s.mobileMenu}
-          />
+          {mobileMenuItems.length > 0 && (
+            <ActionMenu
+              ariaLabel={mobileMenuLabel}
+              items={mobileMenuItems}
+              linkTag={LinkTag}
+              triggerClassName={s.mobileMenuButton}
+              contentClassName={s.mobileMenu}
+            />
+          )}
         </div>
       </div>
     </header>
