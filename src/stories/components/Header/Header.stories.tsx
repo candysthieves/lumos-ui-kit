@@ -106,7 +106,8 @@ export const Authorized: Story = {
     },
     docs: {
       description: {
-        story: 'Use the viewport toolbar at 768 px or below to view the profile menu.',
+        story:
+          'At 768 px or below, the notification bell remains available beside the profile menu trigger.',
       },
     },
     viewport: {
