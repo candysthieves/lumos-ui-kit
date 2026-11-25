@@ -24,6 +24,7 @@ import {
   getStartOfDay,
   getStartOfMonth,
   isYearSelectable,
+  moveDateToMonth,
   MONTH_OPTIONS,
   type DatePickerMode,
   type DatePickerValue,
@@ -126,6 +127,18 @@ export const DatePicker = ({
     setFocusedDate(nextDate)
     setDisplayedMonth(getStartOfMonth(nextDate))
   }
+
+  const handleYearMonthChange = (year: number, month: number) => {
+    setDisplayedMonth(new Date(year, month, 1))
+    if (mode !== 'single' || !(selectedValue instanceof Date)) {
+      return
+    }
+    const movedDate = moveDateToMonth(selectedValue, year, month)
+    const nextDate = getClosestEnabledDate(movedDate, minDate, maxDate)
+    setSelectedValue(nextDate)
+    setFocusedCalendarDate(nextDate)
+  }
+
   const handleDateSelect = (date: Date) => {
     if (mode === 'single') {
       setSelectedValue(date)
@@ -305,9 +318,7 @@ export const DatePicker = ({
                 value={String(displayedMonth.getMonth())}
                 viewportProps={{ className: s.monthViewport }}
                 onValueChange={month =>
-                  setDisplayedMonth(
-                    currentMonth => new Date(currentMonth.getFullYear(), Number(month), 1)
-                  )
+                  handleYearMonthChange(displayedMonth.getFullYear(), Number(month))
                 }
                 triggerProps={{ 'aria-label': 'Month' }}
               />
@@ -319,9 +330,7 @@ export const DatePicker = ({
                 value={String(displayedMonth.getFullYear())}
                 viewportProps={{ className: s.yearViewport }}
                 onValueChange={year =>
-                  setDisplayedMonth(
-                    currentMonth => new Date(Number(year), currentMonth.getMonth(), 1)
-                  )
+                  handleYearMonthChange(Number(year), displayedMonth.getMonth())
                 }
                 triggerProps={{ 'aria-label': 'Year' }}
               />

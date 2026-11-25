@@ -16,6 +16,13 @@ export const getStartOfDay = (date: Date) =>
 
 export const getStartOfMonth = (date: Date) => new Date(date.getFullYear(), date.getMonth(), 1)
 
+export const moveDateToMonth = (date: Date, newYear: number, newMonth: number) => {
+  const daysInMonth = new Date(newYear, newMonth + 1, 0).getDate()
+  const day = Math.min(date.getDate(), daysInMonth)
+
+  return new Date(newYear, newMonth, day)
+}
+
 export const getClosestEnabledDate = (date: Date, minDate?: Date, maxDate?: Date) => {
   const startOfDay = getStartOfDay(date)
   const minimumDate = minDate
